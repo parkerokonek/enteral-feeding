@@ -1,0 +1,89 @@
+\documentclass[10pt,draftclsnofoot,onecolumn]{IEEEtran}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[backend=biber,citestyle=numeric]{biblatex}
+\bibliography{enteral}
+%\usepackage{pygments}
+
+\begin{document}
+\title{A Volume-based Enteral Feeding Calculator}
+\author{Parker Okonek}
+\IEEEspecialpapernotice{CS461 Fall 2019}
+\maketitle
+\begin{abstract}
+Enteral feeding determined from volume lacks any automation or computer software to
+automatically compute the dose to be administered to critical care patients.
+This type of enteral feeding provides higher quality care to patients but has drawbacks for
+the administering nurses.
+
+The current method is lengthy and repetitive while also leaving large room for human error.
+The process can be improved for patient and nurse outcome by reducing possible error and 
+saving the time and effort of critical care nurses who may have multiple patients a day to
+administer. A program to allow simple input of the required data and return the dosage would
+resolve these problems, but it requires development of a system which is equally accurate
+and exists on a platform most nurses are familiar using in a hospital environment.
+\end{abstract}
+\newpage
+\section{Problem}
+Enteral feeding is the process of feeding a patient using a feeding tube through the 
+mouth or esophagus to ensure proper nutrition, medicine dosing, and patient health while
+a patient would be unable to eat normally. 
+Volume-based enteral feeding measures the doses of food or drug by using volume instead of
+flow rate . It offers an improved success rate for proper drug dosage
+ and nutrition absorption  by making recovery for missed or late doses
+ much more accurate and easy to determine compared to rate-based methods \autocite{whiteking}.
+The volumetric method requires a repetitive, error-prone process performed by hand with
+a reference table. This process is time-consuming and frustrating for clinical care nurses which
+already have a variety of tasks to perform.  The paper table is determined by a set of other 
+calculations which are more time-consuming and error prone to calculate by hand but could
+be done quickly and reliably by software.
+
+\section{Solution}
+The accuracy provided by the volume-based method can be made more accessible with 
+a simple form style interface that accepts inputs from the user on the different metrics required
+by the table, including time since last feeding, volume per hour, and other factors. Critical care
+nurses input these values into the app to produce the volume for the next feeding session. 
+The calculations approximated by the paper table will be performed by the application  and
+returned to the nurse in a result field.
+Available
+critical care nurses will be surveyed through contacts of Dr. Judy Davidson to determine what 
+platform is most common and familiar in a modern inpatient care environment. Possible platforms
+include mobile devices, iPads and android tablets for example, or a Windows-focused desktop.
+The source code for the project will be made available under an open-source license to allow
+for community maintenance and less up-front cost for widespread adoption.
+
+\section{Performance Metrics}
+The success of the project will be evaluated on its accuracy, ease-of-use, and lack of errors.
+The volume based feeding schedule should use the same inputs as the paper table and should 
+return equivalent outputs for a set of given inputs. The user interaction should be clear to read
+and simple to use for nurses with a variety of technical experience. The program should be 
+tested to ensure that it does not crash during normal operation, regardless of time open for normal
+use.
+
+Accuracy must be equivalent to the current calculation table.
+For example, a patient with a daily volume
+goal of 2200 milliliters with 12 hours remaining in the 24 hour period, the table would provide a 
+value of 150 milliliters. 
+If the application
+returns a volume which is incorrect or less precise than the table, it fails to meet the metric for
+accuracy. 
+
+Ease-of-use is a primary consideration in an inpatient environment, where there is often a mix of new and old technologies.
+The program should have clearly titled, separated inputs with the minimum amount of input fields
+possible. The application should also
+be resilient against user input errors, with protections against overdosing patients beyond the
+highest possible safe volume of food or drug.
+
+Stability in the application and removal of non-crashing errors will be required to continued use.
+The application could be left open for long periods or closed and re-opened multiple times 
+over the course of a twenty four hour time slot. The program should be equally usable in both 
+of these cases without significant slowdown or corruption of output data. Freezing in the application
+such that it cannot be terminated should be wholly prevented.
+
+The automation of volume-based enteral feeding calculations prevents the need for tabulating
+the results manually on a table, thereby reducing human error, allowing instant feedback on
+the quality of return values, reducing effort of critical care nurses, and allowing nurses to offer
+care more quickly and effectively.
+
+\newpage
+\printbibliography
+\end{document}
