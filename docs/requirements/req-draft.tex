@@ -23,10 +23,11 @@ error by requiring the source numbers to be entered and automatically produced, 
 method which requires the result to be produced by hand. The goal of this conversion is to reduce both
 error and time taken in getting the results.
 
-\subsection{Scope}
+\subsection{Background}
 
 \subsection{References}
 
+\section{Overall Description}
 \subsection{Product Overview}
 The application and its source code will be released on GitHub. Both the compiled binary and the source code
 will be appropriately licensed for its own open source distribution and to be license compatible with any 
@@ -39,7 +40,6 @@ is more convenient and widespread for projects of similar scale and niche.
 - takes in time input
 - calculates volumetric feeding rate
 
-\section{Specific Requirements}
 \subsection{System Interfaces}
 The enteral feeding calculator will interface with local storage on the machine to store any generated 
 error logs and to save values which are not likely to change after being first set. The calculator will
@@ -57,14 +57,16 @@ Volume inputs will accept only numerical values. A checkbox will be used to indi
 small bowel, with a large banner indicating the current state. At the bottom of the UI will be the output value and a calculation
 button that updates the output value, if valid.
 
-\subsubsection{Functions}
+\section{Specific Requirements}
+
+\subsection{Functions}
 - must do THE math
 - need to be able to get date/time info
 - update variables
 - time start/end should be preserved after set. Can be reset.
 - data should be stored locally.
 
-\subsubsection{Software Quality}
+\subsection{Software Quality}
 - Needs to be able to run on a variety of platforms
 - doesn't crash
 - returns numbers the same for every input
