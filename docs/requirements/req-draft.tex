@@ -67,9 +67,16 @@ button that updates the output value, if valid.
 - data should be stored locally.
 
 \subsection{Software Quality}
-- Needs to be able to run on a variety of platforms
-- doesn't crash
-- returns numbers the same for every input
+The enteral feeding calculator will need to have support for multiple versions of its target platform. Medical settings often
+have a variety of versions for device operating systems. If the mobile platform is chosen, the software will need to support 
+multiple versions of both the Android and iOS mobile operating systems. If the desktop platform is chosen, the software will need
+to support legacy and current versions of Windows, from Windows 7 to Windows 10.
+
+The software should not crash, freeze, or return erroneous results over normal use. The results returned by the program should never
+exceed the maximum safe values for their kind of enteral feeding, even with erroneous input. Results should also be consistent over
+up time of the application and regardless of the uptime of the operating system.
+
+The user interface should indicate when a value is accepted or rejected, and offer further clarity through its interface with minimal clutter.
 
 \section{Verification}
 
