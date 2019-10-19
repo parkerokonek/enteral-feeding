@@ -1,19 +1,19 @@
-\documentclass[10pt,draftclsnofoot,onecolumn]{IEEEtran}
-\usepackage[margin=0.75in]{geometry}
-\usepackage[backend=biber,citestyle=numeric]{biblatex}
-\usepackage{listings}
+\documentclass[fullpage,10pt, onecolumn, draftclsnofoot]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=.75in]{geometry}
+\usepackage{setspace}
+\singlespacing
+
+\title{CS60 Patient Safety App: A Volume-based Enteral Feeding Calculator}
+\author{Alison Jones\\ CS461 - Senior Project \\Fall 2019}
 
 \begin{document}
-\title{}
-\author{Alison Jones \& Parker Okonek}
-\IEEEspecialpapernotice{CS461 Fall 2019}
-\IEEEspecialpapernotice{Group Name}
+\pagenumbering{arabic}
 \maketitle
-\begin{abstract}
-%Abstract Goes here
-\end{abstract}
-\newpage
+
+
 \section{Introduction}
+
 \subsection{Purpose}
 The volume-based enteral feeding calculator replaces the paper tables currently used when 
 calculating feed rates for both gastric and small bowel enteral feeding. The calculator reduces
@@ -22,8 +22,10 @@ method which requires the result to be produced by hand. The goal of this conver
 error and time taken in getting the results.
 
 \subsection{Background}
+Paper tables have been designed for nurses to use to calculate the catch up rate. The table is a commonly used rate-based system with a max rate cap based on the method of feeding. Many hospitals don't even use this method and just had calculate the catchup rate. The current method leaves some room for error and could be improved/automated.
 
 \subsection{References}
+(TBD)
 
 \section{Overall Description}
 \subsection{Product Overview}
@@ -35,9 +37,7 @@ The platform for the project will be determined from surveying nurses to determi
 is more convenient and widespread for projects of similar scale and niche.
 
 \subsection{Product Functions}
-The enteral feeding calculator will take input from the user in the form of the times that a patient ceased and
-began again feeding. The calculator will also take inputs for time of daily volume reset  and daily volume goal.
-The calculator will use these inputs to return a new rate of feeding, capped at the maximum safe value.
+This product is meant to calculate volumetric feeding rate. The final function of it should be to make nurse's jobs easier when dealing with enteral feeding calculations. The application should be user friendly and easy to learn. It should require no math for nurses to complete their initial task. The product will be open source and available for all.
 
 \subsection{System Interfaces}
 The enteral feeding calculator will interface with local storage on the machine to store any generated 
@@ -59,11 +59,7 @@ button that updates the output value, if valid.
 \section{Specific Requirements}
 
 \subsection{Functions}
-- must do THE math
-- need to be able to get date/time info
-- update variables
-- time start/end should be preserved after set. Can be reset.
-- data should be stored locally.
+The project must have the following functions upon completion. The application must do the required math/logic and it must be done correctly. The app should be able to get date and time information for these calculations. As the user enters and updates information, it should be updated where applicable. Variables that should eb constant should be locally saved when se so that they aren't changed.
 
 \subsection{Software Quality}
 The enteral feeding calculator will need to have support for multiple versions of its target platform. Medical settings often
@@ -78,5 +74,6 @@ up time of the application and regardless of the uptime of the operating system.
 The user interface should indicate when a value is accepted or rejected, and offer further clarity through its interface with minimal clutter.
 
 \section{Verification}
+After being proven to work, the final project will hopefully make it into clinical testing. This is the true test to verify how effective the project is. The application should ultimately be well received and have a lowered chance for error. We can test this by comparing the percent error before and after implementation.
 
 \end{document}
