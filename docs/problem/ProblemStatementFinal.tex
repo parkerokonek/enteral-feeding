@@ -1,1 +1,95 @@
-(enter stuff here)
+\documentclass[fullpage,10pt, onecolumn, draftclsnofoot]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=.75in]{geometry}
+\usepackage{setspace}
+\singlespacing
+
+\begin{document}
+\pagenumbering{arabic}
+\title{Patient Safety App: A Volume-based Enteral Feeding Calculator}
+\author{Alison Jones \& Parker Okonek}
+ \IEEEspecialpapernotice{CS461 - Senior Project \\Fall 2019}
+ \maketitle
+ \begin{abstract}
+ Current clinical technology is often outdated. While medicine and doctors have improved their 
+effectiveness over the past few decades and technology has reached amazing capabilities, 
+many tools used in a clinical environment lack any automation or computer software to
+accompany them.  Enteral feeding, a frequently used medical procedure, is an example of 
+this disjoint relationship. The current method for determining feeding rates is lengthy and repetitive
+while also leaving large room for human error. 
+
+The calculations being made
+can easily be automated and presented to nurses in the form of an app. It is our team's job to
+develop this application and test it in both simulated and clinical environments. The application
+should take minimal input from nurses and provide them with the correct feeding rate and
+be released with open source to aid in deployment.
+
+After development, the app will be taken into clinical
+ trials to test it's efficacy over the original hand-calculated method. To conduct trials our team
+ must verify that we follow the rules outlined by the FDA and IRB.
+ \end{abstract}
+\newpage
+\section{Problem Description}
+Enteral feeding is the process of delivering  liquid  food through a tube into the 
+stomach or intestine to ensure proper nutrition, medicine dosing, and patient health while
+a patient would be unable to eat normally. The volumetric method requires a repetitive, error-prone process performed
+by hand with a reference table to calculate the catch-up rate for the tube feeding. There are four different steps taken that could easily be
+automated. Human error is inevitable with this method and puts patients at an unnecessary risk. 
+
+The paper table is determined by a set of other 
+calculations which are more time-consuming and error prone to calculate by hand but could
+be done quickly and reliably by software. Errors made when using this method are known to exist, however the actual frequency is unknown.
+We not only have errors being made, but also don't understand the full extent of these errors. 
+\section{Proposed Solution}
+The app will automate as many steps as possible for the nurses. Less human 
+ interaction with a system known to work should reduce error. 
+The accuracy provided by the volume-based method can then be made more accessible with 
+a simple form style interface that accepts inputs from the user on the different inputs required
+by the table, including time since last feeding, volume per hour, and other factors.
+
+The math driving the calculations of the program will be plain algebra; however, it should be wrapped into an application built
+for the most desirable interface (web, phone, tablet, etc.). The interface must also be intuitive for
+critical care nurses with a variety of backgrounds and technological expertise or lack thereof.
+Available
+critical care nurses will be surveyed through contacts of Dr. Judy Davidson to determine what 
+platform is most common and familiar in a modern inpatient care environment.
+To verify that the proposed solution
+works clinical trials should be conducted with the new method and compared to data from trials 
+that use the outdated method.
+
+\section{Performance Metrics}
+The success of the project will be evaluated on its accuracy, ease-of-use, and lack of errors.
+In addition, there will be checkpoints to denote major completed steps of the project.
+The app should have user input as small as possible while still generating correct results.
+It should also correctly calculate feeding rate for patients. To do this the team will get firsthand 
+training on how nurses go through the process. The team should test the app using simulated data 
+to verify that it is safe and reliable for use in a hospital environment. 
+
+Ease-of-use is a primary consideration in an inpatient environment, where there is often a mix of new and old technologies.
+The program should have clearly titled, separated inputs with the minimum amount of input fields
+possible. The application should also
+be resilient against user input errors, with protections against overdosing patients beyond the
+highest possible safe volume of food or drug.
+
+The app will be released open source. The technology should be available so hospitals
+have access to a possibly safer alternative to the outdated method. This is to ensure that the app
+helps as many people as possible. 
+
+Stability in the application and removal of non-crashing errors will be required to continued use.
+The application could be left open for long periods or closed and re-opened multiple times 
+over the course of a twenty four hour time slot. The program should be equally usable in both 
+of these cases without significant slowdown or corruption of output data. Freezing in the application
+such that it cannot be terminated should be wholly prevented.
+
+The automation of volume-based enteral feeding calculations prevents the need for tabulating
+the results manually on a table, thereby reducing human error, allowing instant feedback on
+the quality of return values, reducing effort of critical care nurses, and allowing nurses to offer
+care more quickly and effectively.
+
+As a stretch goal, the team should bring the app into the real world for clinical testing. 
+In order to do this, we must get permission and IRB oversight. This paperwork can take months to 
+process and must be started early. Additionally, we must make sure that we comply with any rules
+outlined by the FDA. The point of this goal is to gather data from nurses and patients and show 
+whether or not the project has successfully reduced error and improved patient safety and outcome 
+compared to the old method. 
+ \end{document}
