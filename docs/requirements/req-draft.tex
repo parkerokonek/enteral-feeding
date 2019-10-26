@@ -5,12 +5,18 @@
 \singlespacing
 
 \title{CS60 Patient Safety App: A Volume-based Enteral Feeding Calculator}
-\author{Alison Jones\\ CS461 - Senior Project \\Fall 2019}
+\author{Alison Jones \& Parker Okonek \\ CS461 - Fall 2019}
 
 \begin{document}
 \pagenumbering{arabic}
 \maketitle
-
+\begin{abstract}
+Current enteral feeding calculations are prone to human error. This document outlines the requirements for
+an enteral feeding rate calculator with a focus on accuracy, ease of use, and simple, open source design.
+ This document explains the current enteral feeding calculation method and its issues, and offers the 
+ benefits of the application's approach, its features, and what those features will accomplish.
+\end{abstract}
+\newpage
 
 \section{Introduction}
 
@@ -21,14 +27,9 @@ error by requiring the source numbers to be entered and automatically produced, 
 method which requires the result to be produced by hand. The goal of this conversion is to reduce both
 error and time taken in getting the results.
 
-\subsection{Background}
+\subsection{Scope}
 Paper tables have been designed for nurses to use to calculate the catch up rate. The table is a commonly used rate-based system with a max rate cap based on the method of feeding. Many hospitals don't even use this method and just had calculate the catchup rate. The current method leaves some room for error and could be improved/automated.
 
-\subsection{References}
-(TBD)
-
-\section{Overall Description}
-\subsection{Product Overview}
 The application and its source code will be released on GitHub. Both the compiled binary and the source code
 will be appropriately licensed for its own open source distribution and to be license compatible with any 
 libraries, code, or other intellectual property used to create the application.
@@ -36,16 +37,18 @@ libraries, code, or other intellectual property used to create the application.
 The platform for the project will be determined from surveying nurses to determine whether mobile or desktop
 is more convenient and widespread for projects of similar scale and niche.
 
-\subsection{Product Functions}
-This product is meant to calculate volumetric feeding rate. The final function of it should be to make nurse's jobs easier when dealing with enteral feeding calculations. The application should be user friendly and easy to learn. It should require no math for nurses to complete their initial task. The product will be open source and available for all.
+\section{References}
+(TBD)
 
-\subsection{System Interfaces}
+\section{Specific Requirements}
+
+\subsection{External Interfaces}
 The enteral feeding calculator will interface with local storage on the machine to store any generated 
 error logs and to save values which are not likely to change after being first set. The calculator will
 also display to the user's screen and input devices via a UI library to interface with the operating system's screen drawing
 routines and to accept pointer and text input from the user.
 
-\subsection{User Interfaces}
+\subsection{User Requirements}
 The user interface will be minimal and easy to read. The application will have no configuration window
 or views other than its main interface, and on its main interface will have the text inputs for the different
 input values: time of feeding stop, time of feeding restart, reset time of feeding, and daily feeding volume.
@@ -55,8 +58,6 @@ have 12 added to its value automatically before being used for calculations. A t
 Volume inputs will accept only numerical values. A checkbox will be used to indicate whether the feeding type is gastric or
 small bowel, with a large banner indicating the current state. At the bottom of the UI will be the output value and a calculation
 button that updates the output value, if valid.
-
-\section{Specific Requirements}
 
 \subsection{Functions}
 The project must have the following functions upon completion. The application must do the required math/logic and it must be done correctly. The app should be able to get date and time information for these calculations. As the user enters and updates information, it should be updated where applicable. Variables that should eb constant should be locally saved when se so that they aren't changed.
