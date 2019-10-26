@@ -5,7 +5,7 @@
 \singlespacing
 
 \title{CS60 Patient Safety App: A Volume-based Enteral Feeding Calculator}
-\author{Alison Jones \& Parker Okonek \\ CS461 - Fall 2019}
+\author{Enteral Feeding App Team\\ Alison Jones \& Parker Okonek \\ CS461 - Fall 2019}
 
 \begin{document}
 \pagenumbering{arabic}
@@ -60,7 +60,12 @@ small bowel, with a large banner indicating the current state. At the bottom of 
 button that updates the output value, if valid.
 
 \subsection{Functions}
-The project must have the following functions upon completion. The application must do the required math/logic and it must be done correctly. The app should be able to get date and time information for these calculations. As the user enters and updates information, it should be updated where applicable. Variables that should eb constant should be locally saved when se so that they aren't changed.
+The program will take the user's input for the various fields of the finished algorithm.
+The application will use these values to compute the enteral feeding rate for the remaining time of the day but not exceed safe maximum rates.
+The program will have modes for both gastric and small bowel feeding, which will alter the maximum rates and the calculations for rate.
+The app should be able to get date and time information for these calculations.
+As the user enters and updates information, it should be updated where applicable.
+The variable representing the time of feeding reset should remain constant between the application closing and being opened, but remain configurable when opened.
 
 \subsection{Software Quality}
 The enteral feeding calculator will need to have support for multiple versions of its target platform. Medical settings often
@@ -75,6 +80,8 @@ up time of the application and regardless of the uptime of the operating system.
 The user interface should indicate when a value is accepted or rejected, and offer further clarity through its interface with minimal clutter.
 
 \section{Verification}
+The project should decrease the time to calculate an enteral feeding rate by at least 25\% with a  50\% decrease being unlikely.
+The application should increase accuracy of nurse calculations, though the current metrics of nurse errors are not known.
 After being proven to work, the final project will hopefully make it into clinical testing. This is the true test to verify how effective the project is. The application should ultimately be well received and have a lowered chance for error. We can test this by comparing the percent error before and after implementation.
 
 \end{document}
