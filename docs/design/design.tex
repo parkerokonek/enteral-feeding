@@ -183,9 +183,31 @@ This method of data storage allows information to persist without being viewed o
 \newline
 External Storage:
 This method of data storage is used when the user wants to export information to view or send someplace else. This method is not idea since the application won't be exporting anything. All data being stored is used by the app and shouldn't be viewable or editable by the user unless within the app. (even then some data is still obfuscated)
+
+
 \subsection{Interface Design}
 \subsubsection{Approach}
+This is the section to make the application look pretty. We need to choose a framework that makes the application easy to interact with and enjoyable.
+\newline
+The obvious solution for any web-based computer application would be HTML and CSS and building off of that with something like JS. However, we may not make a computer application. If this is the case we will need to research some options for mobile apps. Here are some options:
+\newline
+\newline
+React Native: 
+A very popular cross-platform option for Android and iOS development. This framework is inclusive and uses JavaScript. This makes it very familiar, especially for our team who hasn't had experience with mobile app development. This may be the easiest option to learn of the three listed here.
+\newline
+\newline
+Apache Cordova / PhoneGap: 
+This framework seems to emphasize the ease of use with peripherals such as the phone's camera and other apps. While this is great, we likely won't need to make use of this. The benefit of this framework is that many versions of an application can be created using the same code base which makes developing for multiple platforms easier.
+\newline
+\newline
+Ionic: 
+This framework comes with a lot of default UI features and integrates Cordova for easier access to features like the camera and contacts. It allows for cross-platform development, making it easy to build an app for both Android and iOS. This could be a really good candidate for our project due to it's inclusive nature. 
+\newline
+\newline Edit: After more research I found that publishing with Ionic is not free while React Native is. 
 \subsubsection{Concerns}
+Note: Biggest issue is the uncertainty of our platform. This will be revised for the final draft!!!!!!!! When this is done, the above section will be revised to have just the singular option chosen.
+\newline
+For now, the main concerns to consider are: Does it cost money? Is what we want to do feasible on this platform? All the options listed above are viable, the main roadblock is choosing what the nurses prefer.
 %=======================================================
 \section{Conclusion}
 Will include in final rendition of paper. Still working out some stuff.
