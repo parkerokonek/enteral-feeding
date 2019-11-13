@@ -157,7 +157,21 @@ We want to ensure that the application is as accurate as possible. Will the devi
 
 \subsection{Data Management}
 \subsubsection{Approach}
+The app should be able to keep track of data being entered and preserve it until the user clears it for another patient. We may even be able to add the ability to manage multiple patients. The app should also preserve time information so that the timezone and start/stop time don't have to be entered more than once. They should remain static unless the user decides to reset them.
 \subsubsection{Concerns}
+The most important rules for our data to adhere to include persistence, accuracy, and security. Persistence ensures that the data being defined (such as starting time, total volume, and intervals) continues to exist even when the application is closed and reopened. This can be important when closing the application or even in an emergency such as a power outage. Accuracy and security ensure that the data remains constant unless dictated by the user and that it cannot be changed outside of the application (by user or third party). This ensures the data is not tampered with and does not change between uses. Below are some data storage examples and their respective benefits and concerns.
+\newline
+\newline
+Shared Preferences: 
+Great for standard settings, this method of information storage saves strings in key-value pairs. This may actually be sufficient for our application unless we need to start saving objects (which may be possible if we allow for multi-patient management).
+\newline
+\newline
+Internal Storage: 
+This method of data storage allows information to persist without being viewed or changed by other applications or the user. This is kept hidden from the user and due to this, may be ideal for our application. We only want the user to be able to interact with user, time, and rate data from within the app.
+\newline
+\newline
+External Storage:
+This method of data storage is used when the user wants to export information to view or send someplace else. This method is not idea since the application won't be exporting anything. All data being stored is used by the app and shouldn't be viewable or editable by the user unless within the app. (even then some data is still obfuscated)
 \subsection{Interface Design}
 \subsubsection{Approach}
 \subsubsection{Concerns}
