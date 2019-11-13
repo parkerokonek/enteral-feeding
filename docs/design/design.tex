@@ -101,14 +101,19 @@
 \subsection{User Interface Framework}
 \subsubsection{Approach}
 The uncertainty of a platform requires that the user interface framework is multi-platform.
-The chosen framework, Qt, supports a variety of platforms with similar or identical interfaces with the underlying programming language.
+Assuming a multi-platform or desktop implementation, Qt, supports a variety of platforms with similar or identical interfaces with the underlying programming language.
 The layout and bindings to underlying data will be written using Qt's provided API, and the required libraries will be packaged with the software as allowed by the license for distribution. 
 \subsubsection{Concerns}
 Users will have a standard interface across platforms, both desktop and mobile, with due considerations made to the different input methods on desktop and mobile.
 Software developers will need to develop interface methods that work on differing platforms instead of a single platform that choosing either desktop or mobile would allow, creating additional maintenance cost.
-User interface designers accomodating multiple screen resolutions and ratios may produce an interface that is optimized for neither interface.
+User interface designers accommodating multiple screen resolutions and ratios may produce an interface that is optimized for neither interface.
 \subsection{Application Logic}
 \subsubsection{Approach}
+The math driving the calculations is only required to be called on user input events and does not change dynamically throughout the course of its use.
+The language used for the application varies on the platform used for the project.
+Javascript would be used for a web-based platform, Java would be used for a mobile-based platform, and Python would be used for a desktop-based platform.
+The calculation function will only be called when valid inputs are received, and the form of the functions will take a data-driven approach.
+Many languages implement features which allow for an optimized and easy-to-read data-driven implementation of functionality.
 
 \subsubsection{Concerns}
 
