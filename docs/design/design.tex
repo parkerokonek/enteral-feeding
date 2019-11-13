@@ -98,6 +98,8 @@
 
 %=======================================================
 \section{Methods}
+
+%Parker Sections
 \subsection{User Interface Framework}
 \subsubsection{Approach}
 The uncertainty of a platform requires that the user interface framework is multi-platform.
@@ -129,18 +131,72 @@ Model-view-viewmodel is a common design pattern for UI integration in desktop an
 User Interface designers that wish to improve the design will find familiarity with web design frameworks, such as Vue.js, which uses a model-view-viewmodel method to interface between client and server.
 Users will experience a lower performance impact, as the application will remain static when not in use.
 
+
+%Alison Sections
+\subsection{Time-based Input Calculations}
+\subsubsection{Approach}
+This section is important when reducing the math nurses have to do. Instead of asking for total amount administered or number of hours a patient was fed, we could have nurses simply track as they go. Nurses can tell the app at what time they started and stopped and the rate that the feeding was set to. The app should be able to figure out the current time and use past entries to tell nurses what the future rate should be. In this case, nurses wouldn't even need to calculate the number of hours missed, the app should do it. Depending on the platform being used the method can slightly change, however it will always remain fairly standard. We will grab a timestamp of Day:Hour:Minute:Second for calculations. 
+\newline
+\newline
+An few examples of what this may look like include: 
+\newline
+\newline
+Assuming we use the Ionic framework for a mobile interface we would use the date() function to grab a timestamp.
+\newline
+\indent let date = new Date()\newline
+\indent console.log("Current Date ",date)
+\newline
+\newline
+Assuming we use JavaScript for a web interface we would use the getTime() function to grab a timestamp.
+\newline
+\indent Date.getTime()
+\newline
+\newline
+Assuming that we use Cordova framework for a mobile interface we would use the currentdate class to grab the current time data.
+\newline
+\indent var currentdate = new Date(); \newline
+\indent var datetime = currentdate.getHours() + ":"\newline
+\indent \indent \indent + currentdate.getMinutes() + ":" \newline
+\indent \indent \indent + currentdate.getSeconds();\newline
+\subsubsection{Concerns}
+We want to ensure that the application is as accurate as possible. Will the device have accurate time? Will the application know if times don't line up properly? Additionally, if times overlap or aren't in the correct order, it must tell the user an incorrect input was entered and reject the input.
+
+
+\subsection{Data Management}
+\subsubsection{Approach}
+The app should be able to keep track of data being entered and preserve it until the user clears it for another patient. We may even be able to add the ability to manage multiple patients. The app should also preserve time information so that the timezone and start/stop time don't have to be entered more than once. They should remain static unless the user decides to reset them.
+\subsubsection{Concerns}
+The most important rules for our data to adhere to include persistence, accuracy, and security. Persistence ensures that the data being defined (such as starting time, total volume, and intervals) continues to exist even when the application is closed and reopened. This can be important when closing the application or even in an emergency such as a power outage. Accuracy and security ensure that the data remains constant unless dictated by the user and that it cannot be changed outside of the application (by user or third party). This ensures the data is not tampered with and does not change between uses. Below are some data storage examples and their respective benefits and concerns.
+\newline
+\newline
+Shared Preferences: 
+Great for standard settings, this method of information storage saves strings in key-value pairs. This may actually be sufficient for our application unless we need to start saving objects (which may be possible if we allow for multi-patient management).
+\newline
+\newline
+Internal Storage: 
+This method of data storage allows information to persist without being viewed or changed by other applications or the user. This is kept hidden from the user and due to this, may be ideal for our application. We only want the user to be able to interact with user, time, and rate data from within the app.
+\newline
+\newline
+External Storage:
+This method of data storage is used when the user wants to export information to view or send someplace else. This method is not idea since the application won't be exporting anything. All data being stored is used by the app and shouldn't be viewable or editable by the user unless within the app. (even then some data is still obfuscated)
+\subsection{Interface Design}
+\subsubsection{Approach}
+\subsubsection{Concerns}
 %=======================================================
 \section{Conclusion}
-
+Will include in final rendition of paper. Still working out some stuff.
 %=======================================================
 \section{References}
-TBA
 
-%=======================================================
-\section{Glossary}
-%Please drop any phrases that need defining here.
-\begin{itemize}
-    \item 
-\end{itemize}
+“How to Store Data Locally in an Android App.” Android Authority, 20 Nov. 2017, www.androidauthority.com/how-to-store-data-locally-in-android-app-717190/.
+\newline
+\newline
+“Top 10 Best Mobile App Development Frameworks in 2019–20.” By Alex Hales, hackernoon.com/top-10-best-mobile-app-development-frameworks-in-2019-612b95cf930f.
+\newline
+\newline
+Krishna12. “How to GetCurrent Time without Using Picker.” Ionic Forum, 15 Nov. 2017, forum.ionicframework.com/t/how-to-getcurrent-time-without-using-picker/112208.
+\newline
+\newline
+Zak-DevZak-Dev. “Cordova : Android Device Current Date/Time.” Stack Overflow, 1 Jan. 1968, stackoverflow.com/questions/46781636/cordova-android-device-current-date-time.
 
 \end{document}
