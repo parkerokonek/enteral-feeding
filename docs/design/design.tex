@@ -126,7 +126,41 @@ Users will experience a lower performance impact, as the application will remain
 
 
 %Alison Sections
+\subsection{Time-based Input Calculations}
+\subsubsection{Approach}
+This section is important when reducing the math nurses have to do. Instead of asking for total amount administered or number of hours a patient was fed, we could have nurses simply track as they go. Nurses can tell the app at what time they started and stopped and the rate that the feeding was set to. The app should be able to figure out the current time and use past entries to tell nurses what the future rate should be. In this case, nurses wouldn't even need to calculate the number of hours missed, the app should do it. Depending on the platform being used the method can slightly change, however it will always remain fairly standard. We will grab a timestamp of Day:Hour:Minute:Second for calculations. 
+\newline
+\newline
+An few examples of what this may look like include: 
+\newline
+\newline
+Assuming we use the Ionic framework for a mobile interface we would use the date() function to grab a timestamp.
+\newline
+\indent let date = new Date()\newline
+\indent console.log("Current Date ",date)
+\newline
+\newline
+Assuming we use JavaScript for a web interface we would use the getTime() function to grab a timestamp.
+\newline
+\indent Date.getTime()
+\newline
+\newline
+Assuming that we use Cordova framework for a mobile interface we would use the currentdate class to grab the current time data.
+\newline
+\indent var currentdate = new Date(); \newline
+\indent var datetime = currentdate.getHours() + ":"\newline
+\indent \indent \indent + currentdate.getMinutes() + ":" \newline
+\indent \indent \indent + currentdate.getSeconds();\newline
+\subsubsection{Concerns}
+We want to ensure that the application is as accurate as possible. Will the device have accurate time? Will the application know if times don't line up properly? Additionally, if times overlap or aren't in the correct order, it must tell the user an incorrect input was entered and reject the input.
 
+
+\subsection{Data Management}
+\subsubsection{Approach}
+\subsubsection{Concerns}
+\subsection{Interface Design}
+\subsubsection{Approach}
+\subsubsection{Concerns}
 %=======================================================
 \section{Conclusion}
 Will include in final rendition of paper. Still working out some stuff.
