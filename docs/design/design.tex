@@ -104,7 +104,9 @@ The uncertainty of a platform requires that the user interface framework is mult
 The chosen framework, Qt, supports a variety of platforms with similar or identical interfaces with the underlying programming language.
 The layout and bindings to underlying data will be written using Qt's provided API, and the required libraries will be packaged with the software as allowed by the license for distribution. 
 \subsubsection{Concerns}
-
+Users will have a standard interface across platforms, both desktop and mobile, with due considerations made to the different input methods on desktop and mobile.
+Software developers will need to develop interface methods that work on differing platforms instead of a single platform that choosing either desktop or mobile would allow, creating additional maintenance cost.
+User interface designers accomodating multiple screen resolutions and ratios may produce an interface that is optimized for neither interface.
 \subsection{Application Logic}
 \subsubsection{Approach}
 
