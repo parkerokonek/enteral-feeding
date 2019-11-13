@@ -1,7 +1,10 @@
 \documentclass[fullpage,10pt, onecolumn, draftclsnofoot]{IEEEtran}
 \usepackage[utf8]{inputenc}
-\usepackage[margin=.75in]{geometry}
 \usepackage{setspace}
+\usepackage{lscape}
+\usepackage{caption}
+\usepackage{pgfgantt}
+\usepackage[margin=.75in]{geometry}
 \singlespacing
 
 \title{CS60 Patient Safety App: A Volume-based Enteral Feeding Calculator}
@@ -83,5 +86,27 @@ The user interface should indicate when a value is accepted or rejected, and off
 The project should decrease the time to calculate an enteral feeding rate by at least 25\% with a  50\% decrease being unlikely.
 The application should increase accuracy of nurse calculations, though the current metrics of nurse errors are not known.
 After being proven to work, the final project will hopefully make it into clinical testing. This is the true test to verify how effective the project is. The application should ultimately be well received and have a lowered chance for error. We can test this by comparing the percent error before and after implementation.
+\section{Gantt Chart}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{Gantt.jpg}
+\centering
+\caption{Gantt Chart}
+\label{fig:gantt_chartl}
+\end{figure}
+Items\newline
+1. Go over the rate table/ process that nurses go through when calculating rate based feeding or catch up rate for feeding.\newline
+2. Research which interface to use. Contact nurses and learn whether a phone or computer application would be better. Also ask about inputs/ first design check at this time.\newline
+3. Research App development based on chosen interface.\newline
+4. Develop Algorithm/ math and logic side to app.\newline
+5. Integrate algorithm into app framework.\newline
+6. Add time based input for application.\newline
+7. Ensure user input is saved locally on device to preserve data.\newline
+8. Work on app display and usability (pretty stuff)\newline
+9. Check app design again with nurses/ projected users.\newline
+10. Update app design based on feedback. (repeat as necessary).\newline
+11. Finalize Application and publish? Research what is needed to do with this.\newline
+12. Check whether we can start implementation and research.\newline 13. Start is we can.\newline
+14. Final Report and Wrap-up\newline
 
 \end{document}
