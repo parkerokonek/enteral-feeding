@@ -1,0 +1,105 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+\def \CapstoneTeamName{		Enteral Feeding Calculator Team}
+\def \CapstoneTeamNumber{		90}
+\def \GroupMemberOne{			Alison Jones}
+\def \GroupMemberTwo{			Parker Okonek}
+\def \CapstoneProjectName{		Volume-Based Enteral Feeding Calculator}
+%\def \CapstoneSponsorCompany{	Company, Inc}
+\def \CapstoneSponsorPerson{		Dr. Judy Davidson}
+
+\def \DocType{
+				Design Document
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+        \hfill 
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        Abstract goes here.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+\subsection{Scope}
+
+\subsection{Context}
+
+\subsection{Summary}
+
+\section{References}
+TBA
+
+\section{Glossary}
+
+\section{Body}
+\subsection{Context Viewpoint}
+%Systems services and users
+\subsection{Composition Viewpoint}
+%Composition and modular assembly of systems in terms of pluggable components (buy vs build)
+\subsection{Logical Viewpoint}
+%Static structure (classes, interfaces, how they interacct, types/reuse etc.)
+\subsection{Dependency Viewpoint}
+%Interconnection, parameterization, dependency sharing
+\subsection{Information Viewpoint}
+%Persistent information
+\subsection{Patterns Use Viewpoint}
+%Reuse of (design or other) patterns and framework templates
+\subsection{Interface Viewpoint}
+%Service definition, service access
+\subsection{Structure Viewpoint}
+%Internal organization and design subjects, components, classes
+\subsection{Interaction Viewpoint}
+%Communication and messaging
+\subsection{State Dynamics Viewpoint}
+%State transformation
+\subsection{Algorithm Viewpoint}
+%Procedural Logic
+\subsection{Resource Viewpoint}
+%Resource utilization, 
+
+\end{document}
