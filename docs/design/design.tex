@@ -73,7 +73,9 @@
 \subsection{Scope}
 \subsection{Intended Audience}
 \section{Definitions}
-%enteral feeding
+\begin{itemize}
+    \item \textit{Enteral Feeding: } A method of supplying nutrition to patients by providing a nutrient soup into the intestinal tract via a tube inserted into the mouth, stomach, or lower intestine.
+\end{itemize}
 %other weird words?
 %etc.
 
@@ -100,6 +102,7 @@
 \section{Methods}
 
 %Parker Sections
+%UI
 \subsection{User Interface Framework}
 \subsubsection{Approach}
 The uncertainty of a platform requires that the user interface framework is multi-platform.
@@ -109,6 +112,7 @@ The layout and bindings to underlying data will be written using Qt's provided A
 Users will have a standard interface across platforms, both desktop and mobile, with due considerations made to the different input methods on desktop and mobile.
 Software developers will need to develop interface methods that work on differing platforms instead of a single platform that choosing either desktop or mobile would allow, creating additional maintenance cost.
 User interface designers accommodating multiple screen resolutions and ratios may produce an interface that is optimized for neither interface.
+%Logic and math
 \subsection{Application Logic}
 \subsubsection{Approach}
 The math driving the calculations is only required to be called on user input events and does not change dynamically throughout the course of its use.
@@ -119,6 +123,7 @@ Many languages implement features which allow for an optimized and easy-to-read 
 
 \subsubsection{Concerns}
 
+%UI + logic/math
 \subsection{Interface Framework Integration}
 \subsubsection{Approach}
 Bound variables from Qt will be read by the underlying code.
@@ -130,7 +135,6 @@ Software developers on open source projects focus their efforts highly on projec
 Model-view-viewmodel is a common design pattern for UI integration in desktop and mobile applications. 
 User Interface designers that wish to improve the design will find familiarity with web design frameworks, such as Vue.js, which uses a model-view-viewmodel method to interface between client and server.
 Users will experience a lower performance impact, as the application will remain static when not in use.
-
 
 %Alison Sections
 \subsection{Time-based Input Calculations}
