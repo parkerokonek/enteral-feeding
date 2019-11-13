@@ -98,10 +98,29 @@
 
 %=======================================================
 \section{Methods}
-\subsection{tools stuff go here}
+\subsection{User Interface Framework}
+\subsubsection{Approach}
+The uncertainty of a platform requires that the user interface framework is multi-platform.
+The chosen framework, Qt, supports a variety of platforms with similar or identical interfaces with the underlying programming language.
+The layout and bindings to underlying data will be written using Qt's provided API, and the required libraries will be packaged with the software as allowed by the license for distribution. 
+\subsubsection{Concerns}
 
+\subsection{Application Logic}
+\subsubsection{Approach}
 
+\subsubsection{Concerns}
 
+\subsection{Interface Framework Integration}
+\subsubsection{Approach}
+Bound variables from Qt will be read by the underlying code.
+These inputs will be checked for validity and converted into their proper data types.
+Once converted into the types required for the application logic's calculations, the volumetric rate output is calculated and returned to the user.
+The interface between the framework and the application logic will be performed using the Model-view-viewmodel design pattern.
+\subsubsection{Concerns}
+Software developers on open source projects focus their efforts highly on projects where they have the requisite skill.
+Model-view-viewmodel is a common design pattern for UI integration in desktop and mobile applications. 
+User Interface designers that wish to improve the design will find familiarity with web design frameworks, such as Vue.js, which uses a model-view-viewmodel method to interface between client and server.
+Users will experience a lower performance impact, as the application will remain static when not in use.
 
 %=======================================================
 \section{Conclusion}
