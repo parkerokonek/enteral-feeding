@@ -80,7 +80,8 @@ The intended audience of this design document are the sponsors, Dr. Judy Davidso
 The document serves as a reference for the student development team to track the product creation timeline and as a representation of the sponsor's needs and product expectations that is verifiable and referable.
 %=======================================================
 \section{Definitions}
-Enteral Feeding: A form of tube feeding used to deliver the appropriate nutrients to a patient.This is done through either the mouth, esophagus, or directly into the digestive system through an artificial opening. (Not to be confused with intravenous administration of medication!)
+Enteral Feeding: A form of tube feeding used to deliver the appropriate nutrients to a patient.This is done through either the mouth, esophagus, or directly into the digestive system through an artificial opening. (Not to be confused with intravenous administration of medication!)\\
+IRB:  An Institutional Review Board is a group that has received authority to review, deny, approve, request modification to, and monitor biomedical research in its institution.
 \newline
 \newline
 %etc.
@@ -94,7 +95,32 @@ The software will support either the mobile platform or the desktop platform.
 If the project is developed for mobile, it will be able to run on most off the shelf smart phones or tablets.
 The project will require both a desktop and mobile device for development when targeting the mobile platform.
 If the project is developed for desktop, it can be completely developed using normal desktop hardware and be expected to run on common consumer desktops.
+\subsubsection{Desktop Requirements}
+\begin{enumerate}
+    \item System Architecture: i386 or amd64
+    \item Screen Resolution: 1024 x 768 minimum
+    \item Input: Keyboard and Mouse, or on-screen keyboard and pointer
+\end{enumerate}
+\subsubsection{Mobile Requirements}
+\begin{enumerate}
+    \item System Architecture: ARMv8
+    \item Screen Resolution: 720 x 1280 minimum
+    \item Input: Pointer and on-screen keyboard or pointer and physical keyboard
+\end{enumerate}
 \subsection{Software}
+Software requirements vary depending upon the chosen platform.
+\subsubsection{Desktop Requirements}
+\begin{enumerate}
+    \item Version Control: Github
+    \item Operating System: Windows 7 or greater
+    \item UI Toolkit: Qt (other options, see below)
+\end{enumerate}
+\subsubsection{Mobile Requirements}
+\begin{enumerate}
+    \item Version Control: Github
+    \item Operating System: Android 7.0 or greater, (or iOS 12.0 or greater?)
+    \item UI Toolkit: React Native (other options, see below)
+\end{enumerate}
 %ComputerOS/PhoneOS
 %platform
 %resulting language
@@ -111,6 +137,7 @@ If the project is developed for desktop, it can be completely developed using no
 The enteral feeding calculator is a nurse's tool to easily retrieve an adjusted feeding rate.
 For nurses, the end users, using the calculator will be a simple and time-efficient method when compared to a paper table or manual calculation.
 The user-facing interface for the calculator will have a minimal number of inputs needed to reliably calculate the adjusted feeding rate to decrease possible input errors and promote common usability principles.
+
 A simple interface lends itself well to both learnability, how easy it is for new users to learn the interface, and efficiency, the speed of task completion when a user has learned the interface.
 The interface will also feature either a prominent calculation button or automatic result return field to aid in efficiency and readability.
 \subsubsection{Stakeholders}%think people from the various zoom meetings? This is the WHY to Stakeholders section?
@@ -118,24 +145,42 @@ The interface will also feature either a prominent calculation button or automat
 
 \subsection{Design Viewpoints}
 \subsubsection{Context Viewpoint}
-%'black box' view from user perspective. 
+%'black box' view from user perspective.
+The application should present a more accessible and easier to use option than the current methods of calculating the adjusted volumetric feeding rate.
+The user experience should be hassle-free, without any unexpected slow-downs, crashes, or graphical artifacts within the program's control.
 %What should they see/ what should be taken into account for this view? (design)
 %How can we test this?(analytics)
+
+A select test group of nurses will be surveyed to determine the optimal platform to improve usage rates and satisfaction.
+A similar group, or the same group, will also be asked to review paper prototypes of the applications basic UI layout.
+Once the interface for the program is developed, it will be tested by the developers, sponsors, and target users to verify the app functions as expected and returns accurate results.
+
 %Why is this view important (rationale)
+
+\subsubsection{Legal Viewpoint}
+In September of 2019, the FDA released a set of changes to medical software policies due to the 21st Century Cures Act.
+Due to these changes the enteral feeding calculator on a mobile platform would fall under the regulatory category of "mobile medical app" due to its use as an accessory to a regulated medical device (FDA 2019).
+
+The enteral feeding tube calculator may not be considered a non-significant risk device under FDA laws though could be approved under the app's IRB.
+The app does supplement the functionality of a pump that needs to have a rate of flow entered to properly feed a patient; however, if the calculations done by the app are considered to be a "simple task" as described in the FDA's \textit{Policy for Device Software Functions and Mobile Medical Applications} then this would not be the case.
+The application generates a flow rate that is entered into a medical device without outside verification and for patient safety should have its accuracy and error-rate examined by an IRB.
 
 \subsubsection{Composition Viewpoint}
 %How the project interacts with itself. How is it composed?
 The project will be composed of three distinct pieces: a user-facing UI to collect and report data, a system interface to manage local storage and compatibility, and the internal logic which calculates results from user input and keeps the program state.
+
 The user-facing interface presents an easy to read form input for the minimum required information to calculate a result and passes those values to the internal logic, when a result is created the interface will display this to the user as well.
+
 The system interface manages the constant values between application runs that is not subject to regular change, for example daily target volume or time of feed reset, and allocates required resources from the operating system.
 The internal program logic manages the resulting rate and integrates the other two components of the program with itself and each other.
 This component will also manage the notifications to the user for the UI, such as missing inputs, invalid inputs, and indicating the new rate has been calculated.
 %Why is this setup important (design)
+
 This composition ensures that the UI framework can be replaced in the event of the current choice losing active maintenance or not adapting to the changing software landscape.
 It additionally separates the program logic from the interface display and system interfaces, reducing latency from calculation and allowing the program logic to remain consistent and constant regardless of other changes.
 %How to test product's composition. ex: can different developers easily pass it around? (analytics)
 %Why is this view important (rationale)
-\subsubsection{Interface Viewpoint}
+%\subsubsection{Interface Viewpoint}
 %Are there multiple interfaces, why are they all important and how do they all work together to make one product? (may not be relevant for us!)
 
 \subsection{Design Rationale}
@@ -281,4 +326,7 @@ Zak-DevZak-Dev. “Cordova : Android Device Current Date/Time.” Stack Overflow
 \\
 \\
 The Qt Company. Supported Platforms. 2019. url: https://doc.qt.io/qt-5/supported-platforms.html (visited on 11/03/2019).
+\\
+\\
+FDA. U. S. Food \& Drug Administration. 2019. url: https://www.fda.gov/media/80958/download (visited on 11/19/2019).
 \end{document}
