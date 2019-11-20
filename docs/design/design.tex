@@ -70,6 +70,7 @@
 \section{Overview}
 %Alternatively we could just have an overview paragraph and no subsections.
 \subsection{Purpose}
+The main goal of the project is replace the manual method of calculating volumetric enteral feeding rates with an automated, digital method that results in less errors and takes less time to complete. This document outlines the development path of the project and details the implementation and design on the calculator.
 \subsection{Scope}
 \subsection{Intended Audience}
 
@@ -120,7 +121,14 @@ The interface will also feature either a prominent calculation button or automat
 
 \subsubsection{Composition Viewpoint}
 %How the project interacts with itself. How is it composed?
+The project will be composed of three distinct pieces: a user-facing UI to collect and report data, a system interface to manage local storage and compatibility, and the internal logic which calculates results from user input and keeps the program state.
+The user-facing interface presents an easy to read form input for the minimum required information to calculate a result and passes those values to the internal logic, when a result is created the interface will display this to the user as well.
+The system interface manages the constant values between application runs that is not subject to regular change, for example daily target volume or time of feed reset, and allocates required resources from the operating system.
+The internal program logic manages the resulting rate and integrates the other two components of the program with itself and each other.
+This component will also manage the notifications to the user for the UI, such as missing inputs, invalid inputs, and indicating the new rate has been calculated.
 %Why is this setup important (design)
+This composition ensures that the UI framework can be replaced in the event of the current choice losing active maintenance or not adapting to the changing software landscape.
+It additionally separates the program logic from the interface display and system interfaces, reducing latency from calculation and allowing the program logic to remain consistent and constant regardless of other changes.
 %How to test product's composition. ex: can different developers easily pass it around? (analytics)
 %Why is this view important (rationale)
 
