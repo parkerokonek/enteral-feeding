@@ -70,13 +70,17 @@
 \section{Overview}
 %Alternatively we could just have an overview paragraph and no subsections.
 \subsection{Purpose}
-The main goal of the project is replace the manual method of calculating volumetric enteral feeding rates with an automated, digital method that results in less errors and takes less time to complete. This document outlines the development path of the project and details the implementation and design on the calculator.
+The main goal of the project is replace the manual method of calculating volumetric enteral feeding rates with an automated, digital method that results in less errors and takes less time to complete.
+This document outlines the development path of the project and details the implementation and design on the calculator.
 \subsection{Scope}
+The calculator will return adjusted feeding rates to accommodate for missed feeding time for a patient from any variety of factors.
+The user experience will focus on presenting a minimal and easy to read design where the user, a nurse, enters in the minimum needed and easiest to derive data to determine the feeding rate and is returned the adjusted safe rate to catch up on daily volume.
 \subsection{Intended Audience}
-
+The intended audience of this design document are the sponsors, Dr. Judy Davidson and her team, and the student development team.
+The document serves as a reference for the student development team to track the product creation timeline and as a representation of the sponsor's needs and product expectations that is verifiable and referable.
 %=======================================================
 \section{Definitions}
-Enteral Feeding: A form of tube feeding used to deliver the appropriate nutrients to a patient. This is done through either the mouth, esophagus, or directly into the digestive system through an artificial opening. (Not to be confused with intravenous administration of medication!)
+Enteral Feeding: A form of tube feeding used to deliver the appropriate nutrients to a patient.This is done through either the mouth, esophagus, or directly into the digestive system through an artificial opening. (Not to be confused with intravenous administration of medication!)
 \newline
 \newline
 %etc.
@@ -131,7 +135,6 @@ This composition ensures that the UI framework can be replaced in the event of t
 It additionally separates the program logic from the interface display and system interfaces, reducing latency from calculation and allowing the program logic to remain consistent and constant regardless of other changes.
 %How to test product's composition. ex: can different developers easily pass it around? (analytics)
 %Why is this view important (rationale)
-
 \subsubsection{Interface Viewpoint}
 %Are there multiple interfaces, why are they all important and how do they all work together to make one product? (may not be relevant for us!)
 
