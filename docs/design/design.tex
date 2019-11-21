@@ -7,7 +7,7 @@
 \geometry{textheight=9.5in, textwidth=7in}
 
 \def \CapstoneTeamName{		Enteral Feeding Calculator Team}
-\def \CapstoneTeamNumber{		90}
+\def \CapstoneTeamNumber{		60}
 \def \GroupMemberOne{			Alison Jones}
 \def \GroupMemberTwo{			Parker Okonek}
 \def \CapstoneProjectName{		Volume-Based Enteral Feeding Calculator}
@@ -142,6 +142,12 @@ A simple interface lends itself well to both learnability, how easy it is for ne
 The interface will also feature either a prominent calculation button or automatic result return field to aid in efficiency and readability.
 \subsubsection{Stakeholders}%think people from the various zoom meetings? This is the WHY to Stakeholders section?
 
+\subsection{Design Timeline}
+%Gantt Chart goes here
+%\includegraphics{gantt}\\
+%\begin{center}
+%Caption if we need it
+%\end{center}
 
 \subsection{Design Viewpoints}
 \subsubsection{Context Viewpoint}
@@ -192,15 +198,18 @@ It additionally separates the program logic from the interface display and syste
 
 %Parker Sections
 %UI
-\subsection{User Interface Framework}
-\subsubsection{Approach}
-The uncertainty of a platform requires that the user interface framework is multi-platform.
-Assuming a multi-platform or desktop implementation, Qt, supports a variety of platforms with similar or identical interfaces with the underlying programming language.
-The layout and bindings to underlying data will be written using Qt's provided API, and the required libraries will be packaged with the software as allowed by the license for distribution. 
-\subsubsection{Concerns}
-Users will have a standard interface across platforms, both desktop and mobile, with due considerations made to the different input methods on desktop and mobile.
-Software developers will need to develop interface methods that work on differing platforms instead of a single platform that choosing either desktop or mobile would allow, creating additional maintenance cost.
-User interface designers accommodating multiple screen resolutions and ratios may produce an interface that is optimized for neither interface.
+%%%%%%%%%%
+% This serves the same purpose as the later section about interface design
+%%%%%%%%%%
+%\subsection{User Interface Framework}
+%\subsubsection{Approach}
+%The uncertainty of a platform requires that the user interface framework is %multi-platform.
+%Assuming a multi-platform or desktop implementation, Qt, supports a variety of %platforms with similar or identical interfaces with the underlying programming %language.
+%The layout and bindings to underlying data will be written using Qt's provided %API, and the required libraries will be packaged with the software as allowed %by the license for distribution. 
+%\subsubsection{Concerns}
+%Users will have a standard interface across platforms, both desktop and mobile,% with due considerations made to the different input methods on desktop and %mobile.
+%Software developers will need to develop interface methods that work on %differing platforms instead of a single platform that choosing either desktop %or mobile would allow, creating additional maintenance cost.
+%User interface designers accommodating multiple screen resolutions and ratios %may produce an interface that is optimized for neither interface.
 %Logic and math
 \subsection{Application Logic}
 \subsubsection{Approach}
@@ -217,7 +226,7 @@ The language chosen will affect the platform versions that are available, while 
 %UI + logic/math
 \subsection{Interface Framework Integration}
 \subsubsection{Approach}
-Bound variables from Qt will be read by the underlying code.
+Bound variables from the user interface will be read by the underlying code.
 These inputs will be checked for validity and converted into their proper data types.
 Once converted into the types required for the application logic's calculations, the volumetric rate output is calculated and returned to the user.
 The interface between the framework and the application logic will be performed using the Model-view-viewmodel design pattern.
@@ -279,9 +288,13 @@ This method of data storage is used when the user wants to export information to
 \subsubsection{Approach}
 This is the section to make the application look pretty. We need to choose a framework that makes the application easy to interact with and enjoyable.
 \newline
-The obvious solution for any web-based computer application would be HTML and CSS and building off of that with something like JS. However, we may not make a computer application. If this is the case we will need to research some options for mobile apps. Here are some options:
+The obvious solution for any web-based computer application would be HTML and CSS and building off of that with something like JS. However, we may not make a computer application. If this is the case we will need to research some options for mobile apps.
+\\\\
+\noindent
+Mobile Interface Frameworks
 \newline
 \newline
+\noindent
 React Native: 
 A very popular cross-platform option for Android and iOS development. This framework is inclusive and uses JavaScript. This makes it very familiar, especially for our team who hasn't had experience with mobile app development. This may be the easiest option to learn of the three listed here.
 \newline
@@ -290,10 +303,22 @@ Apache Cordova / PhoneGap:
 This framework seems to emphasize the ease of use with peripherals such as the phone's camera and other apps. While this is great, we likely won't need to make use of this. The benefit of this framework is that many versions of an application can be created using the same code base which makes developing for multiple platforms easier.
 \newline
 \newline
-Ionic: 
-This framework comes with a lot of default UI features and integrates Cordova for easier access to features like the camera and contacts. It allows for cross-platform development, making it easy to build an app for both Android and iOS. This could be a really good candidate for our project due to it's inclusive nature. 
-\newline
-\newline Edit: After more research I found that publishing with Ionic is not free while React Native is. 
+%%%%%%%%
+% Commented this out for now, because it probably doesn't apply to our project now that we know it's non-free? Uncomment if I'm wrong on that
+%%%%%%%%
+%Ionic: 
+%This framework comes with a lot of default UI features and integrates Cordova %for easier access to features like the camera and contacts. It allows for %cross-platform development, making it easy to build an app for both Android %and iOS. This could be a really good candidate for our project due to it's %inclusive nature. 
+%\newline
+%\newline Edit: After more research I found that publishing with Ionic is not %free while React Native is. 
+%\newline
+%\newline
+\noindent
+Desktop Interface Framework
+\\\\
+Qt: This framework includes many built-in features and covers a wide variety of platforms, including macOS, windows, and linux. 
+The framework is also widely used in the open-source community and has support for a variety of languages, including C++, Java, and Python.
+The wide user base additionally provides a wealth of documentation and example projects from which to draw inspiration.
+
 \subsubsection{Concerns}
 Note: Biggest issue is the uncertainty of our platform. This will be revised for the final draft!!!!!!!! When this is done, the above section will be revised to have just the singular option chosen.
 \newline
