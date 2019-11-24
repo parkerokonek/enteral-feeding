@@ -54,7 +54,7 @@
             \vspace{20pt}
         }
         \begin{abstract}%temp abstract until doc is complete.
-        This document details the design components of the Enteral Feeding Calculator project. The purpose of this project is to increase efficiency and effectiveness among nurses during the tube feeding process. The document covers product importance, usage, stakeholders, and views. Our solution will be an application designed for either mobile device or computer interfaces with potential methods specified below.
+        The enteral feeding calculator project is an implementation of the enteral feeding catch-up table designed by Dr. Heyland, managed by Judy Davidson, and developed by Alison Jones and Parker Okonek. The project is to create an application that accurately determines a patient's feeding rate based on the time fed and total daily intake. The application should account for missed feeding times and provide the best possible new feeding rate. The application will be developed on either a desktop, mobile, or both environments; depending on user need. This document details the design components of this project. The purpose of it is to increase efficiency and effectiveness among nurses during the tube feeding process. This application will increase the effectiveness and accuracy of nurses. It requires a balance between accessibility and security that creates benefit while maintaining patient security. Many technical components are important in developing this application while adhering to these standards. This document details these technologies and the context they have with regards to users and stakeholders.
         \end{abstract}     
     \end{singlespace}
 \end{titlepage}
@@ -132,19 +132,14 @@ Software requirements vary depending upon the chosen platform.
 \section{Design Description}
 \subsection{Design Stakeholders}
 %Judy, Other people we talked to? Basically who is in charge of this project and is giving their time to get back from it.
-Dietitians: These are the people who dispense food and check with physicians to ensure the nutrition is sufficient for the patient's needs. 
+Dietitians: These are the people who dispense food and check with physicians to ensure the nutrition is sufficient for the patient's needs. Dietitians are responsible for assuring that patients receive the correct nutrition and nutritional intake while hospitalized.
 \newline
-Nurses: Nurses are our target user since they will be the ones directly using the application. Nurses conduct all the direct work including setting up feeding bags, doing the current calculations for catch-up feeding rates, and administering food.
+Nurses: Nurses are our target user since they will be the ones directly using the application. Nurses conduct all the direct work including setting up feeding bags, doing the current calculations for catch-up feeding rates, and administering food. Nurses also track how much people eat in the electronic health record.
 \newline
-Physicians: Physicians are the people that check the prescription and administration are performed accurately. They effectively oversee the process and verify feeding needs with dietitians.
+Physicians: Physicians order the nutrition, usually based upon a recommendation by the Dietitian. They are the people who check that the prescription and administration are performed accurately. They effectively oversee the process.
 \newline
 \newline
-Michael Mercer is a dietitian in charge of dietitian standards.
-%decrease time to nutritional goal
-\newline
-Patricia Graham is a nurse lead providing us lots of insight on how nurses do their jobs and what they might want or expect from our application.
-\newline
-Dr. Heyland is the person who invented the original feeding rate catch-up chart. We are effectively automating the usage of this chart and turning it into an application. 
+Some key stakeholders in our project include, Michael Mercer, a dietitian in charge of dietitian standards, Patricia Graham, a nurse lead providing us lots of insight on how nurses do their jobs and what they might want or expect from our application, Dr. Heyland, the person who invented the original feeding rate catch-up chart; We are effectively automating the usage of this chart and turning it into an application, and Judy Davidson, the nurse and research scientist overseeing our project, providing resources for our success.
 \subsection{Design View}
 \subsubsection{Users}
 %what is the nurse's view?
@@ -155,13 +150,37 @@ The user-facing interface for the calculator will have a minimal number of input
 A simple interface lends itself well to both learnability, how easy it is for new users to learn the interface, and efficiency, the speed of task completion when a user has learned the interface.
 The interface will also feature either a prominent calculation button or automatic result return field to aid in efficiency and readability.
 \subsubsection{Stakeholders}%think people from the various zoom meetings? This is the WHY to Stakeholders section?
-
+Our key stakeholders (Judy Davidson, Mike Mercer, Dr. Heyland, and Patricia Graham are mostly concerned about the technical side and implementation of the project. The main goal of this project is to create an application that will increase the accuracy of the administering nurses; avoiding mistakes made during feeding that can be dangerous for patients. Despite directly influencing the nurses by providing them an application, this also makes the job of dietitians and physicians easier; avoiding additional catch-up/adjustments to the original proscription. 
 \subsection{Design Timeline}
 %Gantt Chart goes here
 %\includegraphics{gantt}\\
 %\begin{center}
 %Caption if we need it
 %\end{center}
+\subsubsection{Gantt Chart}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.6]{Gantt.jpg}
+\centering
+\caption{Gantt Chart}
+\label{fig:gantt_chartl}
+\end{figure}
+\subsubsection{Items}\newline
+1. Go over the rate table/ process that nurses go through when calculating rate based feeding or catch up rate for feeding.\newline
+2. Research which interface to use. Contact nurses and learn whether a phone or computer application would be better. Also ask about inputs/ first design check at this time.\newline
+3. Research App development based on chosen interface.\newline
+4. Develop Algorithm/ math and logic side to app.\newline
+5. Integrate algorithm into app framework.\newline
+6. Add time based input for application.\newline
+7. Ensure user input is saved locally on device to preserve data.\newline
+8. Work on app display and usability (pretty stuff)\newline
+9. Check app design again with nurses/ projected users.\newline
+10. Update app design based on feedback. (repeat as necessary).\newline
+11. Finalize Application and publish? Research what is needed to do with this.\newline
+12. Check whether we can start implementation and research.\newline 
+13. Final Report and Wrap-up\newline
+
+
 
 \subsection{Design Viewpoints}
 \subsubsection{Context Viewpoint}
@@ -206,6 +225,22 @@ It additionally separates the program logic from the interface display and syste
 \subsection{Design Rationale}
 %what we decided to use and bullet list of reasons why.
 % maybe see other rationales for this one?
+Below are reasoning for each platform being used:
+\subsubsection{Mobile Application}
+- Portable, can be used outside of the patient's room
+\newline
+- Easily accessible since it can be downloaded by anyone.
+\newline
+- Personalized, but only accessible per one person.
+
+\subsubsection{Desktop Application}
+- Uniform among all hospital rooms.
+\newline
+- Secure/ isolated from outside influence.
+\newline
+- Easier transition to third party.
+\newline
+- Accessible to many users.
 
 %=======================================================
 \section{Methods}
@@ -337,6 +372,7 @@ The wide user base additionally provides a wealth of documentation and example p
 Note: Biggest issue is the uncertainty of our platform. This will be revised for the final draft!!!!!!!! When this is done, the above section will be revised to have just the singular option chosen.
 \newline
 For now, the main concerns to consider are: Does it cost money? Is what we want to do feasible on this platform? All the options listed above are viable, the main roadblock is choosing what the nurses prefer.
+
 %=======================================================
 \section{Conclusion}
 The enteral feeding calculator will first and foremost be an application to quicken and reduce the time of administration time for nurses and quicken responses for dieticians, but the calculator solves a variety of other issues as well.
@@ -347,31 +383,31 @@ Utilizing a UI framework for the interface of the project makes an app that is v
 All of these aspects lend themselves to a enteral feeding rate calculator that is simple, fast, accurate, and a proper replacement for paper tables.
 %=======================================================
 \printbibliography[title=\section{References}]
-%\section{References}
-%
-%“How to Store Data Locally in an Android App.” Android Authority, 20 Nov. 2017, www.androidauthority.com/how-to-store-data-locally-in-android-app-717190/.
-%\newline
-%\newline
-%“Top 10 Best Mobile App Development Frameworks in 2019–20.” By Alex Hales, hackernoon.com/top-10-best-mobile-app-development-frameworks-in-2019-612b95cf930f.
-%\newline
-%\newline
-%Krishna12. “How to GetCurrent Time without Using Picker.” Ionic Forum, 15 Nov. 2017, forum.ionicframework.com/t/how-to-getcurrent-time-without-using-picker/112208.
-%\newline
-%\newline
-%Zak-DevZak-Dev. “Cordova : Android Device Current Date/Time.” Stack Overflow, 1 Jan. 1968, stackoverflow.com/questions/46781636/cordova-android-device-current-date-time.
-%\\
-%\\
-% Martin Fowler. Presentation Model. 2004. url: https://martinfowler.com/eaaDev/PresentationModel.html (visited on 11/03/2019).
-% \\
-% \\
-% Naveed Khan. Introduction to Data Driven Programming. 2018. url: https://www.effective-programmer.com/2018/05/27/introduction-to-data-driven-programming/ (visited on 11/08/2019.
-% \\
-% \\
-%  Mike Potel. The Taligent Programming Model for C++ and Java. 1996. url: http://www.wildcrest.com/Potel/Portfolio/mvp.pdf (visited on 11/03/2019).
-%\\
-%\\
-%The Qt Company. Supported Platforms. 2019. url: https://doc.qt.io/qt-5/supported-platforms.html (visited on 11/03/2019).
-%\\
-%\\
-%FDA. U. S. Food \& Drug Administration. 2019. url: https://www.fda.gov/media/80958/download (visited on 11/19/2019).
+\section{References}
+
+“How to Store Data Locally in an Android App.” Android Authority, 20 Nov. 2017, www.androidauthority.com/how-to-store-data-locally-in-android-app-717190/.
+\newline
+\newline
+“Top 10 Best Mobile App Development Frameworks in 2019–20.” By Alex Hales, hackernoon.com/top-10-best-mobile-app-development-frameworks-in-2019-612b95cf930f.
+\newline
+\newline
+Krishna12. “How to GetCurrent Time without Using Picker.” Ionic Forum, 15 Nov. 2017, forum.ionicframework.com/t/how-to-getcurrent-time-without-using-picker/112208.
+\newline
+\newline
+Zak-DevZak-Dev. “Cordova : Android Device Current Date/Time.” Stack Overflow, 1 Jan. 1968, stackoverflow.com/questions/46781636/cordova-android-device-current-date-time.
+\newline
+\newline
+ Martin Fowler. Presentation Model. 2004. url: https://martinfowler.com/eaaDev/PresentationModel.html (visited on 11/03/2019).
+\newline
+\newline
+ Naveed Khan. Introduction to Data Driven Programming. 2018. url: https://www.effective-programmer.com/2018/05/27/introduction-to-data-driven-programming/ (visited on 11/08/2019.
+\newline
+\newline
+ Mike Potel. The Taligent Programming Model for C++ and Java. 1996. url: http://www.wildcrest.com/Potel/Portfolio/mvp.pdf (visited on 11/03/2019).
+\newline
+\newline
+The Qt Company. Supported Platforms. 2019. url: https://doc.qt.io/qt-5/supported-platforms.html (visited on 11/03/2019).
+\newline
+\newline
+FDA. U. S. Food \& Drug Administration. 2019. url: https://www.fda.gov/media/80958/download (visited on 11/19/2019).
 \end{document}
