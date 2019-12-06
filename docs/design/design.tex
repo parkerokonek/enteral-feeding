@@ -76,14 +76,15 @@ The main goal of the project is replace the manual method of calculating volumet
 This document outlines the development path of the project and details the implementation and design on the calculator.
 \subsection{Scope}
 The calculator will return adjusted feeding rates to accommodate for missed feeding time for a patient from any variety of factors.
-The user experience will focus on presenting a minimal and easy to read design where the user, a nurse, enters in the minimum needed and easiest to derive data to determine the feeding rate and is returned the adjusted safe rate to catch up on daily volume.
+The user experience will focus on presenting a minimal and easy to read design where the user, a nurse or dietitian, enters in the minimum needed and easiest to derive data to determine the feeding rate and is returned the adjusted safe rate to catch up on daily volume.
 \subsection{Intended Audience}
 The intended audience of this design document are the sponsors, Dr. Judy Davidson and her team, and the student development team.
 The document serves as a reference for the student development team to track the product creation timeline and as a representation of the sponsor's needs and product expectations that is verifiable and referable.
 %=======================================================
 \section{Definitions}
-Enteral Feeding: A form of tube feeding used to deliver the appropriate nutrients to a patient.This is done through either the mouth, esophagus, or directly into the digestive system through an artificial opening. (Not to be confused with intravenous administration of medication!)\\
-IRB:  An Institutional Review Board is a group that has received authority to review, deny, approve, request modification to, and monitor biomedical research in its institution.
+Enteral Feeding: A form of tube feeding used to deliver the appropriate nutrients to a patient.This is done through either the mouth, esophagus, or directly into the digestive system through an artificial opening. (Not to be confused with intravenous administration of medication!)
+\newline Volume-based tube feeding: The method of calculating hourly rates of tube feeding in an adjustable manner to assure a specified caloric intake daily.
+\newline IRB:  An Institutional Review Board is a group that has received authority to review, deny, approve, request modification to, and monitor biomedical research in its institution.
 \newline
 \newline
 %etc.
@@ -131,10 +132,9 @@ Software requirements vary depending upon the chosen platform.
 %=======================================================
 \section{Design Description}
 \subsection{Design Stakeholders}
-%Judy, Other people we talked to? Basically who is in charge of this project and is giving their time to get back from it.
-Dietitians: These are the people who dispense food and check with physicians to ensure the nutrition is sufficient for the patient's needs. Dietitians are responsible for assuring that patients receive the correct nutrition and nutritional intake while hospitalized.
+Nurses: Nurses are our primary target user since they will be the ones directly using the application. Nurses conduct all the direct work including setting up feeding bags, doing the current calculations for catch-up feeding rates, and administering food. Nurses also track how much people eat in the electronic health record.  
 \newline
-Nurses: Nurses are our target user since they will be the ones directly using the application. Nurses conduct all the direct work including setting up feeding bags, doing the current calculations for catch-up feeding rates, and administering food. Nurses also track how much people eat in the electronic health record.
+Dietitians: These are the people who calculate caloric needs and recommended diet. When the diet requires tube administration, they determine the caloric need, which formula to use, and the feeding rate. Dietitians also monitor response to feeding in the form of nutritional biomarkers/laboratory tests and alter the recommendations for feeding based on the results. Dietitians are a secondary end-user of our application.
 \newline
 Physicians: Physicians order the nutrition, usually based upon a recommendation by the Dietitian. They are the people who check that the prescription and administration are performed accurately. They effectively oversee the process.
 \newline
@@ -242,6 +242,13 @@ Below are reasoning for each platform being used:
 \newline
 - Accessible to many users.
 
+\subsection{Deliverables}
+\subsubsection{Goal}
+The final product should be an application that automates and optimizes catch-up rate calculations for nurses and dietitians. We have two possible platforms on which to develop our app: mobile and desktop. The main goal is to complete an app for one of these (depending on most desirable platform) and conduct both simulated and field tests with the final product.
+\subsubsection{Stretch Goal}
+An additional goal, if we complete the first application ahead of schedule, is to develop, test, and implement another version for the secondary platform (the lesser desirable option for nurses). This means that we would have both phone and computer applications available,
+\subsubsection{Out of Scope}
+Integration with user health records or third party health management system. This would take a long time for approval due to sensitive data and is not necessary for the main function of the application.
 %=======================================================
 \section{Methods}
 
