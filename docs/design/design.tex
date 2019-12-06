@@ -94,10 +94,9 @@ Enteral Feeding: A form of tube feeding used to deliver the appropriate nutrient
 \section{Project Context}
 \subsection{Hardware}
 %Our project will require either a phone or computer (depending on platform) for both development and in production.
-The software will support either the mobile platform or the desktop platform.
+The software will support first and foremost a desktop platform for both its development and production.
+The project is developed for desktop and can be completely developed using normal desktop hardware and be expected to run on common consumer desktops.
 If the project is developed for mobile, it will be able to run on most off the shelf smart phones or tablets.
-The project will require both a desktop and mobile device for development when targeting the mobile platform.
-If the project is developed for desktop, it can be completely developed using normal desktop hardware and be expected to run on common consumer desktops.
 \subsubsection{Desktop Requirements}
 \begin{enumerate}
     \item System Architecture: i386 or amd64
@@ -111,16 +110,16 @@ If the project is developed for desktop, it can be completely developed using no
     \item Input: Pointer and on-screen keyboard or pointer and physical keyboard
 \end{enumerate}
 \subsection{Software}
-Software requirements vary depending upon the chosen platform.
+Software requirements for development will involve github and the chosen user interface framework, Qt, whose libraries are required to build and compile the project.
+The user interface toolkit will not be required for common use by end users.
 \subsubsection{Desktop Requirements}
 \begin{enumerate}
     \item Version Control: Github
     \item Operating System: Windows 7 or greater
     \item UI Toolkit: Qt (other options, see below)
 \end{enumerate}
-\subsubsection{Mobile Requirements}
+\subsubsection{Stretch Goal Mobile Requirements}
 \begin{enumerate}
-    \item Version Control: Github
     \item Operating System: Android 7.0 or greater, (or iOS 12.0 or greater?)
     \item UI Toolkit: React Native (other options, see below)
 \end{enumerate}
@@ -226,12 +225,6 @@ It additionally separates the program logic from the interface display and syste
 %what we decided to use and bullet list of reasons why.
 % maybe see other rationales for this one?
 Below are reasoning for each platform being used:
-\subsubsection{Mobile Application}
-- Portable, can be used outside of the patient's room
-\newline
-- Easily accessible since it can be downloaded by anyone.
-\newline
-- Personalized, but only accessible per one person.
 
 \subsubsection{Desktop Application}
 - Uniform among all hospital rooms.
@@ -241,6 +234,13 @@ Below are reasoning for each platform being used:
 - Easier transition to third party.
 \newline
 - Accessible to many users.
+
+\subsubsection{Mobile Application}
+- Portable, can be used outside of the patient's room
+\newline
+- Easily accessible since it can be downloaded by anyone.
+\newline
+- Personalized, but only accessible per one person.
 
 \subsection{Deliverables}
 \subsubsection{Goal}
@@ -271,7 +271,6 @@ Integration with user health records or third party health management system. Th
 \subsubsection{Approach}
 The math driving the calculations is only required to be called on user input events and does not change dynamically throughout the course of its use.
 The language used for the application varies on the platform used for the project.
-Javascript would be used for a web-based platform, Java would be used for a mobile-based platform, and Python would be used for a desktop-based platform.
 The calculation function will only be called when valid inputs are received, and the form of the functions will take a data-driven approach.
 Many languages implement features which allow for an optimized and easy-to-read data-driven implementation of functionality.
 
@@ -342,12 +341,19 @@ This method of data storage is used when the user wants to export information to
 
 \subsection{Interface Design}
 \subsubsection{Approach}
-This is the section to make the application look pretty. We need to choose a framework that makes the application easy to interact with and enjoyable.
+The chosen framework is one that makes the application easy to interact with and enjoyable while also reducing the amount of developer time to achieve that goal.
+A desktop platform will be the main focus of development and framework selection.
+If development continues smoothly, an optional mobile platform will be created as a stretch goal.
 \newline
-The obvious solution for any web-based computer application would be HTML and CSS and building off of that with something like JS. However, we may not make a computer application. If this is the case we will need to research some options for mobile apps.
+\noindent
+Desktop Interface Framework
+\\\\
+Qt: This framework includes many built-in features and covers a wide variety of platforms, including macOS, windows, and linux \autocite{qplatforms}. 
+The framework is also widely used in the open-source community and has support for a variety of languages, including C++, Java, and Python \autocite{qplatforms}.
+The wide user base additionally provides a wealth of documentation and example projects from which to draw inspiration.
 \\\\
 \noindent
-Mobile Interface Frameworks
+Mobile Interface Framework
 \newline
 \newline
 \noindent
@@ -368,16 +374,10 @@ This framework seems to emphasize the ease of use with peripherals such as the p
 %\newline Edit: After more research I found that publishing with Ionic is not %free while React Native is. 
 %\newline
 %\newline
-\noindent
-Desktop Interface Framework
-\\\\
-Qt: This framework includes many built-in features and covers a wide variety of platforms, including macOS, windows, and linux \autocite{qplatforms}. 
-The framework is also widely used in the open-source community and has support for a variety of languages, including C++, Java, and Python \autocite{qplatforms}.
-The wide user base additionally provides a wealth of documentation and example projects from which to draw inspiration.
 
 \subsubsection{Concerns}
-Note: Biggest issue is the uncertainty of our platform. This will be revised for the final draft!!!!!!!! When this is done, the above section will be revised to have just the singular option chosen.
-\newline
+%Note: Biggest issue is the uncertainty of our platform. This will be revised for the final draft!!!!!!!! When this is done, the above section will be revised to have just the singular option chosen.
+%\newline
 For now, the main concerns to consider are: Does it cost money? Is what we want to do feasible on this platform? All the options listed above are viable, the main roadblock is choosing what the nurses prefer.
 
 %=======================================================
