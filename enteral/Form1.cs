@@ -12,6 +12,9 @@ namespace enteral
 {
     public partial class Form1 : Form
     {
+        private Decimal missedHoursTotal = 0;
+        private Decimal totalVol = 0;
+        private Decimal maxRate = -1;
         private int num_gaps = 0;
         public Form1()
         {
@@ -20,7 +23,14 @@ namespace enteral
 
         private void addTimeGap_Click(object sender, EventArgs e)
         {
-            num_gaps += 1;
+            Decimal val = missedCounter.Value;
+            missedCounter.Value = 0;
+            missedHoursTotal += val;
+            missedOutput.Text = ""+missedHoursTotal;
+            if (missedHoursTotal > 23) { } else {
+                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
+                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate,maxRate) : rate); 
+            }
             //TimeList.Items.Add("" + num_gaps);
         }
 
@@ -116,6 +126,7 @@ namespace enteral
         {
             MessageBox.Show("Maximum feeding rate set to: " + numericUpDown2.Value);
             label12.Text = "Maximum Feeding Rate:     " + numericUpDown2.Value + "     \n(WARNING! This value may differ from the recommended max.)";
+            maxRate = numericUpDown2.Value;
         }
 
         private void label13_Click(object sender, EventArgs e)
@@ -132,6 +143,7 @@ namespace enteral
         {
             MessageBox.Show("Total daily volume set to: " + numericUpDown3.Value);
             label11.Text = "Total Daily Volume:            " + numericUpDown3.Value;
+            totalVol = numericUpDown3.Value;
         }
 
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
