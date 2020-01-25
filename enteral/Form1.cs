@@ -63,18 +63,13 @@ namespace enteral
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             MessageBox.Show("Daily start time set to: " + comboBox4.Text);
-            label8.Text = "Daily Start Time:                 " + comboBox4.Text;
+            dailyStart.Text = comboBox4.Text;
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             MessageBox.Show("Feeding type set to: " + comboBox3.Text);
             label7.Text = "Feeding Type:                    " + comboBox3.Text;
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -173,6 +168,21 @@ namespace enteral
         }
 
         private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dailystart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void currentTimer_Tick(object sender, EventArgs e)
+        {
+            currentTime.Text = DateTime.Now.ToString("h:mm tt");
+        }
+
+        private void saveSettings_Click(object sender, EventArgs e)
         {
 
         }
