@@ -38,9 +38,9 @@ namespace enteral.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public decimal timeReset {
+        public int timeReset {
             get {
-                return ((decimal)(this["timeReset"]));
+                return ((int)(this["timeReset"]));
             }
             set {
                 this["timeReset"] = value;
@@ -56,6 +56,18 @@ namespace enteral.Properties {
             }
             set {
                 this["rateOverride"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public decimal dailyVolume {
+            get {
+                return ((decimal)(this["dailyVolume"]));
+            }
+            set {
+                this["dailyVolume"] = value;
             }
         }
     }

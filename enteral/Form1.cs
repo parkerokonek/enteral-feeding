@@ -21,11 +21,20 @@ namespace enteral
         {
             InitializeComponent();
             rateOutput.Text = "0";
-            missedOutput.Text = "0";
-            if (Properties.Settings.Default["feedingType"].ToString() != "" && comboBox3.Items.Contains(Properties.Settings.Default["feedingType"].ToString()))
+            missedOutput.Text = missedHoursTotal.ToString();
+            if (Properties.Settings.Default.feedingType != "" && comboBox3.Items.Contains(Properties.Settings.Default.feedingType))
             {
-                feedTypeDisplay.Text = Properties.Settings.Default["feedingType"].ToString();
-                comboBox3.SelectedItem = Properties.Settings.Default["feedingType"].ToString();
+                feedTypeDisplay.Text = Properties.Settings.Default.feedingType;
+                comboBox3.SelectedItem = Properties.Settings.Default.feedingType;
+            }
+            if (!Properties.Settings.Default.rateOverride.Equals(-1)) {
+                numericUpDown2.Value = Properties.Settings.Default.rateOverride;
+            }
+            if (Properties.Settings.Default.timeReset != -1) {
+                comboBox4.SelectedIndex = Properties.Settings.Default.timeReset;
+            }
+            if (Properties.Settings.Default.dailyVolume != -1) {
+                numericUpDown3.Value = Properties.Settings.Default.dailyVolume;
             }
         }
 
@@ -41,7 +50,6 @@ namespace enteral
                 Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
                 rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate,maxRate) : rate); 
             }
-            //TimeList.Items.Add("" + num_gaps);
         }
 
 
@@ -60,11 +68,6 @@ namespace enteral
             }
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             MessageBox.Show("Daily start time set to: " + comboBox4.Text);
@@ -75,56 +78,20 @@ namespace enteral
         {
             MessageBox.Show("Feeding type set to: " + comboBox3.Text);
             feedTypeDisplay.Text = comboBox3.Text;
+            if (comboBox3.SelectedIndex % 2 == 0)
+            {
+                maxRate = 150;
+                numericUpDown2.Value = 150;
+            }
+            else {
+                maxRate = 240;
+                numericUpDown2.Value = 240;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             settingsPanel.Hide();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -142,16 +109,6 @@ namespace enteral
             }
         }
 
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Total daily volume set to: " + numericUpDown3.Value);
@@ -167,21 +124,6 @@ namespace enteral
             }
         }
 
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dailystart_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void currentTimer_Tick(object sender, EventArgs e)
         {
             currentTime.Text = DateTime.Now.ToString("h:mm tt");
@@ -189,11 +131,11 @@ namespace enteral
 
         private void saveSettings_Click(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedItem != "") {
-                Properties.Settings.Default["feedingType"] = comboBox3.SelectedItem;
+            if (comboBox3.SelectedItem.ToString() != "") {
+                Properties.Settings.Default.feedingType = comboBox3.SelectedItem.ToString();
             }
-            if (comboBox4.SelectedItem != "") { 
-                Properties.Settings.Default["timeReset"] = comboBox4.SelectedItem;
+            if (comboBox4.SelectedItem.ToString() != "") {
+                Properties.Settings.Default.timeReset = comboBox4.SelectedIndex;
             }
             Properties.Settings.Default.Save();
         }

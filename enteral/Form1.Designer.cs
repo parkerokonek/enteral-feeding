@@ -103,7 +103,6 @@
             this.label12.Size = new System.Drawing.Size(174, 13);
             this.label12.TabIndex = 12;
             this.label12.Text = "Maximum Feeding Rate:     (not set)";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label11
             // 
@@ -114,7 +113,6 @@
             this.label11.Size = new System.Drawing.Size(172, 13);
             this.label11.TabIndex = 11;
             this.label11.Text = "Total Daily Volume:            (not set)";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label7
             // 
@@ -125,7 +123,6 @@
             this.label7.Size = new System.Drawing.Size(78, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Feeding Type: ";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // panel2
             // 
@@ -226,7 +223,6 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(90, 20);
             this.numericUpDown2.TabIndex = 19;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // numericUpDown3
             // 
@@ -240,7 +236,6 @@
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(90, 20);
             this.numericUpDown3.TabIndex = 21;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
             // label4
             // 
@@ -251,7 +246,6 @@
             this.label4.Size = new System.Drawing.Size(158, 13);
             this.label4.TabIndex = 18;
             this.label4.Text = "Max Rate Override (WARNING)";
-            this.label4.Click += new System.EventHandler(this.label4_Click_1);
             // 
             // label5
             // 
@@ -262,7 +256,6 @@
             this.label5.Size = new System.Drawing.Size(95, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "Total Daily Volume";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label9
             // 
@@ -273,7 +266,6 @@
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 14;
             this.label9.Text = "Feeding Type";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // comboBox3
             // 
@@ -302,7 +294,6 @@
             this.label10.Size = new System.Drawing.Size(81, 13);
             this.label10.TabIndex = 12;
             this.label10.Text = "Daily Start Time";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // comboBox4
             // 
@@ -362,7 +353,6 @@
             this.label6.Size = new System.Drawing.Size(189, 25);
             this.label6.TabIndex = 5;
             this.label6.Text = "Recommended Rate";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label8
             // 
@@ -408,7 +398,6 @@
             this.label14.Size = new System.Drawing.Size(142, 18);
             this.label14.TabIndex = 23;
             this.label14.Text = "Total Hours Missed:";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // rateOutput
             // 
@@ -420,7 +409,6 @@
             this.rateOutput.TabIndex = 6;
             this.rateOutput.Text = "####";
             this.rateOutput.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rateOutput.Click += new System.EventHandler(this.label13_Click);
             // 
             // label3
             // 
@@ -442,7 +430,6 @@
             this.dailyStart.TabIndex = 15;
             this.dailyStart.Text = "(not yet set)";
             this.dailyStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.dailyStart.Click += new System.EventHandler(this.dailystart_Click);
             // 
             // currentTime
             // 
