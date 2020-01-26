@@ -22,6 +22,11 @@ namespace enteral
             InitializeComponent();
             rateOutput.Text = "0";
             missedOutput.Text = "0";
+            if (Properties.Settings.Default["feedingType"].ToString() != "" && comboBox3.Items.Contains(Properties.Settings.Default["feedingType"].ToString()))
+            {
+                feedTypeDisplay.Text = Properties.Settings.Default["feedingType"].ToString();
+                comboBox3.SelectedItem = Properties.Settings.Default["feedingType"].ToString();
+            }
         }
 
         private void addTimeGap_Click(object sender, EventArgs e)
@@ -69,7 +74,7 @@ namespace enteral
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             MessageBox.Show("Feeding type set to: " + comboBox3.Text);
-            label7.Text = "Feeding Type:                    " + comboBox3.Text;
+            feedTypeDisplay.Text = comboBox3.Text;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -184,7 +189,13 @@ namespace enteral
 
         private void saveSettings_Click(object sender, EventArgs e)
         {
-
+            if (comboBox3.SelectedItem != "") {
+                Properties.Settings.Default["feedingType"] = comboBox3.SelectedItem;
+            }
+            if (comboBox4.SelectedItem != "") { 
+                Properties.Settings.Default["timeReset"] = comboBox4.SelectedItem;
+            }
+            Properties.Settings.Default.Save();
         }
     }
 }

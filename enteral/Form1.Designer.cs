@@ -61,6 +61,7 @@
             this.currentTime = new System.Windows.Forms.Label();
             this.currentTimer = new System.Windows.Forms.Timer(this.components);
             this.saveSettings = new System.Windows.Forms.Button();
+            this.feedTypeDisplay = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.missedCounter)).BeginInit();
@@ -73,6 +74,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.feedTypeDisplay);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label11);
@@ -120,9 +122,9 @@
             this.label7.Location = new System.Drawing.Point(24, 38);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(173, 13);
+            this.label7.Size = new System.Drawing.Size(78, 13);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Feeding Type:                    (not set)";
+            this.label7.Text = "Feeding Type: ";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // panel2
@@ -469,6 +471,15 @@
             this.saveSettings.UseVisualStyleBackColor = true;
             this.saveSettings.Click += new System.EventHandler(this.saveSettings_Click);
             // 
+            // feedTypeDisplay
+            // 
+            this.feedTypeDisplay.AutoSize = true;
+            this.feedTypeDisplay.Location = new System.Drawing.Point(153, 38);
+            this.feedTypeDisplay.Name = "feedTypeDisplay";
+            this.feedTypeDisplay.Size = new System.Drawing.Size(45, 13);
+            this.feedTypeDisplay.TabIndex = 13;
+            this.feedTypeDisplay.Text = "(not set)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,6 +547,7 @@
         private System.Windows.Forms.Label currentTime;
         private System.Windows.Forms.Timer currentTimer;
         private System.Windows.Forms.Button saveSettings;
+        private System.Windows.Forms.Label feedTypeDisplay;
     }
 }
 
