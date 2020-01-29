@@ -87,6 +87,18 @@ namespace enteral
                 maxRate = 240;
                 numericUpDown2.Value = 240;
             }
+
+            //MessageBox.Show("Maximum feeding rate set to: " + numericUpDown2.Value);
+            label12.Text = "Maximum Feeding Rate:     " + numericUpDown2.Value;
+            maxRate = numericUpDown2.Value;
+
+            //update function
+            if (missedHoursTotal > 23) { }
+            else
+            {
+                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
+                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -138,6 +150,40 @@ namespace enteral
                 Properties.Settings.Default.timeReset = comboBox4.SelectedIndex;
             }
             Properties.Settings.Default.Save();
+
+            settingsPanel.Hide();
+            SettingsButton.Text = "Edit Settings";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Decimal val = missedCounter.Value;
+            missedCounter.Value = 0;
+            missedHoursTotal -= val;
+            missedOutput.Text = "" + missedHoursTotal;
+
+            //update function
+            if (missedHoursTotal > 23) { }
+            else
+            {
+                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
+                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
