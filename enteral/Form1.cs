@@ -75,17 +75,17 @@ namespace enteral
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {   
             MessageBox.Show("Feeding type set to: " + comboBox3.Text);
             feedTypeDisplay.Text = comboBox3.Text;
             if (comboBox3.SelectedIndex % 2 == 0)
             {
                 maxRate = 150;
-                numericUpDown2.Value = 150;
+                numericUpDown2.Value = 240;
             }
             else {
                 maxRate = 240;
-                numericUpDown2.Value = 240;
+                numericUpDown2.Value = 150;
             }
 
             //MessageBox.Show("Maximum feeding rate set to: " + numericUpDown2.Value);
