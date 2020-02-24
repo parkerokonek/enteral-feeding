@@ -1,0 +1,9 @@
+Input/Output Logic
+For a given time_missed
+For a given DATE from DATEstart to 24hrs + DATEstart
+if missed.start >= day_start & missed.end <= day_end:
+	keep
+else if missed.start >= day_end XOR missed.end <= day_end:
+	truncate the invalid time
+else
+	delete
