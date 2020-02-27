@@ -20,6 +20,7 @@ namespace enteral
         public Form1()
         {
             InitializeComponent();
+            AppDomain.CurrentDomain.SetupInformation.ConfigurationFile = 
             rateOutput.Text = "0";
             missedOutput.Text = missedHoursTotal.ToString();
             if (Properties.Settings.Default.feedingType != "" && comboBox3.Items.Contains(Properties.Settings.Default.feedingType))
