@@ -143,7 +143,7 @@ namespace enteral
             for (int i = 5; i < lines.Length; i++) {
                 //First make sure the time is within our bounds
                 int hour_offset = i - 5;
-                if (i > 23) {
+                if (hour_offset > 23) {
                     return;
                 }
 
@@ -161,11 +161,13 @@ namespace enteral
 
                 if (!double.TryParse(timeSlots[0], out feedRate) || !Boolean.TryParse(timeSlots[1], out missed)) {
                     // TODO: Report an error
-                    throw new System.InvalidOperationException("Could not parse time block data");
+                    throw new System.InvalidOperationException("Could not parse time block data at line "+i);
                 }
 
                 int index = (int)(startingTime.AddHours(hour_offset) - timeDateReset).TotalHours;
 
+                System.Diagnostics.Debug.WriteLine("File start time: "+ startingTime.AddHours(hour_offset)+" Given Start Time: "+timeDateReset);
+                System.Diagnostics.Debug.WriteLine("Writing some data to "+index);
                 this.times[index] = new TimeBlock(feedRate,missed);
             }
         }
@@ -196,7 +198,7 @@ namespace enteral
             vals += timeDateReset.ToString(dateFormat) + endl;
 
             foreach (TimeBlock time in this.times) {
-                if (!time.written) { break; }
+                if (time == null || !time.written) { break; }
                 vals += time.feedRate + " " + time.missed + endl;
             }
 
@@ -220,6 +222,14 @@ namespace enteral
         // Set the maximum allowable rate
         public void set_max_rate(double maxRate) {
             this.maxFeedRate = maxRate;
+        }
+
+        public double get_volume() {
+            return this.totalVolume;
+        }
+
+        public String get_id() {
+            return this.PatientID;
         }
 
         //Return the entire timeline as tuples of missed times

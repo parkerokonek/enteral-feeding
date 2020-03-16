@@ -220,7 +220,7 @@ namespace enteral
                     if ((fs = savedFile.OpenFile()) != null || (fs = File.Create(savedFile.FileName)) != null)
                     {
                         // Code to write the stream goes here.
-                        string data = patientData.to_string();
+                        string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
                     byte[] info = new UTF8Encoding(true).GetBytes(data);
                         fs.Write(info,0,info.Length);
                         fs.Close();
@@ -231,8 +231,8 @@ namespace enteral
         private void loadFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileToSave = new OpenFileDialog();
-            fileToSave.FileName = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            fileToSave.FilterIndex = 2;
+            //fileToSave.FileName = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //fileToSave.FilterIndex = 2;
             fileToSave.RestoreDirectory = true;
             var fileContent = string.Empty;
 
@@ -242,13 +242,18 @@ namespace enteral
                     fileContent = reader.ReadToEnd();
                 }
 
-                var resetTime = DateTime.Now.Date;
-                resetTime.AddHours(Properties.Settings.Default.timeReset);
+                DateTime resetTime = DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset);
                 patientData = new PatientInfo(fileContent, resetTime);
+                sync_ui();
             }
 
 
             
+        }
+
+        private void sync_ui() {
+            this.numericUpDown3.Value = (decimal)this.patientData.get_volume();
+            this.label1.Text = this.patientData.get_id();
         }
     }
 }
