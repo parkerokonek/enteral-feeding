@@ -54,7 +54,7 @@ namespace enteral
                 return;
             }
             //TO DO: make sure stop happens after start
-            this.times[index] = new TimeBlock(rate,missing);
+            this.times[index] = new TimeBlock(rate, missing);
             for (int i = 0; i < index; i++) {
                 this.times[index].written = true;
             }
@@ -82,9 +82,9 @@ namespace enteral
         // The time passed in should be the time of day of reset + current time
         public PatientInfo(String fileContents, DateTime timeDateReset) {
             // Windows line endings are \r\n, but the \r doesn't matter
-            string[] lines = fileContents.Replace("\r","").Split('\n');
+            string[] lines = fileContents.Replace("\r", "").Split('\n');
             // 4 lines is the absolute minimum data for a patient if no miss times specified
-            if (lines.Length < 5) { return;  }
+            if (lines.Length < 5) { return; }
 
             // Instantiate all the variables we will need to instantiate the patient class
             // All but the patient ID could fail in parsing, so they aren't assigned yet
@@ -161,14 +161,14 @@ namespace enteral
 
                 if (!double.TryParse(timeSlots[0], out feedRate) || !Boolean.TryParse(timeSlots[1], out missed)) {
                     // TODO: Report an error
-                    throw new System.InvalidOperationException("Could not parse time block data at line "+i);
+                    throw new System.InvalidOperationException("Could not parse time block data at line " + i);
                 }
 
                 int index = (int)(startingTime.AddHours(hour_offset) - timeDateReset).TotalHours;
 
-                System.Diagnostics.Debug.WriteLine("File start time: "+ startingTime.AddHours(hour_offset)+" Given Start Time: "+timeDateReset);
-                System.Diagnostics.Debug.WriteLine("Writing some data to "+index);
-                this.times[index] = new TimeBlock(feedRate,missed);
+                System.Diagnostics.Debug.WriteLine("File start time: " + startingTime.AddHours(hour_offset) + " Given Start Time: " + timeDateReset);
+                System.Diagnostics.Debug.WriteLine("Writing some data to " + index);
+                this.times[index] = new TimeBlock(feedRate, missed);
             }
         }
 
@@ -230,6 +230,49 @@ namespace enteral
 
         public String get_id() {
             return this.PatientID;
+        }
+
+        public double get_maxrate() {
+            return this.maxFeedRate;
+        }
+
+        public FeedType get_feed_type() {
+            return this.feedingType;
+        }
+
+        // Calculates the rate of feeding in ml
+        public double get_feed_rate_ml() {
+            int times_remaining = 24;
+            double total_volume = 0;
+            foreach (TimeBlock time in times) {
+                if (time == null || time.written == false) {
+                    break;
+                }
+                times_remaining--;
+                if (!time.missed) {
+                    total_volume += time.feedRate;
+                }
+            }
+
+            if (times_remaining < 1) {
+                return 0;
+            }
+
+            return Math.Min((this.totalVolume - total_volume) / times_remaining,this.maxFeedRate);
+        }
+
+        public int hours_missed() {
+            int hours_missed = 0;
+            foreach (TimeBlock time in times) {
+                if (time == null || time.written == false) {
+                    break;
+                }
+                if (time.missed) {
+                    hours_missed++;
+                }
+            }
+
+            return hours_missed;
         }
 
         //Return the entire timeline as tuples of missed times
