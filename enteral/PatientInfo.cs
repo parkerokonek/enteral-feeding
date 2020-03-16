@@ -84,7 +84,7 @@ namespace enteral
             // Windows line endings are \r\n, but the \r doesn't matter
             string[] lines = fileContents.Replace("\r","").Split('\n');
             // 4 lines is the absolute minimum data for a patient if no miss times specified
-            if (lines.Length < 4) { return;  }
+            if (lines.Length < 5) { return;  }
 
             // Instantiate all the variables we will need to instantiate the patient class
             // All but the patient ID could fail in parsing, so they aren't assigned yet
@@ -130,41 +130,49 @@ namespace enteral
             this.times = new TimeBlock[24];
 
 
+            // Now we need to read the reset time from the file in order to properly do time comparisons
+            DateTime startingTime;
+            string dateFormat = "yyyy MM dd HH";
+            if (!DateTime.TryParseExact(lines[4], dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None, out startingTime)) {
+                return;
+            }
+
             // Now we can try reading the list of stuff and toss if we have to
             // Currently we also kill the file read if any time slot is invalid
             // This is for patient safety purposes
-            for (int i = 4; i < lines.Length; i++) {
-                string[] timeSlots = lines[i].Split(' ');
-                if (timeSlots.Length != 10) {
+            for (int i = 5; i < lines.Length; i++) {
+                //First make sure the time is within our bounds
+                int hour_offset = i - 5;
+                if (i > 23) {
                     return;
                 }
-                // Use the spacer data to make sure that 
-                if (timeSlots[0] != "Start:" || timeSlots[4] != "Stop:") {
+
+                if (DateTime.Compare(startingTime.AddHours(hour_offset), timeDateReset) < 0) { continue; }
+
+
+                string[] timeSlots = lines[i].Split(' ');
+                if (timeSlots.Length != 2) {
                     return;
                 }
 
                 // Let's try to parse some stuff
-                // Converting a string to an array, then collecting it back to a string isn't super effecient, but it works for now
-                string start = string.Join(" ",timeSlots.Skip(1).Take(4).ToArray());
-                string stop = string.Join(" ", timeSlots.Skip(5).Take(4).ToArray());
-                Console.WriteLine("Start Time: {0}", start);
-                Console.WriteLine("Stop Time: {0}", stop);
-                DateTime dStart, dStop;
-                string dateFormat = "yyyy MM dd HH";
-                if (!DateTime.TryParseExact(start, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None, out dStart) || !DateTime.TryParseExact(stop, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None, out dStop)) {
-                    return;
+                double feedRate;
+                Boolean missed;
+
+                if (!double.TryParse(timeSlots[0], out feedRate) || !Boolean.TryParse(timeSlots[1], out missed)) {
+                    // TODO: Report an error
+                    throw new System.InvalidOperationException("Could not parse time block data");
                 }
 
-                this.addMissing(dStart,dStop);
+                int index = (int)(startingTime.AddHours(hour_offset) - timeDateReset).TotalHours;
 
+                this.times[index] = new TimeBlock(feedRate,missed);
             }
-
-            // This does leave times that are not in our window, but this gets resolved
-            this.trimMissing(timeDateReset);
         }
 
-        public String to_string() {
+        public String to_string(DateTime timeDateReset) {
             string vals = "";
+            string endl = "\r\n";
             string dateFormat = "yyyy MM dd HH";
             vals += this.PatientID + "\r\n";
             string feed = "";
@@ -182,15 +190,15 @@ namespace enteral
                     feed = "NG";
                     break;
             }
-            vals += feed + "\r\n";
-            vals += this.totalVolume + "\r\n";
-            vals += this.maxFeedRate + "\r\n";
+            vals += feed + endl;
+            vals += this.totalVolume + endl;
+            vals += this.maxFeedRate + endl;
+            vals += timeDateReset.ToString(dateFormat) + endl;
 
-            for (var i = 0; i < this.times.Count; i++) {
-                var (start,stop) = this.times[i];
-                vals += "Start: " + start.ToString(dateFormat) + " Stop: " + stop.ToString(dateFormat) + "\r\n";
+            foreach (TimeBlock time in this.times) {
+                if (!time.written) { break; }
+                vals += time.feedRate + " " + time.missed + endl;
             }
-
 
             return vals;
         }
