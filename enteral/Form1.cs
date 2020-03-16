@@ -197,11 +197,6 @@ namespace enteral
 
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
 
@@ -254,6 +249,12 @@ namespace enteral
         private void sync_ui() {
             this.numericUpDown3.Value = (decimal)this.patientData.get_volume();
             this.label1.Text = this.patientData.get_id();
+            this.label11.Text = "Total Daily Volume:             "+this.patientData.get_volume();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
