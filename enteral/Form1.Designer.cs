@@ -32,8 +32,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.feedTypeDisplay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.FeedRateTag = new System.Windows.Forms.Label();
+            this.dailyVolumeTag = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,14 +44,14 @@
             this.saveSettings = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.MaxRateNumeric = new System.Windows.Forms.NumericUpDown();
+            this.DailyVolumeNumeric = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.feedTypeCombo = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.dailyStartCombo = new System.Windows.Forms.ComboBox();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -65,22 +65,26 @@
             this.currentTimer = new System.Windows.Forms.Timer(this.components);
             this.saveFile = new System.Windows.Forms.Button();
             this.loadFile = new System.Windows.Forms.Button();
+            this.dailyVolumeDisplay = new System.Windows.Forms.Label();
+            this.FeedRateDisplay = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.missedCounter)).BeginInit();
             this.settingsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxRateNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DailyVolumeNumeric)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.FeedRateDisplay);
+            this.panel1.Controls.Add(this.dailyVolumeDisplay);
             this.panel1.Controls.Add(this.feedTypeDisplay);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.FeedRateTag);
+            this.panel1.Controls.Add(this.dailyVolumeTag);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(12, 15);
             this.panel1.Name = "panel1";
@@ -95,6 +99,7 @@
             this.feedTypeDisplay.Size = new System.Drawing.Size(45, 13);
             this.feedTypeDisplay.TabIndex = 13;
             this.feedTypeDisplay.Text = "(not set)";
+            this.feedTypeDisplay.Click += new System.EventHandler(this.feedTypeDisplay_Click);
             // 
             // label1
             // 
@@ -106,26 +111,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Patient #1";
             // 
-            // label12
+            // FeedRateTag
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(24, 83);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(177, 13);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "Maximum Feeding Rate:      (not set)";
+            this.FeedRateTag.AutoSize = true;
+            this.FeedRateTag.Location = new System.Drawing.Point(24, 83);
+            this.FeedRateTag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.FeedRateTag.Name = "FeedRateTag";
+            this.FeedRateTag.Size = new System.Drawing.Size(124, 13);
+            this.FeedRateTag.TabIndex = 12;
+            this.FeedRateTag.Text = "Maximum Feeding Rate: ";
             // 
-            // label11
+            // dailyVolumeTag
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(24, 61);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(175, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Total Daily Volume:             (not set)";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
+            this.dailyVolumeTag.AutoSize = true;
+            this.dailyVolumeTag.Location = new System.Drawing.Point(24, 61);
+            this.dailyVolumeTag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.dailyVolumeTag.Name = "dailyVolumeTag";
+            this.dailyVolumeTag.Size = new System.Drawing.Size(98, 13);
+            this.dailyVolumeTag.TabIndex = 11;
+            this.dailyVolumeTag.Text = "Total Daily Volume:";
+            this.dailyVolumeTag.Click += new System.EventHandler(this.label11_Click);
             // 
             // label7
             // 
@@ -203,14 +208,14 @@
             this.settingsPanel.Controls.Add(this.saveSettings);
             this.settingsPanel.Controls.Add(this.button2);
             this.settingsPanel.Controls.Add(this.button1);
-            this.settingsPanel.Controls.Add(this.numericUpDown2);
-            this.settingsPanel.Controls.Add(this.numericUpDown3);
+            this.settingsPanel.Controls.Add(this.MaxRateNumeric);
+            this.settingsPanel.Controls.Add(this.DailyVolumeNumeric);
             this.settingsPanel.Controls.Add(this.label4);
             this.settingsPanel.Controls.Add(this.label5);
             this.settingsPanel.Controls.Add(this.label9);
-            this.settingsPanel.Controls.Add(this.comboBox3);
+            this.settingsPanel.Controls.Add(this.feedTypeCombo);
             this.settingsPanel.Controls.Add(this.label10);
-            this.settingsPanel.Controls.Add(this.comboBox4);
+            this.settingsPanel.Controls.Add(this.dailyStartCombo);
             this.settingsPanel.Location = new System.Drawing.Point(454, 42);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(168, 225);
@@ -248,32 +253,32 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // numericUpDown2
+            // MaxRateNumeric
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(8, 150);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.MaxRateNumeric.Location = new System.Drawing.Point(8, 150);
+            this.MaxRateNumeric.Margin = new System.Windows.Forms.Padding(2);
+            this.MaxRateNumeric.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(90, 20);
-            this.numericUpDown2.TabIndex = 19;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.MaxRateNumeric.Name = "MaxRateNumeric";
+            this.MaxRateNumeric.Size = new System.Drawing.Size(90, 20);
+            this.MaxRateNumeric.TabIndex = 19;
+            this.MaxRateNumeric.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
-            // numericUpDown3
+            // DailyVolumeNumeric
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(8, 108);
-            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.DailyVolumeNumeric.Location = new System.Drawing.Point(8, 108);
+            this.DailyVolumeNumeric.Margin = new System.Windows.Forms.Padding(2);
+            this.DailyVolumeNumeric.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(90, 20);
-            this.numericUpDown3.TabIndex = 21;
+            this.DailyVolumeNumeric.Name = "DailyVolumeNumeric";
+            this.DailyVolumeNumeric.Size = new System.Drawing.Size(90, 20);
+            this.DailyVolumeNumeric.TabIndex = 21;
             // 
             // label4
             // 
@@ -305,23 +310,23 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "Feeding Type";
             // 
-            // comboBox3
+            // feedTypeCombo
             // 
-            this.comboBox3.AllowDrop = true;
-            this.comboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.feedTypeCombo.AllowDrop = true;
+            this.feedTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.feedTypeCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.feedTypeCombo.FormattingEnabled = true;
+            this.feedTypeCombo.Items.AddRange(new object[] {
             "Nasogastic (NG Tube)",
             "Nasojejunal (NJ Tube)",
             "Percutaneous Endoscopic Gastronomy (PEG Tube)",
             "Jejunostomy (J Tube)"});
-            this.comboBox3.Location = new System.Drawing.Point(8, 67);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(145, 21);
-            this.comboBox3.TabIndex = 11;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            this.feedTypeCombo.Location = new System.Drawing.Point(8, 67);
+            this.feedTypeCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.feedTypeCombo.Name = "feedTypeCombo";
+            this.feedTypeCombo.Size = new System.Drawing.Size(145, 21);
+            this.feedTypeCombo.TabIndex = 11;
+            this.feedTypeCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -333,13 +338,13 @@
             this.label10.TabIndex = 12;
             this.label10.Text = "Daily Start Time";
             // 
-            // comboBox4
+            // dailyStartCombo
             // 
-            this.comboBox4.AllowDrop = true;
-            this.comboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.dailyStartCombo.AllowDrop = true;
+            this.dailyStartCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.dailyStartCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.dailyStartCombo.FormattingEnabled = true;
+            this.dailyStartCombo.Items.AddRange(new object[] {
             "12:00 AM",
             "1:00 AM",
             "2:00 AM",
@@ -364,12 +369,12 @@
             "9:00 PM",
             "10:00 PM",
             "11:00 PM"});
-            this.comboBox4.Location = new System.Drawing.Point(8, 25);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(145, 21);
-            this.comboBox4.TabIndex = 13;
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            this.dailyStartCombo.Location = new System.Drawing.Point(8, 25);
+            this.dailyStartCombo.Margin = new System.Windows.Forms.Padding(2);
+            this.dailyStartCombo.Name = "dailyStartCombo";
+            this.dailyStartCombo.Size = new System.Drawing.Size(145, 21);
+            this.dailyStartCombo.TabIndex = 13;
+            this.dailyStartCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // SettingsButton
             // 
@@ -506,6 +511,25 @@
             this.loadFile.UseVisualStyleBackColor = true;
             this.loadFile.Click += new System.EventHandler(this.loadFile_Click);
             // 
+            // dailyVolumeDisplay
+            // 
+            this.dailyVolumeDisplay.AutoSize = true;
+            this.dailyVolumeDisplay.Location = new System.Drawing.Point(153, 60);
+            this.dailyVolumeDisplay.Name = "dailyVolumeDisplay";
+            this.dailyVolumeDisplay.Size = new System.Drawing.Size(45, 13);
+            this.dailyVolumeDisplay.TabIndex = 14;
+            this.dailyVolumeDisplay.Text = "(not set)";
+            this.dailyVolumeDisplay.Click += new System.EventHandler(this.dailyVolumeDisplay_Click);
+            // 
+            // FeedRateDisplay
+            // 
+            this.FeedRateDisplay.AutoSize = true;
+            this.FeedRateDisplay.Location = new System.Drawing.Point(155, 83);
+            this.FeedRateDisplay.Name = "FeedRateDisplay";
+            this.FeedRateDisplay.Size = new System.Drawing.Size(45, 13);
+            this.FeedRateDisplay.TabIndex = 15;
+            this.FeedRateDisplay.Text = "(not set)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,8 +556,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.missedCounter)).EndInit();
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxRateNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DailyVolumeNumeric)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -554,19 +578,19 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox feedTypeCombo;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox dailyStartCombo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown MaxRateNumeric;
+        private System.Windows.Forms.Label dailyVolumeTag;
+        private System.Windows.Forms.Label FeedRateTag;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label rateOutput;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown DailyVolumeNumeric;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown missedCounter;
@@ -579,6 +603,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button saveFile;
         private System.Windows.Forms.Button loadFile;
+        private System.Windows.Forms.Label dailyVolumeDisplay;
+        private System.Windows.Forms.Label FeedRateDisplay;
     }
 }
 

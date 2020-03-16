@@ -24,19 +24,19 @@ namespace enteral
             InitializeComponent();
             rateOutput.Text = "0";
             missedOutput.Text = missedHoursTotal.ToString();
-            if (Properties.Settings.Default.feedingType != "" && comboBox3.Items.Contains(Properties.Settings.Default.feedingType))
+            if (Properties.Settings.Default.feedingType != "" && feedTypeCombo.Items.Contains(Properties.Settings.Default.feedingType))
             {
                 feedTypeDisplay.Text = Properties.Settings.Default.feedingType;
-                comboBox3.SelectedItem = Properties.Settings.Default.feedingType;
+                feedTypeCombo.SelectedItem = Properties.Settings.Default.feedingType;
             }
             if (!Properties.Settings.Default.rateOverride.Equals(-1)) {
-                numericUpDown2.Value = Properties.Settings.Default.rateOverride;
+                MaxRateNumeric.Value = Properties.Settings.Default.rateOverride;
             }
             if (Properties.Settings.Default.timeReset != -1) {
-                comboBox4.SelectedIndex = Properties.Settings.Default.timeReset;
+                dailyStartCombo.SelectedIndex = Properties.Settings.Default.timeReset;
             }
             if (Properties.Settings.Default.dailyVolume != -1) {
-                numericUpDown3.Value = Properties.Settings.Default.dailyVolume;
+                DailyVolumeNumeric.Value = Properties.Settings.Default.dailyVolume;
             }
         }
 
@@ -72,15 +72,15 @@ namespace enteral
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Daily start time set to: " + comboBox4.Text);
-            dailyStart.Text = comboBox4.Text;
+            MessageBox.Show("Daily start time set to: " + dailyStartCombo.Text);
+            dailyStart.Text = dailyStartCombo.Text;
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {   
-            MessageBox.Show("Feeding type set to: " + comboBox3.Text);
-            feedTypeDisplay.Text = comboBox3.Text;
-            switch (comboBox3.SelectedIndex)
+            MessageBox.Show("Feeding type set to: " + feedTypeCombo.Text);
+            feedTypeDisplay.Text = feedTypeCombo.Text;
+            switch (feedTypeCombo.SelectedIndex)
             {
                 case 0:
                     patientData.set_feed(FeedType.NG);
@@ -97,19 +97,19 @@ namespace enteral
                 default:
                     return;
             }
-            if (comboBox3.SelectedIndex % 2 == 0)
+            if (feedTypeCombo.SelectedIndex % 2 == 0)
             {
                 maxRate = 150;
-                numericUpDown2.Value = 240;
+                MaxRateNumeric.Value = 240;
             }
             else {
                 maxRate = 240;
-                numericUpDown2.Value = 150;
+                MaxRateNumeric.Value = 150;
             }
 
             //MessageBox.Show("Maximum feeding rate set to: " + numericUpDown2.Value);
-            label12.Text = "Maximum Feeding Rate:     " + numericUpDown2.Value;
-            maxRate = numericUpDown2.Value;
+            FeedRateDisplay.Text = "" + MaxRateNumeric.Value;
+            maxRate = MaxRateNumeric.Value;
 
             //update function
             if (missedHoursTotal > 23) { }
@@ -127,10 +127,10 @@ namespace enteral
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Maximum feeding rate set to: " + numericUpDown2.Value);
-            label12.Text = "Maximum Feeding Rate:     " + numericUpDown2.Value + "     \n(WARNING! This value may differ from the recommended max.)";
-            maxRate = numericUpDown2.Value;
-            patientData.set_max_rate((double)numericUpDown2.Value);
+            MessageBox.Show("Maximum feeding rate set to: " + MaxRateNumeric.Value);
+            FeedRateDisplay.Text = "" + MaxRateNumeric.Value + "     \n(WARNING! This value may differ from the recommended max.)";
+            maxRate = MaxRateNumeric.Value;
+            patientData.set_max_rate((double)MaxRateNumeric.Value);
 
             //update function
             if (missedHoursTotal > 23) { }
@@ -143,10 +143,10 @@ namespace enteral
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Total daily volume set to: " + numericUpDown3.Value);
-            label11.Text = "Total Daily Volume:            " + numericUpDown3.Value;
-            totalVol = numericUpDown3.Value;
-            patientData.set_volume((double)numericUpDown3.Value);
+            MessageBox.Show("Total daily volume set to: " + DailyVolumeNumeric.Value);
+            dailyVolumeTag.Text = "Total Daily Volume:            " + DailyVolumeNumeric.Value;
+            totalVol = DailyVolumeNumeric.Value;
+            patientData.set_volume((double)DailyVolumeNumeric.Value);
 
             //update function
             if (missedHoursTotal > 23) { }
@@ -164,11 +164,11 @@ namespace enteral
 
         private void saveSettings_Click(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedItem.ToString() != "") {
-                Properties.Settings.Default.feedingType = comboBox3.SelectedItem.ToString();
+            if (feedTypeCombo.SelectedItem.ToString() != "") {
+                Properties.Settings.Default.feedingType = feedTypeCombo.SelectedItem.ToString();
             }
-            if (comboBox4.SelectedItem.ToString() != "") {
-                Properties.Settings.Default.timeReset = comboBox4.SelectedIndex;
+            if (dailyStartCombo.SelectedItem.ToString() != "") {
+                Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
             }
             Properties.Settings.Default.Save();
 
@@ -193,11 +193,6 @@ namespace enteral
         }
 
         private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
         {
 
         }
@@ -252,8 +247,35 @@ namespace enteral
         }
 
         private void sync_ui() {
-            this.numericUpDown3.Value = (decimal)this.patientData.get_volume();
+            this.DailyVolumeNumeric.Value = (decimal)this.patientData.get_volume();
+            this.feedTypeCombo.SelectedIndex = (int)this.patientData.get_feed_type();
+            this.MaxRateNumeric.Value = (decimal)this.patientData.get_maxrate();
             this.label1.Text = this.patientData.get_id();
+            this.dailyVolumeDisplay.Text = ""+this.patientData.get_volume();
+            this.FeedRateDisplay.Text = "" + this.patientData.get_maxrate();
+            this.feedTypeDisplay.Text = this.feedTypeCombo.Text;
+
+            display_feed_rate();
+        }
+
+        private void display_feed_rate() {
+            this.rateOutput.Text = String.Format("{000}",this.patientData.get_feed_rate_ml())+" ml";
+            this.missedOutput.Text = "" + this.patientData.hours_missed();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void feedTypeDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dailyVolumeDisplay_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
