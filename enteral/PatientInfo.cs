@@ -30,6 +30,7 @@ namespace enteral
             this.times = new List<Tuple<DateTime,DateTime>>();
         }
 
+        // Used to add a missing time slot to the timeline, earlier time goes first
         public void addMissing(DateTime start, DateTime stop) {
             //TO DO: make sure stop happens after start
             Tuple<DateTime, DateTime> new_val = new Tuple<DateTime,DateTime>(start,stop);
@@ -49,6 +50,7 @@ namespace enteral
             }
         }
 
+        // Trims times outside of the current time slot, timeDateReset is the earliest time to keep
         public void trimMissing(DateTime timeDateReset) {
             List<Tuple<DateTime, DateTime>> new_list = new List<Tuple<DateTime, DateTime>>();
             foreach (var time in this.times) {
@@ -185,16 +187,24 @@ namespace enteral
             this.feedingType = feed;
         }
 
+        //Sets the patient's ID to a given string
         public void set_id(String id) {
             this.PatientID = id;
         }
 
+        // Set the total daily volume
         public void set_volume(double vol) {
             this.totalVolume = vol;
         }
 
+        // Set the maximum allowable rate
         public void set_max_rate(double maxRate) {
             this.maxFeedRate = maxRate;
+        }
+
+        //Return the entire timeline as tuples of missed times
+        public List<Tuple<DateTime, DateTime>> get_timeline() {
+            return this.times;
         }
     }
 }
