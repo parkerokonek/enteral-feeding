@@ -14,43 +14,55 @@ namespace enteral
         J
     }
 
+    class TimeBlock {
+        public double feedRate;
+        public Boolean written;
+        public Boolean missed;
+
+        public TimeBlock() {
+            this.feedRate = 0;
+            this.written = false;
+            this.missed = false;
+        }
+
+        public TimeBlock(double rate, Boolean missed) {
+            this.feedRate = rate;
+            this.missed = missed;
+            this.written = true;
+        }
+    }
+
     class PatientInfo
     {
         String PatientID;
         FeedType feedingType;
         double totalVolume;
         double maxFeedRate;
-        List<Tuple<DateTime,DateTime>> times;
+        TimeBlock[] times;
 
         public PatientInfo(String id, FeedType feed, double totalVol, double maxRate) {
             this.PatientID = id;
             this.feedingType = feed;
             this.totalVolume = totalVol;
             this.maxFeedRate = maxRate;
-            this.times = new List<Tuple<DateTime,DateTime>>();
+            this.times = new TimeBlock[24];
         }
 
         // Used to add a missing time slot to the timeline, earlier time goes first
-        public void addMissing(DateTime start, DateTime stop) {
-            //TO DO: make sure stop happens after start
-            Tuple<DateTime, DateTime> new_val = new Tuple<DateTime,DateTime>(start,stop);
-            this.times.Add(new_val);
-            return;
-
-            // Later we need to make sure things aren't actually here
-            for (int i = 0; i < times.Count; i++) {
-                var (dStart,dStop) = times[i];
-                //If this time
-
-                // If the added time starts before and intersects a valid time, enbiggen the time
-                if (DateTime.Compare(start, dStop) < 0 && DateTime.Compare(stop, dStart) > 0) {
-                    // Tuples are broken somehow
-                    //times[i] = (start,dStop);
-                }
+        public void setTime(int index, double rate, Boolean missing) {
+            if (index < 0 || index > 23) {
+                return;
             }
+            //TO DO: make sure stop happens after start
+            this.times[index] = new TimeBlock(rate,missing);
+            for (int i = 0; i < index; i++) {
+                this.times[index].written = true;
+            }
+            return;
         }
 
         // Trims times outside of the current time slot, timeDateReset is the earliest time to keep
+        /*
         public void trimMissing(DateTime timeDateReset) {
             List<Tuple<DateTime, DateTime>> new_list = new List<Tuple<DateTime, DateTime>>();
             foreach (var time in this.times) {
@@ -65,7 +77,7 @@ namespace enteral
             }
 
             this.times = new_list;
-        }
+        }*/
 
         // The time passed in should be the time of day of reset + current time
         public PatientInfo(String fileContents, DateTime timeDateReset) {
@@ -115,7 +127,7 @@ namespace enteral
             this.feedingType = feed;
             this.totalVolume = totalVol;
             this.maxFeedRate = maxRate;
-            this.times = new List<Tuple<DateTime, DateTime>>();
+            this.times = new TimeBlock[24];
 
 
             // Now we can try reading the list of stuff and toss if we have to
@@ -203,7 +215,7 @@ namespace enteral
         }
 
         //Return the entire timeline as tuples of missed times
-        public List<Tuple<DateTime, DateTime>> get_timeline() {
+        public TimeBlock[] get_timeline() {
             return this.times;
         }
     }
