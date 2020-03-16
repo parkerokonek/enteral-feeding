@@ -14,43 +14,55 @@ namespace enteral
         J
     }
 
+    class TimeBlock {
+        public double feedRate;
+        public Boolean written;
+        public Boolean missed;
+
+        public TimeBlock() {
+            this.feedRate = 0;
+            this.written = false;
+            this.missed = false;
+        }
+
+        public TimeBlock(double rate, Boolean missed) {
+            this.feedRate = rate;
+            this.missed = missed;
+            this.written = true;
+        }
+    }
+
     class PatientInfo
     {
         String PatientID;
         FeedType feedingType;
         double totalVolume;
         double maxFeedRate;
-        List<Tuple<DateTime,DateTime>> times;
+        TimeBlock[] times;
 
         public PatientInfo(String id, FeedType feed, double totalVol, double maxRate) {
             this.PatientID = id;
             this.feedingType = feed;
             this.totalVolume = totalVol;
             this.maxFeedRate = maxRate;
-            this.times = new List<Tuple<DateTime,DateTime>>();
+            this.times = new TimeBlock[24];
         }
 
         // Used to add a missing time slot to the timeline, earlier time goes first
-        public void addMissing(DateTime start, DateTime stop) {
-            //TO DO: make sure stop happens after start
-            Tuple<DateTime, DateTime> new_val = new Tuple<DateTime,DateTime>(start,stop);
-            this.times.Add(new_val);
-            return;
-
-            // Later we need to make sure things aren't actually here
-            for (int i = 0; i < times.Count; i++) {
-                var (dStart,dStop) = times[i];
-                //If this time
-
-                // If the added time starts before and intersects a valid time, enbiggen the time
-                if (DateTime.Compare(start, dStop) < 0 && DateTime.Compare(stop, dStart) > 0) {
-                    // Tuples are broken somehow
-                    //times[i] = (start,dStop);
-                }
+        public void setTime(int index, double rate, Boolean missing) {
+            if (index < 0 || index > 23) {
+                return;
             }
+            //TO DO: make sure stop happens after start
+            this.times[index] = new TimeBlock(rate,missing);
+            for (int i = 0; i < index; i++) {
+                this.times[index].written = true;
+            }
+            return;
         }
 
         // Trims times outside of the current time slot, timeDateReset is the earliest time to keep
+        /*
         public void trimMissing(DateTime timeDateReset) {
             List<Tuple<DateTime, DateTime>> new_list = new List<Tuple<DateTime, DateTime>>();
             foreach (var time in this.times) {
@@ -65,14 +77,14 @@ namespace enteral
             }
 
             this.times = new_list;
-        }
+        }*/
 
         // The time passed in should be the time of day of reset + current time
         public PatientInfo(String fileContents, DateTime timeDateReset) {
             // Windows line endings are \r\n, but the \r doesn't matter
             string[] lines = fileContents.Replace("\r","").Split('\n');
             // 4 lines is the absolute minimum data for a patient if no miss times specified
-            if (lines.Length < 4) { return;  }
+            if (lines.Length < 5) { return;  }
 
             // Instantiate all the variables we will need to instantiate the patient class
             // All but the patient ID could fail in parsing, so they aren't assigned yet
@@ -115,44 +127,54 @@ namespace enteral
             this.feedingType = feed;
             this.totalVolume = totalVol;
             this.maxFeedRate = maxRate;
-            this.times = new List<Tuple<DateTime, DateTime>>();
+            this.times = new TimeBlock[24];
 
+
+            // Now we need to read the reset time from the file in order to properly do time comparisons
+            DateTime startingTime;
+            string dateFormat = "yyyy MM dd HH";
+            if (!DateTime.TryParseExact(lines[4], dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None, out startingTime)) {
+                return;
+            }
 
             // Now we can try reading the list of stuff and toss if we have to
             // Currently we also kill the file read if any time slot is invalid
             // This is for patient safety purposes
-            for (int i = 4; i < lines.Length; i++) {
-                string[] timeSlots = lines[i].Split(' ');
-                if (timeSlots.Length != 10) {
+            for (int i = 5; i < lines.Length; i++) {
+                //First make sure the time is within our bounds
+                int hour_offset = i - 5;
+                if (hour_offset > 23) {
                     return;
                 }
-                // Use the spacer data to make sure that 
-                if (timeSlots[0] != "Start:" || timeSlots[4] != "Stop:") {
+
+                if (DateTime.Compare(startingTime.AddHours(hour_offset), timeDateReset) < 0) { continue; }
+
+
+                string[] timeSlots = lines[i].Split(' ');
+                if (timeSlots.Length != 2) {
                     return;
                 }
 
                 // Let's try to parse some stuff
-                // Converting a string to an array, then collecting it back to a string isn't super effecient, but it works for now
-                string start = string.Join(" ",timeSlots.Skip(1).Take(4).ToArray());
-                string stop = string.Join(" ", timeSlots.Skip(5).Take(4).ToArray());
-                Console.WriteLine("Start Time: {0}", start);
-                Console.WriteLine("Stop Time: {0}", stop);
-                DateTime dStart, dStop;
-                string dateFormat = "yyyy MM dd HH";
-                if (!DateTime.TryParseExact(start, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None, out dStart) || !DateTime.TryParseExact(stop, dateFormat, CultureInfo.CurrentCulture, DateTimeStyles.None, out dStop)) {
-                    return;
+                double feedRate;
+                Boolean missed;
+
+                if (!double.TryParse(timeSlots[0], out feedRate) || !Boolean.TryParse(timeSlots[1], out missed)) {
+                    // TODO: Report an error
+                    throw new System.InvalidOperationException("Could not parse time block data at line "+i);
                 }
 
-                this.addMissing(dStart,dStop);
+                int index = (int)(startingTime.AddHours(hour_offset) - timeDateReset).TotalHours;
 
+                System.Diagnostics.Debug.WriteLine("File start time: "+ startingTime.AddHours(hour_offset)+" Given Start Time: "+timeDateReset);
+                System.Diagnostics.Debug.WriteLine("Writing some data to "+index);
+                this.times[index] = new TimeBlock(feedRate,missed);
             }
-
-            // This does leave times that are not in our window, but this gets resolved
-            this.trimMissing(timeDateReset);
         }
 
-        public String to_string() {
+        public String to_string(DateTime timeDateReset) {
             string vals = "";
+            string endl = "\r\n";
             string dateFormat = "yyyy MM dd HH";
             vals += this.PatientID + "\r\n";
             string feed = "";
@@ -170,15 +192,15 @@ namespace enteral
                     feed = "NG";
                     break;
             }
-            vals += feed + "\r\n";
-            vals += this.totalVolume + "\r\n";
-            vals += this.maxFeedRate + "\r\n";
+            vals += feed + endl;
+            vals += this.totalVolume + endl;
+            vals += this.maxFeedRate + endl;
+            vals += timeDateReset.ToString(dateFormat) + endl;
 
-            for (var i = 0; i < this.times.Count; i++) {
-                var (start,stop) = this.times[i];
-                vals += "Start: " + start.ToString(dateFormat) + " Stop: " + stop.ToString(dateFormat) + "\r\n";
+            foreach (TimeBlock time in this.times) {
+                if (time == null || !time.written) { break; }
+                vals += time.feedRate + " " + time.missed + endl;
             }
-
 
             return vals;
         }
@@ -202,8 +224,16 @@ namespace enteral
             this.maxFeedRate = maxRate;
         }
 
+        public double get_volume() {
+            return this.totalVolume;
+        }
+
+        public String get_id() {
+            return this.PatientID;
+        }
+
         //Return the entire timeline as tuples of missed times
-        public List<Tuple<DateTime, DateTime>> get_timeline() {
+        public TimeBlock[] get_timeline() {
             return this.times;
         }
     }
