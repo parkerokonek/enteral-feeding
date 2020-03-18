@@ -40,7 +40,7 @@ namespace enteral
             }
         }
 
-        private void addTimeGap_Click(object sender, EventArgs e)
+        /*private void addTimeGap_Click(object sender, EventArgs e)
         {
             Decimal val = missedCounter.Value;
             missedCounter.Value = 0;
@@ -52,7 +52,7 @@ namespace enteral
                 Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
                 rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate,maxRate) : rate); 
             }
-        }
+        }*/
 
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -60,6 +60,16 @@ namespace enteral
             bool isVis = settingsPanel.Visible;
             if (isVis)
             {
+                if (feedTypeCombo.SelectedItem.ToString() != "")
+                {
+                    Properties.Settings.Default.feedingType = feedTypeCombo.SelectedItem.ToString();
+                }
+                if (dailyStartCombo.SelectedItem.ToString() != "")
+                {
+                    Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
+                }
+                Properties.Settings.Default.Save();
+
                 settingsPanel.Hide();
                 SettingsButton.Text = "Edit Settings";
             }
@@ -74,6 +84,8 @@ namespace enteral
         {
             MessageBox.Show("Daily start time set to: " + dailyStartCombo.Text);
             dailyStart.Text = dailyStartCombo.Text;
+
+            Properties.Settings.Default.Save();
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -176,7 +188,7 @@ namespace enteral
             SettingsButton.Text = "Edit Settings";
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /*private void button3_Click(object sender, EventArgs e)
         {
             Decimal val = missedCounter.Value;
             missedCounter.Value = 0;
@@ -190,7 +202,7 @@ namespace enteral
                 Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
                 rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
             }
-        }
+        }*/
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -216,7 +228,7 @@ namespace enteral
                     {
                         // Code to write the stream goes here.
                         string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
-                    byte[] info = new UTF8Encoding(true).GetBytes(data);
+                        byte[] info = new UTF8Encoding(true).GetBytes(data);
                         fs.Write(info,0,info.Length);
                         fs.Close();
                     }
@@ -276,6 +288,75 @@ namespace enteral
         private void dailyVolumeDisplay_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void changeName()
+        {
+            Form changeName = new Form();
+            Button accept = new Button();
+            Button cancel = new Button();
+            TextBox newName = new TextBox();
+
+            changeName.Text = "Set Patient Name";
+            newName.Text = "Enter Patient Name.";
+            accept.Text = "OK";
+            cancel.Text = "Cancel";
+
+            accept.DialogResult = System.Windows.Forms.DialogResult.OK;
+
+            newName.Location = new Point(10, 10);
+            accept.Location = new Point(newName.Left, newName.Height + newName.Top + 10);
+            cancel.Location = new Point(accept.Left, accept.Height + accept.Top + 10);
+
+            changeName.HelpButton = true;
+
+            changeName.StartPosition = FormStartPosition.CenterParent;
+
+            changeName.AcceptButton = accept;
+            changeName.CancelButton = cancel;
+
+            changeName.Controls.Add(newName);
+            changeName.Controls.Add(accept);
+            changeName.Controls.Add(cancel);
+
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            if (changeName.ShowDialog(this) == DialogResult.OK)
+            {
+                // Read the contents of testDialog's TextBox.
+                this.label1.Text = newName.Text;
+                this.patientData.set_id(newName.Text);
+            }
+            changeName.Dispose();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            changeName();
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddGap_Click(object sender, EventArgs e)
+        {
+            int previousRate = (int) this.patientData.get_feed_rate_ml();
+            int gapStart = this.gapStart.SelectedIndex;
+            int gapStop = this.gapStop.SelectedIndex;
+
+            for (int i = gapStart; i < gapStop; i++)
+            {
+                this.patientData.setTime(i, previousRate, 0, true);
+            }
+
+            sync_ui();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.patientData.clearTimes();
+            sync_ui();
         }
     }
 }

@@ -49,14 +49,27 @@ namespace enteral
         }
 
         // Used to add a missing time slot to the timeline, earlier time goes first
-        public void setTime(int index, double rate, Boolean missing) {
-            if (index < 0 || index > 23) {
+        public void setTime(int index, double previousRate, double rate, Boolean missing) {
+            if (index < 0 || index > 23)
+            {
                 return;
             }
             //TO DO: make sure stop happens after start
             this.times[index] = new TimeBlock(rate, missing);
             for (int i = 0; i < index; i++) {
-                this.times[index].written = true;
+                if (this.times[i] == null)
+                {
+                    this.times[i] = new TimeBlock(previousRate, false);
+                }
+            }
+            return;
+        }
+
+        public void clearTimes()
+        {
+            for (int i = 0; i < 24; i++)
+            {
+                this.times[i] = null;
             }
             return;
         }
