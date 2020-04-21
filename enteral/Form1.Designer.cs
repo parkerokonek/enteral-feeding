@@ -89,17 +89,17 @@
             this.panel1.Controls.Add(this.FeedRateTag);
             this.panel1.Controls.Add(this.dailyVolumeTag);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Location = new System.Drawing.Point(16, 18);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(12, 15);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(637, 150);
+            this.panel1.Size = new System.Drawing.Size(478, 122);
             this.panel1.TabIndex = 0;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(504, 9);
+            this.button4.Location = new System.Drawing.Point(378, 7);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(118, 34);
+            this.button4.Size = new System.Drawing.Size(88, 28);
             this.button4.TabIndex = 16;
             this.button4.Text = "Change Name";
             this.button4.UseVisualStyleBackColor = true;
@@ -108,20 +108,18 @@
             // FeedRateDisplay
             // 
             this.FeedRateDisplay.AutoSize = true;
-            this.FeedRateDisplay.Location = new System.Drawing.Point(207, 102);
-            this.FeedRateDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.FeedRateDisplay.Location = new System.Drawing.Point(155, 83);
             this.FeedRateDisplay.Name = "FeedRateDisplay";
-            this.FeedRateDisplay.Size = new System.Drawing.Size(61, 17);
+            this.FeedRateDisplay.Size = new System.Drawing.Size(45, 13);
             this.FeedRateDisplay.TabIndex = 15;
             this.FeedRateDisplay.Text = "(not set)";
             // 
             // dailyVolumeDisplay
             // 
             this.dailyVolumeDisplay.AutoSize = true;
-            this.dailyVolumeDisplay.Location = new System.Drawing.Point(204, 74);
-            this.dailyVolumeDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dailyVolumeDisplay.Location = new System.Drawing.Point(153, 60);
             this.dailyVolumeDisplay.Name = "dailyVolumeDisplay";
-            this.dailyVolumeDisplay.Size = new System.Drawing.Size(61, 17);
+            this.dailyVolumeDisplay.Size = new System.Drawing.Size(45, 13);
             this.dailyVolumeDisplay.TabIndex = 14;
             this.dailyVolumeDisplay.Text = "(not set)";
             this.dailyVolumeDisplay.Click += new System.EventHandler(this.dailyVolumeDisplay_Click);
@@ -129,10 +127,9 @@
             // feedTypeDisplay
             // 
             this.feedTypeDisplay.AutoSize = true;
-            this.feedTypeDisplay.Location = new System.Drawing.Point(204, 47);
-            this.feedTypeDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.feedTypeDisplay.Location = new System.Drawing.Point(153, 38);
             this.feedTypeDisplay.Name = "feedTypeDisplay";
-            this.feedTypeDisplay.Size = new System.Drawing.Size(61, 17);
+            this.feedTypeDisplay.Size = new System.Drawing.Size(45, 13);
             this.feedTypeDisplay.TabIndex = 13;
             this.feedTypeDisplay.Text = "(not set)";
             this.feedTypeDisplay.Click += new System.EventHandler(this.feedTypeDisplay_Click);
@@ -141,28 +138,29 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 20);
+            this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Patient #1";
             // 
             // FeedRateTag
             // 
             this.FeedRateTag.AutoSize = true;
-            this.FeedRateTag.Location = new System.Drawing.Point(32, 102);
+            this.FeedRateTag.Location = new System.Drawing.Point(24, 83);
+            this.FeedRateTag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FeedRateTag.Name = "FeedRateTag";
-            this.FeedRateTag.Size = new System.Drawing.Size(163, 17);
+            this.FeedRateTag.Size = new System.Drawing.Size(124, 13);
             this.FeedRateTag.TabIndex = 12;
             this.FeedRateTag.Text = "Maximum Feeding Rate: ";
             // 
             // dailyVolumeTag
             // 
             this.dailyVolumeTag.AutoSize = true;
-            this.dailyVolumeTag.Location = new System.Drawing.Point(32, 75);
+            this.dailyVolumeTag.Location = new System.Drawing.Point(24, 61);
+            this.dailyVolumeTag.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dailyVolumeTag.Name = "dailyVolumeTag";
-            this.dailyVolumeTag.Size = new System.Drawing.Size(130, 17);
+            this.dailyVolumeTag.Size = new System.Drawing.Size(98, 13);
             this.dailyVolumeTag.TabIndex = 11;
             this.dailyVolumeTag.Text = "Total Daily Volume:";
             this.dailyVolumeTag.Click += new System.EventHandler(this.label11_Click);
@@ -170,31 +168,30 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(32, 47);
+            this.label7.Location = new System.Drawing.Point(24, 38);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 17);
+            this.label7.Size = new System.Drawing.Size(78, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Feeding Type: ";
             // 
             // loadFile
             // 
-            this.loadFile.Location = new System.Drawing.Point(11, 223);
-            this.loadFile.Margin = new System.Windows.Forms.Padding(4);
+            this.loadFile.Location = new System.Drawing.Point(8, 181);
             this.loadFile.Name = "loadFile";
-            this.loadFile.Size = new System.Drawing.Size(101, 28);
+            this.loadFile.Size = new System.Drawing.Size(76, 23);
             this.loadFile.TabIndex = 24;
-            this.loadFile.Text = "LoadDialog";
+            this.loadFile.Text = "Load Info";
             this.loadFile.UseVisualStyleBackColor = true;
             this.loadFile.Click += new System.EventHandler(this.loadFile_Click);
             // 
             // saveFile
             // 
-            this.saveFile.Location = new System.Drawing.Point(113, 223);
-            this.saveFile.Margin = new System.Windows.Forms.Padding(4);
+            this.saveFile.Location = new System.Drawing.Point(85, 181);
             this.saveFile.Name = "saveFile";
-            this.saveFile.Size = new System.Drawing.Size(101, 28);
+            this.saveFile.Size = new System.Drawing.Size(76, 23);
             this.saveFile.TabIndex = 23;
-            this.saveFile.Text = "SaveDialog";
+            this.saveFile.Text = "Save Info";
             this.saveFile.UseVisualStyleBackColor = true;
             this.saveFile.Click += new System.EventHandler(this.saveFile_Click);
             // 
@@ -207,10 +204,9 @@
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(16, 186);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(12, 151);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(267, 145);
+            this.panel2.Size = new System.Drawing.Size(201, 118);
             this.panel2.TabIndex = 1;
             // 
             // gapStop
@@ -244,10 +240,10 @@
             "3:00 AM",
             "4:00 AM",
             "5:00 AM"});
-            this.gapStop.Location = new System.Drawing.Point(16, 106);
-            this.gapStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gapStop.Location = new System.Drawing.Point(12, 86);
+            this.gapStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gapStop.Name = "gapStop";
-            this.gapStop.Size = new System.Drawing.Size(119, 24);
+            this.gapStop.Size = new System.Drawing.Size(90, 21);
             this.gapStop.TabIndex = 29;
             // 
             // gapStart
@@ -281,21 +277,20 @@
             "3:00 AM",
             "4:00 AM",
             "5:00 AM"});
-            this.gapStart.Location = new System.Drawing.Point(16, 56);
-            this.gapStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gapStart.Location = new System.Drawing.Point(12, 46);
+            this.gapStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gapStart.Name = "gapStart";
-            this.gapStart.Size = new System.Drawing.Size(119, 24);
+            this.gapStart.Size = new System.Drawing.Size(90, 21);
             this.gapStart.TabIndex = 24;
             // 
             // AddGap
             // 
             this.AddGap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddGap.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddGap.Location = new System.Drawing.Point(165, 56);
-            this.AddGap.Margin = new System.Windows.Forms.Padding(4);
+            this.AddGap.Location = new System.Drawing.Point(124, 46);
             this.AddGap.Name = "AddGap";
-            this.AddGap.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.AddGap.Size = new System.Drawing.Size(82, 72);
+            this.AddGap.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.AddGap.Size = new System.Drawing.Size(62, 58);
             this.AddGap.TabIndex = 25;
             this.AddGap.Text = "+";
             this.AddGap.UseVisualStyleBackColor = true;
@@ -304,10 +299,9 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(13, 36);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(10, 29);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 17);
+            this.label12.Size = new System.Drawing.Size(59, 13);
             this.label12.TabIndex = 28;
             this.label12.Text = "Feed Stop:";
             this.label12.Click += new System.EventHandler(this.label12_Click);
@@ -315,20 +309,18 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 87);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(10, 71);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 17);
+            this.label11.Size = new System.Drawing.Size(76, 13);
             this.label11.TabIndex = 27;
             this.label11.Text = "Feed Resume:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(10, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 17);
+            this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Hours Missed:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -349,18 +341,17 @@
             this.settingsPanel.Controls.Add(this.feedTypeCombo);
             this.settingsPanel.Controls.Add(this.label10);
             this.settingsPanel.Controls.Add(this.dailyStartCombo);
-            this.settingsPanel.Location = new System.Drawing.Point(677, 52);
-            this.settingsPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.settingsPanel.Location = new System.Drawing.Point(508, 42);
             this.settingsPanel.Name = "settingsPanel";
-            this.settingsPanel.Size = new System.Drawing.Size(223, 263);
+            this.settingsPanel.Size = new System.Drawing.Size(168, 214);
             this.settingsPanel.TabIndex = 3;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(137, 133);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(103, 108);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(56, 19);
             this.button2.TabIndex = 20;
             this.button2.Text = "Set";
             this.button2.UseVisualStyleBackColor = true;
@@ -368,10 +359,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(137, 185);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(103, 150);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(56, 19);
             this.button1.TabIndex = 11;
             this.button1.Text = "Set";
             this.button1.UseVisualStyleBackColor = true;
@@ -379,55 +370,58 @@
             // 
             // MaxRateNumeric
             // 
-            this.MaxRateNumeric.Location = new System.Drawing.Point(11, 185);
-            this.MaxRateNumeric.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaxRateNumeric.Location = new System.Drawing.Point(8, 150);
+            this.MaxRateNumeric.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaxRateNumeric.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this.MaxRateNumeric.Name = "MaxRateNumeric";
-            this.MaxRateNumeric.Size = new System.Drawing.Size(120, 22);
+            this.MaxRateNumeric.Size = new System.Drawing.Size(90, 20);
             this.MaxRateNumeric.TabIndex = 19;
             this.MaxRateNumeric.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // DailyVolumeNumeric
             // 
-            this.DailyVolumeNumeric.Location = new System.Drawing.Point(11, 133);
-            this.DailyVolumeNumeric.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DailyVolumeNumeric.Location = new System.Drawing.Point(8, 108);
+            this.DailyVolumeNumeric.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DailyVolumeNumeric.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this.DailyVolumeNumeric.Name = "DailyVolumeNumeric";
-            this.DailyVolumeNumeric.Size = new System.Drawing.Size(120, 22);
+            this.DailyVolumeNumeric.Size = new System.Drawing.Size(90, 20);
             this.DailyVolumeNumeric.TabIndex = 21;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 164);
+            this.label4.Location = new System.Drawing.Point(6, 133);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(206, 17);
+            this.label4.Size = new System.Drawing.Size(158, 13);
             this.label4.TabIndex = 18;
             this.label4.Text = "Max Rate Override (WARNING)";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 113);
+            this.label5.Location = new System.Drawing.Point(6, 92);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 17);
+            this.label5.Size = new System.Drawing.Size(95, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "Total Daily Volume";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 62);
+            this.label9.Location = new System.Drawing.Point(6, 50);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 17);
+            this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 14;
             this.label9.Text = "Feeding Type";
             // 
@@ -442,19 +436,20 @@
             "Nasojejunal (NJ Tube)",
             "Percutaneous Endoscopic Gastronomy (PEG Tube)",
             "Jejunostomy (J Tube)"});
-            this.feedTypeCombo.Location = new System.Drawing.Point(11, 82);
-            this.feedTypeCombo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.feedTypeCombo.Location = new System.Drawing.Point(8, 67);
+            this.feedTypeCombo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.feedTypeCombo.Name = "feedTypeCombo";
-            this.feedTypeCombo.Size = new System.Drawing.Size(192, 24);
+            this.feedTypeCombo.Size = new System.Drawing.Size(145, 21);
             this.feedTypeCombo.TabIndex = 11;
             this.feedTypeCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 11);
+            this.label10.Location = new System.Drawing.Point(6, 9);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 17);
+            this.label10.Size = new System.Drawing.Size(81, 13);
             this.label10.TabIndex = 12;
             this.label10.Text = "Daily Start Time";
             // 
@@ -489,20 +484,19 @@
             "9:00 PM",
             "10:00 PM",
             "11:00 PM"});
-            this.dailyStartCombo.Location = new System.Drawing.Point(11, 31);
-            this.dailyStartCombo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dailyStartCombo.Location = new System.Drawing.Point(8, 25);
+            this.dailyStartCombo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dailyStartCombo.Name = "dailyStartCombo";
-            this.dailyStartCombo.Size = new System.Drawing.Size(192, 24);
+            this.dailyStartCombo.Size = new System.Drawing.Size(145, 21);
             this.dailyStartCombo.TabIndex = 13;
             this.dailyStartCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // SettingsButton
             // 
             this.SettingsButton.BackColor = System.Drawing.SystemColors.Control;
-            this.SettingsButton.Location = new System.Drawing.Point(677, 18);
-            this.SettingsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SettingsButton.Location = new System.Drawing.Point(508, 15);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(145, 28);
+            this.SettingsButton.Size = new System.Drawing.Size(109, 23);
             this.SettingsButton.TabIndex = 4;
             this.SettingsButton.Text = "Edit Settings";
             this.SettingsButton.UseVisualStyleBackColor = false;
@@ -512,19 +506,19 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label6.Location = new System.Drawing.Point(11, 12);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(8, 10);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(246, 29);
+            this.label6.Size = new System.Drawing.Size(189, 25);
             this.label6.TabIndex = 5;
             this.label6.Text = "Recommended Rate";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(308, 348);
+            this.label8.Location = new System.Drawing.Point(231, 283);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(116, 17);
+            this.label8.Size = new System.Drawing.Size(87, 13);
             this.label8.TabIndex = 9;
             this.label8.Text = "Daily Start Time: ";
             // 
@@ -536,20 +530,19 @@
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.rateOutput);
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Location = new System.Drawing.Point(311, 186);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel3.Location = new System.Drawing.Point(233, 151);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(267, 145);
+            this.panel3.Size = new System.Drawing.Size(201, 118);
             this.panel3.TabIndex = 13;
             // 
             // missedOutput
             // 
             this.missedOutput.AutoSize = true;
             this.missedOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.missedOutput.Location = new System.Drawing.Point(184, 101);
-            this.missedOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.missedOutput.Location = new System.Drawing.Point(138, 82);
             this.missedOutput.Name = "missedOutput";
-            this.missedOutput.Size = new System.Drawing.Size(60, 26);
+            this.missedOutput.Size = new System.Drawing.Size(50, 22);
             this.missedOutput.TabIndex = 24;
             this.missedOutput.Text = "####";
             this.missedOutput.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -558,10 +551,9 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label14.Location = new System.Drawing.Point(4, 103);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(3, 84);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(177, 24);
+            this.label14.Size = new System.Drawing.Size(142, 18);
             this.label14.TabIndex = 23;
             this.label14.Text = "Total Hours Missed:";
             // 
@@ -569,10 +561,9 @@
             // 
             this.rateOutput.AutoSize = true;
             this.rateOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
-            this.rateOutput.Location = new System.Drawing.Point(93, 55);
-            this.rateOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.rateOutput.Location = new System.Drawing.Point(70, 45);
             this.rateOutput.Name = "rateOutput";
-            this.rateOutput.Size = new System.Drawing.Size(79, 33);
+            this.rateOutput.Size = new System.Drawing.Size(65, 29);
             this.rateOutput.TabIndex = 6;
             this.rateOutput.Text = "####";
             this.rateOutput.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -580,18 +571,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(308, 380);
+            this.label3.Location = new System.Drawing.Point(231, 309);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 17);
+            this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "Current Time:";
             // 
             // dailyStart
             // 
             this.dailyStart.AutoSize = true;
-            this.dailyStart.Location = new System.Drawing.Point(478, 348);
+            this.dailyStart.Location = new System.Drawing.Point(358, 283);
+            this.dailyStart.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.dailyStart.Name = "dailyStart";
-            this.dailyStart.Size = new System.Drawing.Size(84, 17);
+            this.dailyStart.Size = new System.Drawing.Size(62, 13);
             this.dailyStart.TabIndex = 15;
             this.dailyStart.Text = "(not yet set)";
             this.dailyStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -599,9 +592,10 @@
             // currentTime
             // 
             this.currentTime.AutoSize = true;
-            this.currentTime.Location = new System.Drawing.Point(478, 382);
+            this.currentTime.Location = new System.Drawing.Point(358, 310);
+            this.currentTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.currentTime.Name = "currentTime";
-            this.currentTime.Size = new System.Drawing.Size(84, 17);
+            this.currentTime.Size = new System.Drawing.Size(62, 13);
             this.currentTime.TabIndex = 16;
             this.currentTime.Text = "(not yet set)";
             this.currentTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -616,11 +610,10 @@
             // 
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(16, 348);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(12, 283);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(91, 52);
+            this.button3.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(68, 42);
             this.button3.TabIndex = 30;
             this.button3.Text = "Clear Hours";
             this.button3.UseVisualStyleBackColor = true;
@@ -628,9 +621,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 629);
+            this.ClientSize = new System.Drawing.Size(693, 511);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.currentTime);
             this.Controls.Add(this.dailyStart);
@@ -641,7 +634,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Enteral Feeding Rate Calculator";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -185,6 +185,9 @@ namespace enteral
             }
         }
 
+        public Boolean validate() {
+            return this.PatientID == null || this.totalVolume < 0 || this.maxFeedRate < 0;
+        }
         public String to_string(DateTime timeDateReset) {
             string vals = "";
             string endl = "\r\n";
@@ -210,9 +213,13 @@ namespace enteral
             vals += this.maxFeedRate + endl;
             vals += timeDateReset.ToString(dateFormat) + endl;
 
-            foreach (TimeBlock time in this.times) {
-                if (time == null || !time.written) { break; }
-                vals += time.feedRate + " " + time.missed + endl;
+            if (times == null) {
+                return vals;
+            } else {
+                foreach (TimeBlock time in this.times) {
+                    if (time == null || !time.written) { break; }
+                    vals += time.feedRate + " " + time.missed + endl;
+                }
             }
 
             return vals;
@@ -257,6 +264,9 @@ namespace enteral
         public double get_feed_rate_ml() {
             int times_remaining = 24;
             double total_volume = 0;
+            if (times == null) {
+                return Math.Min((this.totalVolume / 24), this.maxFeedRate);
+            }
             foreach (TimeBlock time in times) {
                 if (time == null || time.written == false) {
                     break;
@@ -276,6 +286,9 @@ namespace enteral
 
         public int hours_missed() {
             int hours_missed = 0;
+            if (times == null) {
+                return 0;
+            }
             foreach (TimeBlock time in times) {
                 if (time == null || time.written == false) {
                     break;

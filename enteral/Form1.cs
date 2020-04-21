@@ -17,7 +17,6 @@ namespace enteral
         private Decimal totalVol = 0;
         private Decimal maxRate = -1;
         private PatientInfo patientData = new PatientInfo("0", FeedType.J, 1, 0);
-        private int num_gaps = 0;
 
         public Form1()
         {
@@ -43,20 +42,6 @@ namespace enteral
                 DailyVolumeNumeric.Value = Properties.Settings.Default.dailyVolume;
             }
         }
-
-        /*private void addTimeGap_Click(object sender, EventArgs e)
-        {
-            Decimal val = missedCounter.Value;
-            missedCounter.Value = 0;
-            missedHoursTotal += val;
-            missedOutput.Text = ""+missedHoursTotal;
-
-            //update function
-            if (missedHoursTotal > 23) { } else {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate,maxRate) : rate); 
-            }
-        }*/
 
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -126,7 +111,6 @@ namespace enteral
                 MaxRateNumeric.Value = 150;
             }
 
-            //MessageBox.Show("Maximum feeding rate set to: " + numericUpDown2.Value);
             FeedRateDisplay.Text = "" + MaxRateNumeric.Value;
             maxRate = MaxRateNumeric.Value;
 
@@ -195,22 +179,6 @@ namespace enteral
             SettingsButton.Text = "Edit Settings";
         }
 
-        /*private void button3_Click(object sender, EventArgs e)
-        {
-            Decimal val = missedCounter.Value;
-            missedCounter.Value = 0;
-            missedHoursTotal -= val;
-            missedOutput.Text = "" + missedHoursTotal;
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
-        }*/
-
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -236,8 +204,18 @@ namespace enteral
                     // Code to write the stream goes here.
                     string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
                     byte[] info = new UTF8Encoding(true).GetBytes(data);
-                    fs.Write(info, 0, info.Length);
-                    fs.Close();
+                    try
+                    {
+                        fs.Write(info, 0, info.Length);
+                        fs.Close();
+                    }
+                    catch (Exception _e)
+                    {
+                        MessageBox.Show("Write error when committing changes to patient info file.");
+                    }
+                }
+                else {
+                    MessageBox.Show("Could not open the file path for writing, check file path and try again.");
                 }
             }
         }
@@ -245,8 +223,8 @@ namespace enteral
         private void loadFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileToSave = new OpenFileDialog();
-            //fileToSave.FileName = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //fileToSave.FilterIndex = 2;
+            fileToSave.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            fileToSave.FilterIndex = 1;
             fileToSave.RestoreDirectory = true;
             var fileContent = string.Empty;
 
@@ -257,8 +235,17 @@ namespace enteral
                 }
 
                 DateTime resetTime = DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset);
-                patientData = new PatientInfo(fileContent, resetTime);
-                sync_ui();
+                PatientInfo patientDataTmp = new PatientInfo(fileContent, resetTime);
+                if (patientDataTmp.validate())
+                {
+                    MessageBox.Show("ERROR: Could not load patient information check file name and path.");
+                    return;
+                }
+                else
+                {
+                    patientData = patientDataTmp;
+                    sync_ui();
+                }
             }
 
 
@@ -392,10 +379,9 @@ namespace enteral
             "9:00 PM",
             "10:00 PM",
             "11:00 PM" };
-            int real_offset = offset % 24;
             string[] output = new string[24];
             for (int i = 0; i < 24; i++) {
-                output[i] = array[(i + real_offset) % 24];
+                output[i] = array[(i + offset) % 24];
             }
             foreach (String element in output){
                 System.Diagnostics.Debug.WriteLine(element);
