@@ -39,6 +39,7 @@ namespace enteral
         double totalVolume;
         double maxFeedRate;
         TimeBlock[] times;
+        bool trimmed = false;
 
         public PatientInfo(String id, FeedType feed, double totalVol, double maxRate) {
             this.PatientID = id;
@@ -46,6 +47,7 @@ namespace enteral
             this.totalVolume = totalVol;
             this.maxFeedRate = maxRate;
             this.times = new TimeBlock[24];
+            this.trimmed = false;
         }
 
         // Used to add a missing time slot to the timeline, earlier time goes first
@@ -141,6 +143,7 @@ namespace enteral
             this.totalVolume = totalVol;
             this.maxFeedRate = maxRate;
             this.times = new TimeBlock[24];
+            this.trimmed = false;
 
 
             // Now we need to read the reset time from the file in order to properly do time comparisons
@@ -157,10 +160,11 @@ namespace enteral
                 //First make sure the time is within our bounds
                 int hour_offset = i - 5;
                 if (hour_offset > 23) {
+                    this.trimmed = true;
                     return;
                 }
 
-                if (DateTime.Compare(startingTime.AddHours(hour_offset), timeDateReset) < 0) { continue; }
+                if (DateTime.Compare(startingTime.AddHours(hour_offset), timeDateReset) < 0) { this.trimmed = true;  continue; }
 
 
                 string[] timeSlots = lines[i].Split(' ');
@@ -258,6 +262,10 @@ namespace enteral
 
         public FeedType get_feed_type() {
             return this.feedingType;
+        }
+
+        public Boolean is_trimmed() {
+            return this.trimmed;
         }
 
         // Calculates the rate of feeding in ml

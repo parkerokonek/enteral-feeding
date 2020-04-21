@@ -243,6 +243,9 @@ namespace enteral
                 }
                 else
                 {
+                    if (patientDataTmp.is_trimmed()) {
+                        MessageBox.Show("Warning: Times over 24 hours were present and have been removed.");
+                    }
                     patientData = patientDataTmp;
                     sync_ui();
                 }
