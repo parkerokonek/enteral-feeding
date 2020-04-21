@@ -40,26 +40,23 @@ libraries, code, or other intellectual property used to create the application.
 The platform for the project will be determined from surveying nurses to determine whether mobile or desktop
 is more convenient and widespread for projects of similar scale and niche.
 
-\section{References}
-(TBD)
-
 \section{Specific Requirements}
 
 \subsection{External Interfaces}
-The enteral feeding calculator will interface with local storage on the machine to store any generated 
-error logs and to save values which are not likely to change after being first set. The calculator will
-also display to the user's screen and input devices via a UI library to interface with the operating system's screen drawing
-routines and to accept pointer and text input from the user.
+The enteral feeding calculator will interface with local storage on the machine to store any generated error logs and to save values which are not likely to change after being first set.
+The calculator will also display to the user's screen and input devices via a UI library to interface with the operating system's screen drawing routines and to accept pointer and text input from the user.
 
 \subsection{User Requirements}
 The user interface will be minimal and easy to read. The application will have no configuration window
 or views other than its main interface, and on its main interface will have the text inputs for the different
 input values: time of feeding stop, time of feeding restart, reset time of feeding, and daily feeding volume.
 
-Time inputs will allow only numerical values, a colon, and optionally AM/PM inputs. Any time with a PM will
+Time inputs will be only selectable options in drop down menus. Any time with a PM will
 have 12 added to its value automatically before being used for calculations. A time with PM at the end cannot have an hour value greater than 12.
-Volume inputs will accept only numerical values. A checkbox will be used to indicate whether the feeding type is gastric or
-small bowel, with a large banner indicating the current state. At the bottom of the UI will be the output value and a calculation
+Volume inputs will accept only integer values.
+A dropdown menu will be used to display all available feeding types: Nasogastic, Nasojejunal, Percutaneous Endoscopic Gastronomy, Jejunostomy.
+The selected feeding type will be displayed on the closed dropdown and on the informational banner in the top left. 
+At the bottom of the UI will be the output value and a calculation
 button that updates the output value, if valid.
 
 \subsection{Functions}
@@ -72,9 +69,8 @@ The variable representing the time of feeding reset should remain constant betwe
 
 \subsection{Software Quality}
 The enteral feeding calculator will need to have support for multiple versions of its target platform. Medical settings often
-have a variety of versions for device operating systems. If the mobile platform is chosen, the software will need to support 
-multiple versions of both the Android and iOS mobile operating systems. If the desktop platform is chosen, the software will need
-to support legacy and current versions of Windows, from Windows 7 to Windows 10.
+have a variety of versions for device operating systems.
+The application will support legacy and current versions of Windows, from Windows 7 to Windows 10.
 
 The software should not crash, freeze, or return erroneous results over normal use. The results returned by the program should never
 exceed the maximum safe values for their kind of enteral feeding, even with erroneous input. Results should also be consistent over
@@ -109,4 +105,40 @@ Items\newline
 12. Check whether we can start implementation and research.\newline 13. Start is we can.\newline
 14. Final Report and Wrap-up\newline
 
+\section{Changes}
+\subsection{User Requirements}
+\begin{tabular}{| p{.45\textwidth} | p{.45\textwidth} |}
+\hline
+Previous Text & Current Text \\
+\hline
+Time inputs will allow only numerical values, a colon, and optionally AM/PM inputs. Any time with a PM will
+have 12 added to its value automatically before being used for calculations. A time with PM at the end cannot have an hour value greater than 12.
+Volume inputs will accept only numerical values.
+&
+Time inputs will be only selectable options in drop down menus. Any time with a PM will
+have 12 added to its value automatically before being used for calculations. A time with PM at the end cannot have an hour value greater than 12.
+Volume inputs will accept only integer values.
+\\ \hline
+A checkbox will be used to indicate whether the feeding type is gastric or
+small bowel, with a large banner indicating the current state.
+&
+A dropdown menu will be used to display all available feeding types: Nasogastic, Nasojejunal, Percutaneous Endoscopic Gastronomy, Jejunostomy.
+The selected feeding type will be displayed on the closed dropdown and on the informational banner in the top left. 
+\\
+\hline
+\end{tabular}
+\subsection{Software Quality}
+\begin{tabular}{| p{.45\textwidth} | p{.45\textwidth} |}
+\hline
+Previous Text & Current Text \\
+\hline
+Medical settings often
+have a variety of versions for device operating systems.
+If the mobile platform is chosen, the software will need to support 
+multiple versions of both the Android and iOS mobile operating systems. If the desktop platform is chosen, the software will need
+to support legacy and current versions of Windows, from Windows 7 to Windows 10.
+&
+The application will support legacy and current versions of Windows, from Windows 7 to Windows 10.
+\\ \hline
+\end{tabular}
 \end{document}
