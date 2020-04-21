@@ -34,6 +34,10 @@ namespace enteral
             }
             if (Properties.Settings.Default.timeReset != -1) {
                 dailyStartCombo.SelectedIndex = Properties.Settings.Default.timeReset;
+                this.gapStart.Items.Clear();
+                this.gapStop.Items.Clear();
+                this.gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
+                this.gapStop.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
             }
             if (Properties.Settings.Default.dailyVolume != -1) {
                 DailyVolumeNumeric.Value = Properties.Settings.Default.dailyVolume;
@@ -84,12 +88,15 @@ namespace enteral
         {
             MessageBox.Show("Daily start time set to: " + dailyStartCombo.Text);
             dailyStart.Text = dailyStartCombo.Text;
-
+            gapStart.Items.Clear();
+            gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
+            gapStop.Items.Clear();
+            gapStop.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
             Properties.Settings.Default.Save();
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {   
+        {
             MessageBox.Show("Feeding type set to: " + feedTypeCombo.Text);
             feedTypeDisplay.Text = feedTypeCombo.Text;
             switch (feedTypeCombo.SelectedIndex)
@@ -224,14 +231,14 @@ namespace enteral
 
             if (savedFile.ShowDialog() == DialogResult.OK)
             {
-                    if ((fs = savedFile.OpenFile()) != null || (fs = File.Create(savedFile.FileName)) != null)
-                    {
-                        // Code to write the stream goes here.
-                        string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
-                        byte[] info = new UTF8Encoding(true).GetBytes(data);
-                        fs.Write(info,0,info.Length);
-                        fs.Close();
-                    }
+                if ((fs = savedFile.OpenFile()) != null || (fs = File.Create(savedFile.FileName)) != null)
+                {
+                    // Code to write the stream goes here.
+                    string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
+                    byte[] info = new UTF8Encoding(true).GetBytes(data);
+                    fs.Write(info, 0, info.Length);
+                    fs.Close();
+                }
             }
         }
 
@@ -255,7 +262,7 @@ namespace enteral
             }
 
 
-            
+
         }
 
         private void sync_ui() {
@@ -263,7 +270,7 @@ namespace enteral
             this.feedTypeCombo.SelectedIndex = (int)this.patientData.get_feed_type();
             this.MaxRateNumeric.Value = (decimal)this.patientData.get_maxrate();
             this.label1.Text = this.patientData.get_id();
-            this.dailyVolumeDisplay.Text = ""+this.patientData.get_volume();
+            this.dailyVolumeDisplay.Text = "" + this.patientData.get_volume();
             this.FeedRateDisplay.Text = "" + this.patientData.get_maxrate();
             this.feedTypeDisplay.Text = this.feedTypeCombo.Text;
 
@@ -271,7 +278,7 @@ namespace enteral
         }
 
         private void display_feed_rate() {
-            this.rateOutput.Text = String.Format("{000}",this.patientData.get_feed_rate_ml())+" ml";
+            this.rateOutput.Text = String.Format("{000}", this.patientData.get_feed_rate_ml()) + " ml";
             this.missedOutput.Text = "" + this.patientData.hours_missed();
         }
 
@@ -341,7 +348,7 @@ namespace enteral
 
         private void AddGap_Click(object sender, EventArgs e)
         {
-            int previousRate = (int) this.patientData.get_feed_rate_ml();
+            int previousRate = (int)this.patientData.get_feed_rate_ml();
             int gapStart = this.gapStart.SelectedIndex;
             int gapStop = this.gapStop.SelectedIndex;
 
@@ -358,5 +365,44 @@ namespace enteral
             this.patientData.clearTimes();
             sync_ui();
         }
+
+        private object[] generate_times(int offset) {
+            string[] array = {
+            "12:00 AM",
+            "1:00 AM",
+            "2:00 AM",
+            "3:00 AM",
+            "4:00 AM",
+            "5:00 AM",
+            "6:00 AM",
+            "7:00 AM",
+            "8:00 AM",
+            "9:00 AM",
+            "10:00 AM",
+            "11:00 AM",
+            "12:00 PM",
+            "1:00 PM",
+            "2:00 PM",
+            "3:00 PM",
+            "4:00 PM",
+            "5:00 PM",
+            "6:00 PM",
+            "7:00 PM",
+            "8:00 PM",
+            "9:00 PM",
+            "10:00 PM",
+            "11:00 PM" };
+            int real_offset = offset % 24;
+            string[] output = new string[24];
+            for (int i = 0; i < 24; i++) {
+                output[i] = array[(i + real_offset) % 24];
+            }
+            foreach (String element in output){
+                System.Diagnostics.Debug.WriteLine(element);
+            }
+            System.Diagnostics.Debug.WriteLine(output);
+            return output;
+        }
+
     }
 }
