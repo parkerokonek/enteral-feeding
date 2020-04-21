@@ -17,7 +17,6 @@ namespace enteral
         private Decimal totalVol = 0;
         private Decimal maxRate = -1;
         private PatientInfo patientData = new PatientInfo("0", FeedType.J, 1, 0);
-        private int num_gaps = 0;
 
         public Form1()
         {
@@ -34,25 +33,15 @@ namespace enteral
             }
             if (Properties.Settings.Default.timeReset != -1) {
                 dailyStartCombo.SelectedIndex = Properties.Settings.Default.timeReset;
+                this.gapStart.Items.Clear();
+                this.gapStop.Items.Clear();
+                this.gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
+                this.gapStop.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
             }
             if (Properties.Settings.Default.dailyVolume != -1) {
                 DailyVolumeNumeric.Value = Properties.Settings.Default.dailyVolume;
             }
         }
-
-        /*private void addTimeGap_Click(object sender, EventArgs e)
-        {
-            Decimal val = missedCounter.Value;
-            missedCounter.Value = 0;
-            missedHoursTotal += val;
-            missedOutput.Text = ""+missedHoursTotal;
-
-            //update function
-            if (missedHoursTotal > 23) { } else {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate,maxRate) : rate); 
-            }
-        }*/
 
 
         private void SettingsButton_Click(object sender, EventArgs e)
@@ -84,12 +73,15 @@ namespace enteral
         {
             MessageBox.Show("Daily start time set to: " + dailyStartCombo.Text);
             dailyStart.Text = dailyStartCombo.Text;
-
+            gapStart.Items.Clear();
+            gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
+            gapStop.Items.Clear();
+            gapStop.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
             Properties.Settings.Default.Save();
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {   
+        {
             MessageBox.Show("Feeding type set to: " + feedTypeCombo.Text);
             feedTypeDisplay.Text = feedTypeCombo.Text;
             switch (feedTypeCombo.SelectedIndex)
@@ -119,7 +111,6 @@ namespace enteral
                 MaxRateNumeric.Value = 150;
             }
 
-            //MessageBox.Show("Maximum feeding rate set to: " + numericUpDown2.Value);
             FeedRateDisplay.Text = "" + MaxRateNumeric.Value;
             maxRate = MaxRateNumeric.Value;
 
@@ -188,22 +179,6 @@ namespace enteral
             SettingsButton.Text = "Edit Settings";
         }
 
-        /*private void button3_Click(object sender, EventArgs e)
-        {
-            Decimal val = missedCounter.Value;
-            missedCounter.Value = 0;
-            missedHoursTotal -= val;
-            missedOutput.Text = "" + missedHoursTotal;
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
-        }*/
-
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -224,22 +199,32 @@ namespace enteral
 
             if (savedFile.ShowDialog() == DialogResult.OK)
             {
-                    if ((fs = savedFile.OpenFile()) != null || (fs = File.Create(savedFile.FileName)) != null)
+                if ((fs = savedFile.OpenFile()) != null || (fs = File.Create(savedFile.FileName)) != null)
+                {
+                    // Code to write the stream goes here.
+                    string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
+                    byte[] info = new UTF8Encoding(true).GetBytes(data);
+                    try
                     {
-                        // Code to write the stream goes here.
-                        string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
-                        byte[] info = new UTF8Encoding(true).GetBytes(data);
-                        fs.Write(info,0,info.Length);
+                        fs.Write(info, 0, info.Length);
                         fs.Close();
                     }
+                    catch (Exception _e)
+                    {
+                        MessageBox.Show("Write error when committing changes to patient info file.");
+                    }
+                }
+                else {
+                    MessageBox.Show("Could not open the file path for writing, check file path and try again.");
+                }
             }
         }
 
         private void loadFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileToSave = new OpenFileDialog();
-            //fileToSave.FileName = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //fileToSave.FilterIndex = 2;
+            fileToSave.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            fileToSave.FilterIndex = 1;
             fileToSave.RestoreDirectory = true;
             var fileContent = string.Empty;
 
@@ -250,12 +235,21 @@ namespace enteral
                 }
 
                 DateTime resetTime = DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset);
-                patientData = new PatientInfo(fileContent, resetTime);
-                sync_ui();
+                PatientInfo patientDataTmp = new PatientInfo(fileContent, resetTime);
+                if (patientDataTmp.validate())
+                {
+                    MessageBox.Show("ERROR: Could not load patient information check file name and path.");
+                    return;
+                }
+                else
+                {
+                    patientData = patientDataTmp;
+                    sync_ui();
+                }
             }
 
 
-            
+
         }
 
         private void sync_ui() {
@@ -263,7 +257,7 @@ namespace enteral
             this.feedTypeCombo.SelectedIndex = (int)this.patientData.get_feed_type();
             this.MaxRateNumeric.Value = (decimal)this.patientData.get_maxrate();
             this.label1.Text = this.patientData.get_id();
-            this.dailyVolumeDisplay.Text = ""+this.patientData.get_volume();
+            this.dailyVolumeDisplay.Text = "" + this.patientData.get_volume();
             this.FeedRateDisplay.Text = "" + this.patientData.get_maxrate();
             this.feedTypeDisplay.Text = this.feedTypeCombo.Text;
 
@@ -271,7 +265,7 @@ namespace enteral
         }
 
         private void display_feed_rate() {
-            this.rateOutput.Text = String.Format("{000}",this.patientData.get_feed_rate_ml())+" ml";
+            this.rateOutput.Text = String.Format("{000}", this.patientData.get_feed_rate_ml()) + " ml";
             this.missedOutput.Text = "" + this.patientData.hours_missed();
         }
 
@@ -341,7 +335,7 @@ namespace enteral
 
         private void AddGap_Click(object sender, EventArgs e)
         {
-            int previousRate = (int) this.patientData.get_feed_rate_ml();
+            int previousRate = (int)this.patientData.get_feed_rate_ml();
             int gapStart = this.gapStart.SelectedIndex;
             int gapStop = this.gapStop.SelectedIndex;
 
@@ -358,5 +352,43 @@ namespace enteral
             this.patientData.clearTimes();
             sync_ui();
         }
+
+        private object[] generate_times(int offset) {
+            string[] array = {
+            "12:00 AM",
+            "1:00 AM",
+            "2:00 AM",
+            "3:00 AM",
+            "4:00 AM",
+            "5:00 AM",
+            "6:00 AM",
+            "7:00 AM",
+            "8:00 AM",
+            "9:00 AM",
+            "10:00 AM",
+            "11:00 AM",
+            "12:00 PM",
+            "1:00 PM",
+            "2:00 PM",
+            "3:00 PM",
+            "4:00 PM",
+            "5:00 PM",
+            "6:00 PM",
+            "7:00 PM",
+            "8:00 PM",
+            "9:00 PM",
+            "10:00 PM",
+            "11:00 PM" };
+            string[] output = new string[24];
+            for (int i = 0; i < 24; i++) {
+                output[i] = array[(i + offset) % 24];
+            }
+            foreach (String element in output){
+                System.Diagnostics.Debug.WriteLine(element);
+            }
+            System.Diagnostics.Debug.WriteLine(output);
+            return output;
+        }
+
     }
 }
