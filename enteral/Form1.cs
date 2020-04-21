@@ -147,7 +147,7 @@ namespace enteral
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Total daily volume set to: " + DailyVolumeNumeric.Value);
-            dailyVolumeTag.Text = "Total Daily Volume:            " + DailyVolumeNumeric.Value;
+            dailyVolumeDisplay.Text = "" + DailyVolumeNumeric.Value;
             totalVol = DailyVolumeNumeric.Value;
             patientData.set_volume((double)DailyVolumeNumeric.Value);
 
@@ -266,7 +266,8 @@ namespace enteral
 
         private void display_feed_rate() {
             this.rateOutput.Text = String.Format("{000}", this.patientData.get_feed_rate_ml()) + " ml";
-            this.missedOutput.Text = "" + this.patientData.hours_missed();
+            this.rateOutput.Text = String.Format("{000}", (int)this.patientData.get_feed_rate_ml()) + " ml";
+            this.missedOutput.Text = "" + this.patientData.hours_missed(); 
         }
 
         private void label11_Click(object sender, EventArgs e)
