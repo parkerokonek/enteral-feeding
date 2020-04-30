@@ -13,16 +13,13 @@ namespace enteral
 {
     public partial class Form1 : Form
     {
-        private Decimal missedHoursTotal = 0;
-        private Decimal totalVol = 0;
-        private Decimal maxRate = -1;
         private PatientInfo patientData = new PatientInfo("0", FeedType.J, 1, 0);
 
         public Form1()
         {
             InitializeComponent();
             rateOutput.Text = "0";
-            missedOutput.Text = missedHoursTotal.ToString();
+            missedOutput.Text = "0";
             if (Properties.Settings.Default.feedingType != "" && feedTypeCombo.Items.Contains(Properties.Settings.Default.feedingType))
             {
                 feedTypeDisplay.Text = Properties.Settings.Default.feedingType;
@@ -46,8 +43,7 @@ namespace enteral
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            bool isVis = settingsPanel.Visible;
-            if (isVis)
+            if (settingsPanel.Visible)
             {
                 if (feedTypeCombo.SelectedItem.ToString() != "")
                 {
@@ -101,26 +97,20 @@ namespace enteral
                 default:
                     return;
             }
+            // Internally and visually set the feeding rate to the appropriate amount 
+            // 240ml/hr for Gastric feeding (NG & PEG, indices 0 & 2)
+            // 150ml/hr for Jejunal feeding (NJ & J, indices 1 & 3)
             if (feedTypeCombo.SelectedIndex % 2 == 0)
             {
-                maxRate = 150;
+                patientData.set_max_rate(240);
                 MaxRateNumeric.Value = 240;
             }
             else {
-                maxRate = 240;
+                patientData.set_max_rate(150);
                 MaxRateNumeric.Value = 150;
             }
 
             FeedRateDisplay.Text = "" + MaxRateNumeric.Value;
-            maxRate = MaxRateNumeric.Value;
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -132,32 +122,14 @@ namespace enteral
         {
             MessageBox.Show("Maximum feeding rate set to: " + MaxRateNumeric.Value);
             FeedRateDisplay.Text = "" + MaxRateNumeric.Value + "     \n(WARNING! This value may differ from the recommended max.)";
-            maxRate = MaxRateNumeric.Value;
             patientData.set_max_rate((double)MaxRateNumeric.Value);
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Total daily volume set to: " + DailyVolumeNumeric.Value);
             dailyVolumeDisplay.Text = "" + DailyVolumeNumeric.Value;
-            totalVol = DailyVolumeNumeric.Value;
             patientData.set_volume((double)DailyVolumeNumeric.Value);
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
         }
 
         private void currentTimer_Tick(object sender, EventArgs e)
@@ -177,16 +149,6 @@ namespace enteral
 
             settingsPanel.Hide();
             SettingsButton.Text = "Edit Settings";
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void saveFile_Click(object sender, EventArgs e)
@@ -272,22 +234,6 @@ namespace enteral
             this.rateOutput.Text = String.Format("{000}", (int)this.patientData.get_feed_rate_ml()) + " ml";
             this.missedOutput.Text = "" + this.patientData.hours_missed(); 
         }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void feedTypeDisplay_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dailyVolumeDisplay_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void changeName()
         {
             Form changeName = new Form();
@@ -330,11 +276,6 @@ namespace enteral
         private void button4_Click(object sender, EventArgs e)
         {
             changeName();
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void AddGap_Click(object sender, EventArgs e)
