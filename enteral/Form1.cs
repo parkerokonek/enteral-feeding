@@ -13,16 +13,13 @@ namespace enteral
 {
     public partial class Form1 : Form
     {
-        private Decimal missedHoursTotal = 0;
-        private Decimal totalVol = 0;
-        private Decimal maxRate = -1;
         private PatientInfo patientData = new PatientInfo("0", FeedType.J, 1, 0);
 
         public Form1()
         {
             InitializeComponent();
             rateOutput.Text = "0";
-            missedOutput.Text = missedHoursTotal.ToString();
+            missedOutput.Text = "0";
             if (Properties.Settings.Default.feedingType != "" && feedTypeCombo.Items.Contains(Properties.Settings.Default.feedingType))
             {
                 feedTypeDisplay.Text = Properties.Settings.Default.feedingType;
@@ -46,8 +43,7 @@ namespace enteral
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            bool isVis = settingsPanel.Visible;
-            if (isVis)
+            if (settingsPanel.Visible)
             {
                 if (feedTypeCombo.SelectedItem.ToString() != "")
                 {
@@ -84,6 +80,9 @@ namespace enteral
         {
             MessageBox.Show("Feeding type set to: " + feedTypeCombo.Text);
             feedTypeDisplay.Text = feedTypeCombo.Text;
+            // Match each option of the combobox to one of our feeding types
+            // Windows Form App has validation to ensure values are one of the form options
+            // If somehow this doesn't happen, don't set any feed type
             switch (feedTypeCombo.SelectedIndex)
             {
                 case 0:
@@ -101,30 +100,25 @@ namespace enteral
                 default:
                     return;
             }
+            // Internally and visually set the feeding rate to the appropriate amount 
+            // 240ml/hr for Gastric feeding (NG & PEG, indices 0 & 2)
+            // 150ml/hr for Jejunal feeding (NJ & J, indices 1 & 3)
             if (feedTypeCombo.SelectedIndex % 2 == 0)
             {
-                maxRate = 150;
+                patientData.set_max_rate(240);
                 MaxRateNumeric.Value = 240;
             }
             else {
-                maxRate = 240;
+                patientData.set_max_rate(150);
                 MaxRateNumeric.Value = 150;
             }
 
-            FeedRateDisplay.Text = "" + MaxRateNumeric.Value;
-            maxRate = MaxRateNumeric.Value;
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
+            FeedRateDisplay.Text = MaxRateNumeric.Value.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Hide settings panel on initial form appearance
             settingsPanel.Hide();
         }
 
@@ -132,36 +126,19 @@ namespace enteral
         {
             MessageBox.Show("Maximum feeding rate set to: " + MaxRateNumeric.Value);
             FeedRateDisplay.Text = "" + MaxRateNumeric.Value + "     \n(WARNING! This value may differ from the recommended max.)";
-            maxRate = MaxRateNumeric.Value;
             patientData.set_max_rate((double)MaxRateNumeric.Value);
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Total daily volume set to: " + DailyVolumeNumeric.Value);
             dailyVolumeDisplay.Text = "" + DailyVolumeNumeric.Value;
-            totalVol = DailyVolumeNumeric.Value;
             patientData.set_volume((double)DailyVolumeNumeric.Value);
-
-            //update function
-            if (missedHoursTotal > 23) { }
-            else
-            {
-                Decimal rate = Math.Round(totalVol / (24 - missedHoursTotal));
-                rateOutput.Text = "" + ((maxRate > 0) ? Math.Min(rate, maxRate) : rate);
-            }
         }
 
         private void currentTimer_Tick(object sender, EventArgs e)
         {
+            // Visually update the time when our timer updates
             currentTime.Text = DateTime.Now.ToString("h:mm tt");
         }
 
@@ -177,16 +154,6 @@ namespace enteral
 
             settingsPanel.Hide();
             SettingsButton.Text = "Edit Settings";
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void saveFile_Click(object sender, EventArgs e)
@@ -222,30 +189,39 @@ namespace enteral
 
         private void loadFile_Click(object sender, EventArgs e)
         {
+            // Create a new file opening dialog that automatically searches for files with a .txt extension
             OpenFileDialog fileToSave = new OpenFileDialog();
             fileToSave.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             fileToSave.FilterIndex = 1;
             fileToSave.RestoreDirectory = true;
+            // Load all file content into here if possible
             var fileContent = string.Empty;
 
+            // If they select OK on the dialog
             if (fileToSave.ShowDialog() == DialogResult.OK) {
+                // Try to open the file
                 var fs = fileToSave.OpenFile();
+                // Try to read the whole file
                 using (StreamReader reader = new StreamReader(fs)) {
                     fileContent = reader.ReadToEnd();
                 }
 
+                // Set our reset time to today + time offset
                 DateTime resetTime = DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset);
                 PatientInfo patientDataTmp = new PatientInfo(fileContent, resetTime);
                 if (patientDataTmp.validate())
                 {
+                    // If the file did not contain enough data or had invalid lines
                     MessageBox.Show("ERROR: Could not load patient information check file name and path.");
                     return;
                 }
                 else
                 {
+                    // Let a nurse know if old times were dropped (so they don't think the times just disappeared)
                     if (patientDataTmp.is_trimmed()) {
                         MessageBox.Show("Warning: Times over 24 hours were present and have been removed.");
                     }
+                    // Save the data in our data class & sync
                     patientData = patientDataTmp;
                     sync_ui();
                 }
@@ -256,6 +232,7 @@ namespace enteral
         }
 
         private void sync_ui() {
+            // Set values for every visual indicator to match the values stored in patient data
             this.DailyVolumeNumeric.Value = (decimal)this.patientData.get_volume();
             this.feedTypeCombo.SelectedIndex = (int)this.patientData.get_feed_type();
             this.MaxRateNumeric.Value = (decimal)this.patientData.get_maxrate();
@@ -263,31 +240,15 @@ namespace enteral
             this.dailyVolumeDisplay.Text = "" + this.patientData.get_volume();
             this.FeedRateDisplay.Text = "" + this.patientData.get_maxrate();
             this.feedTypeDisplay.Text = this.feedTypeCombo.Text;
-
+            // Update feeding rate
             display_feed_rate();
         }
 
         private void display_feed_rate() {
             this.rateOutput.Text = String.Format("{000}", this.patientData.get_feed_rate_ml()) + " ml";
             this.rateOutput.Text = String.Format("{000}", (int)this.patientData.get_feed_rate_ml()) + " ml";
-            this.missedOutput.Text = "" + this.patientData.hours_missed(); 
+            this.missedOutput.Text = this.patientData.hours_missed().ToString(); 
         }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void feedTypeDisplay_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dailyVolumeDisplay_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void changeName()
         {
             Form changeName = new Form();
@@ -332,11 +293,6 @@ namespace enteral
             changeName();
         }
 
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddGap_Click(object sender, EventArgs e)
         {
             int previousRate = (int)this.patientData.get_feed_rate_ml();
@@ -358,7 +314,8 @@ namespace enteral
         }
 
         private object[] generate_times(int offset) {
-            string[] array = {
+            // List of possible time names
+            string[] time_table = {
             "12:00 AM",
             "1:00 AM",
             "2:00 AM",
@@ -385,12 +342,8 @@ namespace enteral
             "11:00 PM" };
             string[] output = new string[24];
             for (int i = 0; i < 24; i++) {
-                output[i] = array[(i + offset) % 24];
+                output[i] = time_table[(i + offset) % 24];
             }
-            foreach (String element in output){
-                System.Diagnostics.Debug.WriteLine(element);
-            }
-            System.Diagnostics.Debug.WriteLine(output);
             return output;
         }
 

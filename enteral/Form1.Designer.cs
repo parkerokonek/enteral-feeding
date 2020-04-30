@@ -122,7 +122,6 @@
             this.dailyVolumeDisplay.Size = new System.Drawing.Size(45, 13);
             this.dailyVolumeDisplay.TabIndex = 14;
             this.dailyVolumeDisplay.Text = "(not set)";
-            this.dailyVolumeDisplay.Click += new System.EventHandler(this.dailyVolumeDisplay_Click);
             // 
             // feedTypeDisplay
             // 
@@ -132,7 +131,6 @@
             this.feedTypeDisplay.Size = new System.Drawing.Size(45, 13);
             this.feedTypeDisplay.TabIndex = 13;
             this.feedTypeDisplay.Text = "(not set)";
-            this.feedTypeDisplay.Click += new System.EventHandler(this.feedTypeDisplay_Click);
             // 
             // label1
             // 
@@ -163,7 +161,6 @@
             this.dailyVolumeTag.Size = new System.Drawing.Size(98, 13);
             this.dailyVolumeTag.TabIndex = 11;
             this.dailyVolumeTag.Text = "Total Daily Volume:";
-            this.dailyVolumeTag.Click += new System.EventHandler(this.label11_Click);
             // 
             // label7
             // 
@@ -304,7 +301,6 @@
             this.label12.Size = new System.Drawing.Size(59, 13);
             this.label12.TabIndex = 28;
             this.label12.Text = "Feed Stop:";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label11
             // 
@@ -323,7 +319,6 @@
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Hours Missed:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // settingsPanel
             // 
@@ -380,7 +375,6 @@
             this.MaxRateNumeric.Name = "MaxRateNumeric";
             this.MaxRateNumeric.Size = new System.Drawing.Size(90, 20);
             this.MaxRateNumeric.TabIndex = 19;
-            this.MaxRateNumeric.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // DailyVolumeNumeric
             // 
