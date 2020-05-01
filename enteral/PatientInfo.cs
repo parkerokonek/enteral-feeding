@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
 using System.Globalization;
+
 
 namespace enteral
 {
@@ -31,6 +37,9 @@ namespace enteral
             this.written = true;
         }
     }
+
+
+
 
     class PatientInfo
     {
@@ -313,5 +322,30 @@ namespace enteral
         public TimeBlock[] get_timeline() {
             return this.times;
         }
+
+        public double getTimeBlocks(int start, int stop, int blockNumber, int i)
+        {
+
+            if (this.times[i] != null)
+            {
+                if (i != 0)
+                {
+                    stop = i;
+
+                    if (this.times[i].feedRate != this.times[i - 1].feedRate)
+                    {
+                        blockNumber++;
+                        start = i;
+                    }
+                }
+                return (this.times[i].feedRate);
+            }
+            else
+            {
+                return -1;
+            }
+
+        }
+
     }
 }
