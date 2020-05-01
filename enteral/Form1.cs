@@ -20,23 +20,12 @@ namespace enteral
             InitializeComponent();
             rateOutput.Text = "0";
             missedOutput.Text = "0";
-            if (Properties.Settings.Default.feedingType != "" && feedTypeCombo.Items.Contains(Properties.Settings.Default.feedingType))
-            {
-                feedTypeDisplay.Text = Properties.Settings.Default.feedingType;
-                feedTypeCombo.SelectedItem = Properties.Settings.Default.feedingType;
-            }
-            if (!Properties.Settings.Default.rateOverride.Equals(-1)) {
-                MaxRateNumeric.Value = Properties.Settings.Default.rateOverride;
-            }
-            if (Properties.Settings.Default.timeReset != -1) {
+            if (Properties.Settings.Default.timeReset >= 0 && Properties.Settings.Default.timeReset < 24) {
                 dailyStartCombo.SelectedIndex = Properties.Settings.Default.timeReset;
                 this.gapStart.Items.Clear();
                 this.gapStop.Items.Clear();
                 this.gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
                 this.gapStop.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
-            }
-            if (Properties.Settings.Default.dailyVolume != -1) {
-                DailyVolumeNumeric.Value = Properties.Settings.Default.dailyVolume;
             }
         }
 
@@ -45,10 +34,6 @@ namespace enteral
         {
             if (settingsPanel.Visible)
             {
-                if (feedTypeCombo.SelectedItem.ToString() != "")
-                {
-                    Properties.Settings.Default.feedingType = feedTypeCombo.SelectedItem.ToString();
-                }
                 if (dailyStartCombo.SelectedItem.ToString() != "")
                 {
                     Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
@@ -73,6 +58,7 @@ namespace enteral
             gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
             gapStop.Items.Clear();
             gapStop.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
+            Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
             Properties.Settings.Default.Save();
         }
 
@@ -144,9 +130,6 @@ namespace enteral
 
         private void saveSettings_Click(object sender, EventArgs e)
         {
-            if (feedTypeCombo.SelectedItem.ToString() != "") {
-                Properties.Settings.Default.feedingType = feedTypeCombo.SelectedItem.ToString();
-            }
             if (dailyStartCombo.SelectedItem.ToString() != "") {
                 Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
             }
