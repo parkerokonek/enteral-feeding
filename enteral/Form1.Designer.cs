@@ -70,6 +70,30 @@
             this.currentTime = new System.Windows.Forms.Label();
             this.currentTimer = new System.Windows.Forms.Timer(this.components);
             this.button3 = new System.Windows.Forms.Button();
+            this.Timeline1 = new System.Windows.Forms.Button();
+            this.Timeline2 = new System.Windows.Forms.Button();
+            this.Timeline4 = new System.Windows.Forms.Button();
+            this.Timeline3 = new System.Windows.Forms.Button();
+            this.Timeline8 = new System.Windows.Forms.Button();
+            this.Timeline7 = new System.Windows.Forms.Button();
+            this.Timeline6 = new System.Windows.Forms.Button();
+            this.Timeline5 = new System.Windows.Forms.Button();
+            this.Timeline12 = new System.Windows.Forms.Button();
+            this.Timeline11 = new System.Windows.Forms.Button();
+            this.Timeline10 = new System.Windows.Forms.Button();
+            this.Timeline9 = new System.Windows.Forms.Button();
+            this.Timeline24 = new System.Windows.Forms.Button();
+            this.Timeline23 = new System.Windows.Forms.Button();
+            this.Timeline22 = new System.Windows.Forms.Button();
+            this.Timeline21 = new System.Windows.Forms.Button();
+            this.Timeline20 = new System.Windows.Forms.Button();
+            this.Timeline19 = new System.Windows.Forms.Button();
+            this.Timeline18 = new System.Windows.Forms.Button();
+            this.Timeline17 = new System.Windows.Forms.Button();
+            this.Timeline16 = new System.Windows.Forms.Button();
+            this.Timeline15 = new System.Windows.Forms.Button();
+            this.Timeline14 = new System.Windows.Forms.Button();
+            this.Timeline13 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.settingsPanel.SuspendLayout();
@@ -207,10 +231,11 @@
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.button3);
             this.panel2.Location = new System.Drawing.Point(16, 186);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(267, 145);
+            this.panel2.Size = new System.Drawing.Size(267, 211);
             this.panel2.TabIndex = 1;
             // 
             // gapStop
@@ -616,22 +641,309 @@
             // 
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(16, 348);
+            this.button3.Location = new System.Drawing.Point(105, 161);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(91, 52);
+            this.button3.Size = new System.Drawing.Size(142, 33);
             this.button3.TabIndex = 30;
             this.button3.Text = "Clear Hours";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // Timeline1
+            // 
+            this.Timeline1.Location = new System.Drawing.Point(16, 436);
+            this.Timeline1.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline1.Name = "Timeline1";
+            this.Timeline1.Size = new System.Drawing.Size(97, 76);
+            this.Timeline1.TabIndex = 32;
+            this.Timeline1.Text = "Start time";
+            this.Timeline1.UseVisualStyleBackColor = true;
+            this.Timeline1.Click += new System.EventHandler(this.Timeline1_Click);
+            // 
+            // Timeline2
+            // 
+            this.Timeline2.Location = new System.Drawing.Point(117, 436);
+            this.Timeline2.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline2.Name = "Timeline2";
+            this.Timeline2.Size = new System.Drawing.Size(97, 76);
+            this.Timeline2.TabIndex = 33;
+            this.Timeline2.Text = "Start time";
+            this.Timeline2.UseVisualStyleBackColor = true;
+            this.Timeline2.Click += new System.EventHandler(this.Timeline2_Click);
+            // 
+            // Timeline4
+            // 
+            this.Timeline4.Location = new System.Drawing.Point(319, 436);
+            this.Timeline4.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline4.Name = "Timeline4";
+            this.Timeline4.Size = new System.Drawing.Size(97, 76);
+            this.Timeline4.TabIndex = 35;
+            this.Timeline4.Text = "Start time";
+            this.Timeline4.UseVisualStyleBackColor = true;
+            this.Timeline4.Click += new System.EventHandler(this.Timeline4_Click);
+            // 
+            // Timeline3
+            // 
+            this.Timeline3.Location = new System.Drawing.Point(218, 436);
+            this.Timeline3.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline3.Name = "Timeline3";
+            this.Timeline3.Size = new System.Drawing.Size(97, 76);
+            this.Timeline3.TabIndex = 34;
+            this.Timeline3.Text = "Start time";
+            this.Timeline3.UseVisualStyleBackColor = true;
+            this.Timeline3.Click += new System.EventHandler(this.Timeline3_Click);
+            // 
+            // Timeline8
+            // 
+            this.Timeline8.Location = new System.Drawing.Point(723, 436);
+            this.Timeline8.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline8.Name = "Timeline8";
+            this.Timeline8.Size = new System.Drawing.Size(97, 76);
+            this.Timeline8.TabIndex = 39;
+            this.Timeline8.Text = "Start time";
+            this.Timeline8.UseVisualStyleBackColor = true;
+            this.Timeline8.Click += new System.EventHandler(this.Timeline8_Click);
+            // 
+            // Timeline7
+            // 
+            this.Timeline7.Location = new System.Drawing.Point(622, 436);
+            this.Timeline7.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline7.Name = "Timeline7";
+            this.Timeline7.Size = new System.Drawing.Size(97, 76);
+            this.Timeline7.TabIndex = 38;
+            this.Timeline7.Text = "Start time";
+            this.Timeline7.UseVisualStyleBackColor = true;
+            this.Timeline7.Click += new System.EventHandler(this.Timeline7_Click);
+            // 
+            // Timeline6
+            // 
+            this.Timeline6.Location = new System.Drawing.Point(521, 436);
+            this.Timeline6.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline6.Name = "Timeline6";
+            this.Timeline6.Size = new System.Drawing.Size(97, 76);
+            this.Timeline6.TabIndex = 37;
+            this.Timeline6.Text = "Start time";
+            this.Timeline6.UseVisualStyleBackColor = true;
+            this.Timeline6.Click += new System.EventHandler(this.Timeline6_Click);
+            // 
+            // Timeline5
+            // 
+            this.Timeline5.Location = new System.Drawing.Point(420, 436);
+            this.Timeline5.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline5.Name = "Timeline5";
+            this.Timeline5.Size = new System.Drawing.Size(97, 76);
+            this.Timeline5.TabIndex = 36;
+            this.Timeline5.Text = "Start time";
+            this.Timeline5.UseVisualStyleBackColor = true;
+            this.Timeline5.Click += new System.EventHandler(this.Timeline5_Click);
+            // 
+            // Timeline12
+            // 
+            this.Timeline12.Location = new System.Drawing.Point(218, 529);
+            this.Timeline12.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline12.Name = "Timeline12";
+            this.Timeline12.Size = new System.Drawing.Size(97, 76);
+            this.Timeline12.TabIndex = 43;
+            this.Timeline12.Text = "Start time";
+            this.Timeline12.UseVisualStyleBackColor = true;
+            this.Timeline12.Click += new System.EventHandler(this.Timeline12_Click);
+            // 
+            // Timeline11
+            // 
+            this.Timeline11.Location = new System.Drawing.Point(117, 529);
+            this.Timeline11.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline11.Name = "Timeline11";
+            this.Timeline11.Size = new System.Drawing.Size(97, 76);
+            this.Timeline11.TabIndex = 42;
+            this.Timeline11.Text = "Start time";
+            this.Timeline11.UseVisualStyleBackColor = true;
+            this.Timeline11.Click += new System.EventHandler(this.Timeline11_Click);
+            // 
+            // Timeline10
+            // 
+            this.Timeline10.Location = new System.Drawing.Point(16, 529);
+            this.Timeline10.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline10.Name = "Timeline10";
+            this.Timeline10.Size = new System.Drawing.Size(97, 76);
+            this.Timeline10.TabIndex = 41;
+            this.Timeline10.Text = "Start time";
+            this.Timeline10.UseVisualStyleBackColor = true;
+            this.Timeline10.Click += new System.EventHandler(this.Timeline10_Click);
+            // 
+            // Timeline9
+            // 
+            this.Timeline9.Location = new System.Drawing.Point(824, 436);
+            this.Timeline9.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline9.Name = "Timeline9";
+            this.Timeline9.Size = new System.Drawing.Size(97, 76);
+            this.Timeline9.TabIndex = 40;
+            this.Timeline9.Text = "Start time";
+            this.Timeline9.UseVisualStyleBackColor = true;
+            this.Timeline9.Click += new System.EventHandler(this.Timeline9_Click);
+            // 
+            // Timeline24
+            // 
+            this.Timeline24.Location = new System.Drawing.Point(521, 622);
+            this.Timeline24.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline24.Name = "Timeline24";
+            this.Timeline24.Size = new System.Drawing.Size(97, 76);
+            this.Timeline24.TabIndex = 55;
+            this.Timeline24.Text = "Start time";
+            this.Timeline24.UseVisualStyleBackColor = true;
+            this.Timeline24.Click += new System.EventHandler(this.Timeline24_Click);
+            // 
+            // Timeline23
+            // 
+            this.Timeline23.Location = new System.Drawing.Point(420, 622);
+            this.Timeline23.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline23.Name = "Timeline23";
+            this.Timeline23.Size = new System.Drawing.Size(97, 76);
+            this.Timeline23.TabIndex = 54;
+            this.Timeline23.Text = "Start time";
+            this.Timeline23.UseVisualStyleBackColor = true;
+            this.Timeline23.Click += new System.EventHandler(this.Timeline23_Click);
+            // 
+            // Timeline22
+            // 
+            this.Timeline22.Location = new System.Drawing.Point(319, 622);
+            this.Timeline22.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline22.Name = "Timeline22";
+            this.Timeline22.Size = new System.Drawing.Size(97, 76);
+            this.Timeline22.TabIndex = 53;
+            this.Timeline22.Text = "Start time";
+            this.Timeline22.UseVisualStyleBackColor = true;
+            this.Timeline22.Click += new System.EventHandler(this.Timeline22_Click);
+            // 
+            // Timeline21
+            // 
+            this.Timeline21.Location = new System.Drawing.Point(218, 622);
+            this.Timeline21.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline21.Name = "Timeline21";
+            this.Timeline21.Size = new System.Drawing.Size(97, 76);
+            this.Timeline21.TabIndex = 52;
+            this.Timeline21.Text = "Start time";
+            this.Timeline21.UseVisualStyleBackColor = true;
+            this.Timeline21.Click += new System.EventHandler(this.Timeline21_Click);
+            // 
+            // Timeline20
+            // 
+            this.Timeline20.Location = new System.Drawing.Point(117, 622);
+            this.Timeline20.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline20.Name = "Timeline20";
+            this.Timeline20.Size = new System.Drawing.Size(97, 76);
+            this.Timeline20.TabIndex = 51;
+            this.Timeline20.Text = "Start time";
+            this.Timeline20.UseVisualStyleBackColor = true;
+            this.Timeline20.Click += new System.EventHandler(this.Timeline20_Click);
+            // 
+            // Timeline19
+            // 
+            this.Timeline19.Location = new System.Drawing.Point(16, 622);
+            this.Timeline19.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline19.Name = "Timeline19";
+            this.Timeline19.Size = new System.Drawing.Size(97, 76);
+            this.Timeline19.TabIndex = 50;
+            this.Timeline19.Text = "Start time";
+            this.Timeline19.UseVisualStyleBackColor = true;
+            this.Timeline19.Click += new System.EventHandler(this.Timeline19_Click);
+            // 
+            // Timeline18
+            // 
+            this.Timeline18.Location = new System.Drawing.Point(825, 529);
+            this.Timeline18.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline18.Name = "Timeline18";
+            this.Timeline18.Size = new System.Drawing.Size(97, 76);
+            this.Timeline18.TabIndex = 49;
+            this.Timeline18.Text = "Start time";
+            this.Timeline18.UseVisualStyleBackColor = true;
+            this.Timeline18.Click += new System.EventHandler(this.Timeline18_Click);
+            // 
+            // Timeline17
+            // 
+            this.Timeline17.Location = new System.Drawing.Point(724, 529);
+            this.Timeline17.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline17.Name = "Timeline17";
+            this.Timeline17.Size = new System.Drawing.Size(97, 76);
+            this.Timeline17.TabIndex = 48;
+            this.Timeline17.Text = "Start time";
+            this.Timeline17.UseVisualStyleBackColor = true;
+            this.Timeline17.Click += new System.EventHandler(this.Timeline17_Click);
+            // 
+            // Timeline16
+            // 
+            this.Timeline16.Location = new System.Drawing.Point(622, 529);
+            this.Timeline16.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline16.Name = "Timeline16";
+            this.Timeline16.Size = new System.Drawing.Size(97, 76);
+            this.Timeline16.TabIndex = 47;
+            this.Timeline16.Text = "Start time";
+            this.Timeline16.UseVisualStyleBackColor = true;
+            this.Timeline16.Click += new System.EventHandler(this.Timeline16_Click);
+            // 
+            // Timeline15
+            // 
+            this.Timeline15.Location = new System.Drawing.Point(521, 529);
+            this.Timeline15.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline15.Name = "Timeline15";
+            this.Timeline15.Size = new System.Drawing.Size(97, 76);
+            this.Timeline15.TabIndex = 46;
+            this.Timeline15.Text = "Start time";
+            this.Timeline15.UseVisualStyleBackColor = true;
+            this.Timeline15.Click += new System.EventHandler(this.Timeline15_Click);
+            // 
+            // Timeline14
+            // 
+            this.Timeline14.Location = new System.Drawing.Point(420, 529);
+            this.Timeline14.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline14.Name = "Timeline14";
+            this.Timeline14.Size = new System.Drawing.Size(97, 76);
+            this.Timeline14.TabIndex = 45;
+            this.Timeline14.Text = "Start time";
+            this.Timeline14.UseVisualStyleBackColor = true;
+            this.Timeline14.Click += new System.EventHandler(this.Timeline14_Click);
+            // 
+            // Timeline13
+            // 
+            this.Timeline13.Location = new System.Drawing.Point(319, 529);
+            this.Timeline13.Margin = new System.Windows.Forms.Padding(2);
+            this.Timeline13.Name = "Timeline13";
+            this.Timeline13.Size = new System.Drawing.Size(97, 76);
+            this.Timeline13.TabIndex = 44;
+            this.Timeline13.Text = "Start time";
+            this.Timeline13.UseVisualStyleBackColor = true;
+            this.Timeline13.Click += new System.EventHandler(this.Timeline13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 629);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(1068, 727);
+            this.Controls.Add(this.Timeline24);
+            this.Controls.Add(this.Timeline23);
+            this.Controls.Add(this.Timeline22);
+            this.Controls.Add(this.Timeline21);
+            this.Controls.Add(this.Timeline20);
+            this.Controls.Add(this.Timeline19);
+            this.Controls.Add(this.Timeline18);
+            this.Controls.Add(this.Timeline17);
+            this.Controls.Add(this.Timeline16);
+            this.Controls.Add(this.Timeline15);
+            this.Controls.Add(this.Timeline14);
+            this.Controls.Add(this.Timeline13);
+            this.Controls.Add(this.Timeline12);
+            this.Controls.Add(this.Timeline11);
+            this.Controls.Add(this.Timeline10);
+            this.Controls.Add(this.Timeline9);
+            this.Controls.Add(this.Timeline8);
+            this.Controls.Add(this.Timeline7);
+            this.Controls.Add(this.Timeline6);
+            this.Controls.Add(this.Timeline5);
+            this.Controls.Add(this.Timeline4);
+            this.Controls.Add(this.Timeline3);
+            this.Controls.Add(this.Timeline2);
+            this.Controls.Add(this.Timeline1);
             this.Controls.Add(this.currentTime);
             this.Controls.Add(this.dailyStart);
             this.Controls.Add(this.label3);
@@ -703,6 +1015,30 @@
         private System.Windows.Forms.ComboBox gapStop;
         private System.Windows.Forms.ComboBox gapStart;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Timeline1;
+        private System.Windows.Forms.Button Timeline2;
+        private System.Windows.Forms.Button Timeline4;
+        private System.Windows.Forms.Button Timeline3;
+        private System.Windows.Forms.Button Timeline8;
+        private System.Windows.Forms.Button Timeline7;
+        private System.Windows.Forms.Button Timeline6;
+        private System.Windows.Forms.Button Timeline5;
+        private System.Windows.Forms.Button Timeline12;
+        private System.Windows.Forms.Button Timeline11;
+        private System.Windows.Forms.Button Timeline10;
+        private System.Windows.Forms.Button Timeline9;
+        private System.Windows.Forms.Button Timeline24;
+        private System.Windows.Forms.Button Timeline23;
+        private System.Windows.Forms.Button Timeline22;
+        private System.Windows.Forms.Button Timeline21;
+        private System.Windows.Forms.Button Timeline20;
+        private System.Windows.Forms.Button Timeline19;
+        private System.Windows.Forms.Button Timeline18;
+        private System.Windows.Forms.Button Timeline17;
+        private System.Windows.Forms.Button Timeline16;
+        private System.Windows.Forms.Button Timeline15;
+        private System.Windows.Forms.Button Timeline14;
+        private System.Windows.Forms.Button Timeline13;
     }
 }
 
