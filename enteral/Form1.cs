@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace enteral
@@ -22,8 +17,10 @@ namespace enteral
             InitializeComponent();
             rateOutput.Text = "0";
             missedOutput.Text = "0";
-            if (Properties.Settings.Default.timeReset >= 0 && Properties.Settings.Default.timeReset < 24) {
-                dailyStartCombo.SelectedIndex = Properties.Settings.Default.timeReset;
+            int new_start = RegistryEdit.check_daily_start();
+            if (new_start > -1 && new_start < 24)
+            {
+                dailyStartCombo.SelectedIndex = new_start;
                 this.gapStart.Items.Clear();
                 this.gapStop.Items.Clear();
                 this.gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
@@ -54,12 +51,16 @@ namespace enteral
             Timeline[22] = Timeline23;
             Timeline[23] = Timeline24;
 
+            // Disable maximize and window resize
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false; 
+
             int time = 0;
             string timestring = "";
 
             for (int i = 0; i <= 23; i++)
             {
-                time = Properties.Settings.Default.timeReset + i;
+                time = RegistryEdit.check_daily_start() + i;
                 if (time > 12)
                 {
                     time -= 12;
@@ -81,6 +82,11 @@ namespace enteral
             }
         }
 
+        public void Set_patient_info(PatientInfo new_data) {
+            patientData = new_data;
+            sync_ui();
+        }
+
 
         private void setTimeline()
         {
@@ -93,7 +99,7 @@ namespace enteral
 
             for (int i = 0; i <= 23; i++)
             {
-                time = Properties.Settings.Default.timeReset + i;
+                time = RegistryEdit.check_daily_start() + i;
                 if (time > 12)
                 {
                     time -= 12;
@@ -140,9 +146,8 @@ namespace enteral
             {
                 if (dailyStartCombo.SelectedItem.ToString() != "")
                 {
-                    Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
+                    RegistryEdit.set_daily_start(dailyStartCombo.SelectedIndex);
                 }
-                Properties.Settings.Default.Save();
 
                 settingsPanel.Hide();
                 SettingsButton.Text = "Edit Settings";
@@ -162,8 +167,9 @@ namespace enteral
             gapStart.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
             gapStop.Items.Clear();
             gapStop.Items.AddRange(generate_times(dailyStartCombo.SelectedIndex));
-            Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
-            Properties.Settings.Default.Save();
+
+            // Set value in registry
+            RegistryEdit.set_daily_start(dailyStartCombo.SelectedIndex);
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,7 +204,8 @@ namespace enteral
                 patientData.set_max_rate(240);
                 MaxRateNumeric.Value = 240;
             }
-            else {
+            else
+            {
                 patientData.set_max_rate(150);
                 MaxRateNumeric.Value = 150;
             }
@@ -236,8 +243,9 @@ namespace enteral
 
         private void saveSettings_Click(object sender, EventArgs e)
         {
-            if (dailyStartCombo.SelectedItem.ToString() != "") {
-                Properties.Settings.Default.timeReset = dailyStartCombo.SelectedIndex;
+            if (dailyStartCombo.SelectedItem.ToString() != "")
+            {
+                RegistryEdit.set_daily_start(dailyStartCombo.SelectedIndex);
             }
             Properties.Settings.Default.Save();
 
@@ -258,7 +266,7 @@ namespace enteral
                 if ((fs = savedFile.OpenFile()) != null || (fs = File.Create(savedFile.FileName)) != null)
                 {
                     // Code to write the stream goes here.
-                    string data = patientData.to_string(DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset));
+                    string data = patientData.to_string(DateTime.Now.Date.AddHours(RegistryEdit.check_daily_start()));
                     byte[] info = new UTF8Encoding(true).GetBytes(data);
                     try
                     {
@@ -270,7 +278,8 @@ namespace enteral
                         MessageBox.Show("Write error when committing changes to patient info file.");
                     }
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Could not open the file path for writing, check file path and try again.");
                 }
             }
@@ -287,16 +296,19 @@ namespace enteral
             var fileContent = string.Empty;
 
             // If they select OK on the dialog
-            if (fileToSave.ShowDialog() == DialogResult.OK) {
+            if (fileToSave.ShowDialog() == DialogResult.OK)
+            {
                 // Try to open the file
                 var fs = fileToSave.OpenFile();
                 // Try to read the whole file
-                using (StreamReader reader = new StreamReader(fs)) {
+                using (StreamReader reader = new StreamReader(fs))
+                {
                     fileContent = reader.ReadToEnd();
                 }
 
                 // Set our reset time to today + time offset
-                DateTime resetTime = DateTime.Now.Date.AddHours(Properties.Settings.Default.timeReset);
+                DateTime resetTime = DateTime.Now.Date.AddHours(RegistryEdit.check_daily_start
+                    ());
                 PatientInfo patientDataTmp = new PatientInfo(fileContent, resetTime);
                 if (patientDataTmp.validate())
                 {
@@ -307,7 +319,8 @@ namespace enteral
                 else
                 {
                     // Let a nurse know if old times were dropped (so they don't think the times just disappeared)
-                    if (patientDataTmp.is_trimmed()) {
+                    if (patientDataTmp.is_trimmed())
+                    {
                         MessageBox.Show("Warning: Times over 24 hours were present and have been removed.");
                     }
                     // Save the data in our data class & sync
@@ -320,7 +333,8 @@ namespace enteral
 
         }
 
-        private void sync_ui() {
+        public void sync_ui()
+        {
             // Set values for every visual indicator to match the values stored in patient data
             this.DailyVolumeNumeric.Value = (decimal)this.patientData.get_volume();
             this.feedTypeCombo.SelectedIndex = (int)this.patientData.get_feed_type();
@@ -332,13 +346,14 @@ namespace enteral
             setTimeline();
             // Update feeding rate
             display_feed_rate();
-            
+
         }
 
-        private void display_feed_rate() {
+        private void display_feed_rate()
+        {
             this.rateOutput.Text = String.Format("{000}", this.patientData.get_feed_rate_ml()) + " ml";
             this.rateOutput.Text = String.Format("{000}", (int)this.patientData.get_feed_rate_ml()) + " ml";
-            this.missedOutput.Text = this.patientData.hours_missed().ToString(); 
+            this.missedOutput.Text = this.patientData.hours_missed().ToString();
         }
         public void changeName()
         {
@@ -409,7 +424,8 @@ namespace enteral
             setTimeline();
         }
 
-        private object[] generate_times(int offset) {
+        private object[] generate_times(int offset)
+        {
             // List of possible time names
             string[] time_table = {
             "12:00 AM",
@@ -437,7 +453,8 @@ namespace enteral
             "10:00 PM",
             "11:00 PM" };
             string[] output = new string[24];
-            for (int i = 0; i < 24; i++) {
+            for (int i = 0; i < 24; i++)
+            {
                 output[i] = time_table[(i + offset) % 24];
             }
             return output;
