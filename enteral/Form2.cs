@@ -133,14 +133,26 @@ namespace enteral
         private void DailyVolumeNumeric_ValueChanged(object sender, EventArgs e)
         {
             patientData.set_volume((double)DailyVolumeNumeric.Value);
-
-            this.total_set = true;
-            this.loadMainButton.Enabled = feed_set;
         }
 
         private void loadMainButton_Click(object sender, EventArgs e)
         {
             open_next_form(this.patientData);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            patientData.set_volume((double)DailyVolumeNumeric.Value);
+
+            this.total_set = true;
+            this.loadMainButton.Enabled = feed_set;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            patientData.set_max_rate((double)MaxRateNumeric.Value);
+            this.feed_set = true;
+            this.loadMainButton.Enabled = total_set;
         }
     }
 }

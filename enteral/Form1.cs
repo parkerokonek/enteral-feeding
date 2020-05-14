@@ -83,8 +83,8 @@ namespace enteral
         }
 
         public void Set_patient_info(PatientInfo new_data) {
-            this.patientData = new_data;
-            this.sync_ui();
+            patientData = new_data;
+            sync_ui();
         }
 
 
