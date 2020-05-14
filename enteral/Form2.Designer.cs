@@ -85,6 +85,7 @@
             this.loadFile.TabIndex = 24;
             this.loadFile.Text = "Load Patient";
             this.loadFile.UseVisualStyleBackColor = true;
+            this.loadFile.Click += new System.EventHandler(this.loadFile_Click);
             // 
             // button1
             // 
@@ -117,6 +118,7 @@
             this.loadMainButton.TabIndex = 23;
             this.loadMainButton.Text = "Continue";
             this.loadMainButton.UseVisualStyleBackColor = true;
+            this.loadMainButton.Click += new System.EventHandler(this.loadMainButton_Click);
             // 
             // DailyVolumeNumeric
             // 
@@ -130,6 +132,7 @@
             this.DailyVolumeNumeric.Name = "DailyVolumeNumeric";
             this.DailyVolumeNumeric.Size = new System.Drawing.Size(90, 20);
             this.DailyVolumeNumeric.TabIndex = 21;
+            this.DailyVolumeNumeric.ValueChanged += new System.EventHandler(this.DailyVolumeNumeric_ValueChanged);
             // 
             // label4
             // 
@@ -177,6 +180,7 @@
             this.feedTypeCombo.Name = "feedTypeCombo";
             this.feedTypeCombo.Size = new System.Drawing.Size(145, 21);
             this.feedTypeCombo.TabIndex = 11;
+            this.feedTypeCombo.SelectedIndexChanged += new System.EventHandler(this.feedTypeCombo_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -224,6 +228,7 @@
             this.dailyStartCombo.Name = "dailyStartCombo";
             this.dailyStartCombo.Size = new System.Drawing.Size(145, 21);
             this.dailyStartCombo.TabIndex = 13;
+            this.dailyStartCombo.SelectedIndexChanged += new System.EventHandler(this.dailyStartCombo_SelectedIndexChanged);
             // 
             // patientPopUp
             // 

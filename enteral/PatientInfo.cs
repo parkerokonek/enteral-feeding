@@ -13,14 +13,14 @@ using System.Globalization;
 
 namespace enteral
 {
-    enum FeedType {
+    public enum FeedType {
         NG,
         NJ,
         PEG,
         J
     }
 
-    class TimeBlock {
+    public class TimeBlock {
         public double feedRate;
         public Boolean written;
         public Boolean missed;
@@ -41,7 +41,7 @@ namespace enteral
 
 
 
-    class PatientInfo
+    public class PatientInfo
     {
         String PatientID;
         FeedType feedingType;
