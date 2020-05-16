@@ -24,14 +24,17 @@ Again, if the app is blocked go to: More Info > Run Anyway
 Run the 'enteral' program to launch the app.
 
 
+//=========================================//
 
 Note:This version may still has a few bugs being sorted out! 
 
 Please help us out by letting us know about any bugs you find.
 
+//=========================================//
+
+Additional Notes and Usage:
 
 In order to get the correct feeding output please verify that the settings are all correct before adding breaks.
-
 
 Please enter hours in the order that they are missed.
 
