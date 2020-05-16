@@ -3,13 +3,21 @@
 !!!Note: This app only works on Windows machines!!!
 
 In the GitHub repo go to the releases folder and download current.zip 
+
 Unzip/extract the contents of current.zip
+
 Run setup
+
 If the app is blocked go to: More Info > Run Anyway
+
 If you do not have .NET framework it will ask to install it. Click Accept.
+
 Allow any additional prompts.
+
 This may take a few minutes to complete.
+
 Click Install.
+
 Again, if the app is blocked go to: More Info > Run Anyway
 
 ## Usage
