@@ -114,7 +114,7 @@
             this.panel1.Controls.Add(this.dailyVolumeTag);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(16, 18);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(637, 150);
             this.panel1.TabIndex = 0;
@@ -201,7 +201,7 @@
             // loadFile
             // 
             this.loadFile.Location = new System.Drawing.Point(11, 223);
-            this.loadFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadFile.Margin = new System.Windows.Forms.Padding(4);
             this.loadFile.Name = "loadFile";
             this.loadFile.Size = new System.Drawing.Size(101, 28);
             this.loadFile.TabIndex = 24;
@@ -212,7 +212,7 @@
             // saveFile
             // 
             this.saveFile.Location = new System.Drawing.Point(113, 223);
-            this.saveFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveFile.Margin = new System.Windows.Forms.Padding(4);
             this.saveFile.Name = "saveFile";
             this.saveFile.Size = new System.Drawing.Size(101, 28);
             this.saveFile.TabIndex = 23;
@@ -231,7 +231,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Location = new System.Drawing.Point(16, 186);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(317, 233);
             this.panel2.TabIndex = 1;
@@ -315,7 +315,7 @@
             this.AddGap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddGap.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddGap.Location = new System.Drawing.Point(165, 57);
-            this.AddGap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddGap.Margin = new System.Windows.Forms.Padding(4);
             this.AddGap.Name = "AddGap";
             this.AddGap.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.AddGap.Size = new System.Drawing.Size(83, 71);
@@ -359,7 +359,7 @@
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(59, 154);
-            this.button3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Margin = new System.Windows.Forms.Padding(5);
             this.button3.Name = "button3";
             this.button3.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.button3.Size = new System.Drawing.Size(189, 41);
@@ -385,7 +385,7 @@
             this.settingsPanel.Controls.Add(this.label10);
             this.settingsPanel.Controls.Add(this.dailyStartCombo);
             this.settingsPanel.Location = new System.Drawing.Point(677, 52);
-            this.settingsPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.settingsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(223, 263);
             this.settingsPanel.TabIndex = 3;
@@ -534,7 +534,7 @@
             // 
             this.SettingsButton.BackColor = System.Drawing.SystemColors.Control;
             this.SettingsButton.Location = new System.Drawing.Point(677, 18);
-            this.SettingsButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SettingsButton.Margin = new System.Windows.Forms.Padding(4);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(145, 28);
             this.SettingsButton.TabIndex = 4;
@@ -655,6 +655,7 @@
             this.Timeline1.TabIndex = 32;
             this.Timeline1.Text = "Start time";
             this.Timeline1.UseVisualStyleBackColor = true;
+            this.Timeline1.Click += new System.EventHandler(this.Timeline1_Click);
             // 
             // Timeline2
             // 
@@ -665,6 +666,7 @@
             this.Timeline2.TabIndex = 33;
             this.Timeline2.Text = "Start time";
             this.Timeline2.UseVisualStyleBackColor = true;
+            this.Timeline2.Click += new System.EventHandler(this.Timeline2_Click);
             // 
             // Timeline4
             // 
@@ -675,6 +677,7 @@
             this.Timeline4.TabIndex = 35;
             this.Timeline4.Text = "Start time";
             this.Timeline4.UseVisualStyleBackColor = true;
+            this.Timeline4.Click += new System.EventHandler(this.Timeline4_Click);
             // 
             // Timeline3
             // 
@@ -685,6 +688,7 @@
             this.Timeline3.TabIndex = 34;
             this.Timeline3.Text = "Start time";
             this.Timeline3.UseVisualStyleBackColor = true;
+            this.Timeline3.Click += new System.EventHandler(this.Timeline3_Click);
             // 
             // Timeline8
             // 
@@ -695,6 +699,7 @@
             this.Timeline8.TabIndex = 39;
             this.Timeline8.Text = "Start time";
             this.Timeline8.UseVisualStyleBackColor = true;
+            this.Timeline8.Click += new System.EventHandler(this.Timeline8_Click);
             // 
             // Timeline7
             // 
@@ -705,6 +710,7 @@
             this.Timeline7.TabIndex = 38;
             this.Timeline7.Text = "Start time";
             this.Timeline7.UseVisualStyleBackColor = true;
+            this.Timeline7.Click += new System.EventHandler(this.Timeline7_Click);
             // 
             // Timeline6
             // 
@@ -715,6 +721,7 @@
             this.Timeline6.TabIndex = 37;
             this.Timeline6.Text = "Start time";
             this.Timeline6.UseVisualStyleBackColor = true;
+            this.Timeline6.Click += new System.EventHandler(this.Timeline6_Click);
             // 
             // Timeline5
             // 
@@ -725,6 +732,7 @@
             this.Timeline5.TabIndex = 36;
             this.Timeline5.Text = "Start time";
             this.Timeline5.UseVisualStyleBackColor = true;
+            this.Timeline5.Click += new System.EventHandler(this.Timeline5_Click);
             // 
             // Timeline12
             // 
@@ -735,6 +743,7 @@
             this.Timeline12.TabIndex = 43;
             this.Timeline12.Text = "Start time";
             this.Timeline12.UseVisualStyleBackColor = true;
+            this.Timeline12.Click += new System.EventHandler(this.Timeline12_Click);
             // 
             // Timeline11
             // 
@@ -745,6 +754,7 @@
             this.Timeline11.TabIndex = 42;
             this.Timeline11.Text = "Start time";
             this.Timeline11.UseVisualStyleBackColor = true;
+            this.Timeline11.Click += new System.EventHandler(this.Timeline11_Click);
             // 
             // Timeline10
             // 
@@ -755,6 +765,7 @@
             this.Timeline10.TabIndex = 41;
             this.Timeline10.Text = "Start time";
             this.Timeline10.UseVisualStyleBackColor = true;
+            this.Timeline10.Click += new System.EventHandler(this.Timeline10_Click);
             // 
             // Timeline9
             // 
@@ -765,6 +776,7 @@
             this.Timeline9.TabIndex = 40;
             this.Timeline9.Text = "Start time";
             this.Timeline9.UseVisualStyleBackColor = true;
+            this.Timeline9.Click += new System.EventHandler(this.Timeline9_Click);
             // 
             // Timeline24
             // 
@@ -775,6 +787,7 @@
             this.Timeline24.TabIndex = 55;
             this.Timeline24.Text = "Start time";
             this.Timeline24.UseVisualStyleBackColor = true;
+            this.Timeline24.Click += new System.EventHandler(this.Timeline24_Click);
             // 
             // Timeline23
             // 
@@ -785,6 +798,7 @@
             this.Timeline23.TabIndex = 54;
             this.Timeline23.Text = "Start time";
             this.Timeline23.UseVisualStyleBackColor = true;
+            this.Timeline23.Click += new System.EventHandler(this.Timeline23_Click);
             // 
             // Timeline22
             // 
@@ -795,6 +809,7 @@
             this.Timeline22.TabIndex = 53;
             this.Timeline22.Text = "Start time";
             this.Timeline22.UseVisualStyleBackColor = true;
+            this.Timeline22.Click += new System.EventHandler(this.Timeline22_Click);
             // 
             // Timeline21
             // 
@@ -805,6 +820,7 @@
             this.Timeline21.TabIndex = 52;
             this.Timeline21.Text = "Start time";
             this.Timeline21.UseVisualStyleBackColor = true;
+            this.Timeline21.Click += new System.EventHandler(this.Timeline21_Click);
             // 
             // Timeline20
             // 
@@ -815,6 +831,7 @@
             this.Timeline20.TabIndex = 51;
             this.Timeline20.Text = "Start time";
             this.Timeline20.UseVisualStyleBackColor = true;
+            this.Timeline20.Click += new System.EventHandler(this.Timeline20_Click);
             // 
             // Timeline19
             // 
@@ -825,6 +842,7 @@
             this.Timeline19.TabIndex = 50;
             this.Timeline19.Text = "Start time";
             this.Timeline19.UseVisualStyleBackColor = true;
+            this.Timeline19.Click += new System.EventHandler(this.Timeline19_Click);
             // 
             // Timeline18
             // 
@@ -835,6 +853,7 @@
             this.Timeline18.TabIndex = 49;
             this.Timeline18.Text = "Start time";
             this.Timeline18.UseVisualStyleBackColor = true;
+            this.Timeline18.Click += new System.EventHandler(this.Timeline18_Click);
             // 
             // Timeline17
             // 
@@ -845,6 +864,7 @@
             this.Timeline17.TabIndex = 48;
             this.Timeline17.Text = "Start time";
             this.Timeline17.UseVisualStyleBackColor = true;
+            this.Timeline17.Click += new System.EventHandler(this.Timeline17_Click);
             // 
             // Timeline16
             // 
@@ -855,6 +875,7 @@
             this.Timeline16.TabIndex = 47;
             this.Timeline16.Text = "Start time";
             this.Timeline16.UseVisualStyleBackColor = true;
+            this.Timeline16.Click += new System.EventHandler(this.Timeline16_Click);
             // 
             // Timeline15
             // 
@@ -865,6 +886,7 @@
             this.Timeline15.TabIndex = 46;
             this.Timeline15.Text = "Start time";
             this.Timeline15.UseVisualStyleBackColor = true;
+            this.Timeline15.Click += new System.EventHandler(this.Timeline15_Click);
             // 
             // Timeline14
             // 
@@ -875,6 +897,7 @@
             this.Timeline14.TabIndex = 45;
             this.Timeline14.Text = "Start time";
             this.Timeline14.UseVisualStyleBackColor = true;
+            this.Timeline14.Click += new System.EventHandler(this.Timeline14_Click);
             // 
             // Timeline13
             // 
@@ -885,6 +908,7 @@
             this.Timeline13.TabIndex = 44;
             this.Timeline13.Text = "Start time";
             this.Timeline13.UseVisualStyleBackColor = true;
+            this.Timeline13.Click += new System.EventHandler(this.Timeline13_Click);
             // 
             // Form1
             // 
@@ -924,7 +948,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Enteral Feeding Rate Calculator";
             this.Load += new System.EventHandler(this.Form1_Load);

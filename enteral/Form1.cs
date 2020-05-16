@@ -460,5 +460,169 @@ namespace enteral
             return output;
         }
 
+
+        public void changeRate(int index)
+        {
+            Form changeRate = new Form();
+            Button accept = new Button();
+            Button cancel = new Button();
+            TextBox newRate = new TextBox();
+
+            changeRate.Text = "Edit Time Block";
+            newRate.Text = "Enter New Rate";
+            accept.Text = "Set Rate";
+            cancel.Text = "Cancel";
+
+            accept.DialogResult = System.Windows.Forms.DialogResult.OK;
+            newRate.Location = new Point(10, 10);
+            accept.Location = new Point(newRate.Left, newRate.Height + newRate.Top + 10);
+            cancel.Location = new Point(accept.Left, accept.Height + accept.Top + 10);
+
+            changeRate.HelpButton = true;
+
+            changeRate.StartPosition = FormStartPosition.CenterParent;
+
+            changeRate.AcceptButton = accept;
+            changeRate.CancelButton = cancel;
+
+            changeRate.Controls.Add(newRate);
+            changeRate.Controls.Add(accept);
+            changeRate.Controls.Add(cancel);
+
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            if (changeRate.ShowDialog(this) == DialogResult.OK)
+            {
+                // Read the contents of testDialog's TextBox.
+                int previousRate = (int)this.patientData.get_feed_rate_ml();
+                int newRateInt = Int32.Parse(newRate.Text);
+
+                this.patientData.setTime(index-1, previousRate, newRateInt, true);
+                
+
+                sync_ui();
+            }
+            changeRate.Dispose();
+        }
+
+
+        private void Timeline1_Click(object sender, EventArgs e)
+        {
+            changeRate(1);
+        }
+
+        private void Timeline2_Click(object sender, EventArgs e)
+        {
+            changeRate(2);
+        }
+
+        private void Timeline3_Click(object sender, EventArgs e)
+        {
+            changeRate(3);
+        }
+
+        private void Timeline4_Click(object sender, EventArgs e)
+        {
+            changeRate(4);
+        }
+
+        private void Timeline5_Click(object sender, EventArgs e)
+        {
+            changeRate(5);
+        }
+
+        private void Timeline6_Click(object sender, EventArgs e)
+        {
+            changeRate(6);
+        }
+
+        private void Timeline7_Click(object sender, EventArgs e)
+        {
+            changeRate(7);
+        }
+
+        private void Timeline8_Click(object sender, EventArgs e)
+        {
+            changeRate(8);
+        }
+
+        private void Timeline9_Click(object sender, EventArgs e)
+        {
+            changeRate(9);
+        }
+
+        private void Timeline10_Click(object sender, EventArgs e)
+        {
+            changeRate(10);
+        }
+
+        private void Timeline11_Click(object sender, EventArgs e)
+        {
+            changeRate(11);
+        }
+
+        private void Timeline12_Click(object sender, EventArgs e)
+        {
+            changeRate(12);
+        }
+
+        private void Timeline13_Click(object sender, EventArgs e)
+        {
+            changeRate(13);
+        }
+
+        private void Timeline14_Click(object sender, EventArgs e)
+        {
+            changeRate(14);
+        }
+
+        private void Timeline15_Click(object sender, EventArgs e)
+        {
+            changeRate(15);
+        }
+
+        private void Timeline16_Click(object sender, EventArgs e)
+        {
+            changeRate(16);
+        }
+
+        private void Timeline17_Click(object sender, EventArgs e)
+        {
+            changeRate(17);
+        }
+
+        private void Timeline18_Click(object sender, EventArgs e)
+        {
+            changeRate(18);
+        }
+
+        private void Timeline19_Click(object sender, EventArgs e)
+        {
+            changeRate(19);
+        }
+
+        private void Timeline20_Click(object sender, EventArgs e)
+        {
+            changeRate(20);
+        }
+
+        private void Timeline21_Click(object sender, EventArgs e)
+        {
+            changeRate(21);
+        }
+
+        private void Timeline22_Click(object sender, EventArgs e)
+        {
+            changeRate(22);
+        }
+
+        private void Timeline23_Click(object sender, EventArgs e)
+        {
+            changeRate(23);
+        }
+
+        private void Timeline24_Click(object sender, EventArgs e)
+        {
+            changeRate(24);
+        }
     }
 }
