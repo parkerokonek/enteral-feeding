@@ -20,6 +20,7 @@ namespace enteral
         J
     }
 
+
     public class TimeBlock {
         public double feedRate;
         public Boolean written;
@@ -40,7 +41,7 @@ namespace enteral
 
 
 
-
+    //Class to manage patient data.
     public class PatientInfo
     {
         String PatientID;
