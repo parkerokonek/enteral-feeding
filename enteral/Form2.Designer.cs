@@ -240,7 +240,6 @@
             this.Controls.Add(this.settingsPanel);
             this.Name = "patientPopUp";
             this.Text = "Patient Properties";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxRateNumeric)).EndInit();
