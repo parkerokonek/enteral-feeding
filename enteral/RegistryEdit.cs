@@ -5,7 +5,10 @@ namespace enteral
 {
     class RegistryEdit
     {
+        // This is a static class that wraps the functions for manipulating our single registry key
         static RegistryEdit() { }
+
+        // Check daily start will attempt to read the key and set the daily start value if valid
         static public int check_daily_start()
         {
             int daily_start = 6;
@@ -25,6 +28,7 @@ namespace enteral
             return daily_start;
         }
 
+        // Set daily start will set the value of the registry key to whatever is entered
         static public void set_daily_start(int val)
         {
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\enteral_feeding"))

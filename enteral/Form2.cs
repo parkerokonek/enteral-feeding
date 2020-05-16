@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace enteral
 {
@@ -23,13 +16,9 @@ namespace enteral
             // Disable maximize and window resize
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            // Grab the daily start time and disable the continue button until we get our data
             dailyStartCombo.SelectedIndex = RegistryEdit.check_daily_start();
             this.loadMainButton.Enabled = false;
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void loadFile_Click(object sender, EventArgs e)
@@ -77,17 +66,22 @@ namespace enteral
 
         private void open_next_form(PatientInfo patientData)
         {
+            // Hide this window forever
             this.Hide();
+            // Instantiate the main window
             var main_form = new Form1();
+            // If the main window is closed 
             main_form.FormClosed += (s, args) => this.Close();
+            // load patient info and present the main window
             main_form.Set_patient_info(patientData);
             main_form.Show();
         }
 
-        
+
 
         private void dailyStartCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // set the registry value for our start time to the selected start time
             RegistryEdit.set_daily_start(dailyStartCombo.SelectedIndex);
         }
 
@@ -126,32 +120,42 @@ namespace enteral
                 patientData.set_max_rate(150);
                 MaxRateNumeric.Value = 150;
             }
+            // Flip one switch for enabling the continue button
             this.feed_set = true;
+            // Enable the continue button if both buttons set, implied and because feed_set is guaranteed true
             this.loadMainButton.Enabled = total_set;
         }
 
         private void DailyVolumeNumeric_ValueChanged(object sender, EventArgs e)
         {
+            // Update volume in our patient data 
             patientData.set_volume((double)DailyVolumeNumeric.Value);
         }
 
         private void loadMainButton_Click(object sender, EventArgs e)
         {
+            // go to the next page
             open_next_form(this.patientData);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // set patient daily volume
             patientData.set_volume((double)DailyVolumeNumeric.Value);
 
+            // Flip switch for total volume
             this.total_set = true;
+            // Use implied and to see if continue should be enabled
             this.loadMainButton.Enabled = feed_set;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // set max rate
             patientData.set_max_rate((double)MaxRateNumeric.Value);
+            // Flip switch for feed type
             this.feed_set = true;
+            // Implied and for checking if continue should be enabled
             this.loadMainButton.Enabled = total_set;
         }
     }
