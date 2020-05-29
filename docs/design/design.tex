@@ -395,4 +395,77 @@ The Qt Company. Supported Platforms. 2019. url: https://doc.qt.io/qt-5/supported
 \newline
 \newline
 FDA. U. S. Food \& Drug Administration. 2019. url: https://www.fda.gov/media/80958/download (visited on 11/19/2019).
+
+\section{Change Table}
+\begin{tabular}{| p{0.45\textwidth} | p{0.45\textwidth} |}
+\hline
+Original & Updated \\
+\hline
+\begin{enumerate}
+    \item System Architecture: ARMv8
+    \item Screen Resolution: 720 x 1280 minimum
+    \item Input: Pointer and on-screen keyboard or pointer and physical keyboard
+\end{enumerate}
+& Removed\\
+\hline
+Software requirements for development will involve github and the chosen user interface framework, Qt, whose libraries are required to build and compile the project. & Software requirements for development will involve github and the chosen user interface framework, Windows Form App, whose libraries are required to build and compile the project.\\
+\hline
+\begin{enumerate}
+    \item Version Control: Github
+     \item Operating System: Windows 7 or greater
+    \item UI Toolkit: Qt (other options, see below)
+ \end{enumerate}
+& 
+\begin{enumerate}
+    \item Version Control: Github
+     \item Operating System: Windows 7 or greater
+    \item DotNet 4.2 or higher
+    \item UI Toolkit: Windows Form App
+ \end{enumerate}\\
+\hline
+Assuming a multi-platform or desktop implementation, Qt, supports a variety of platforms with similar or identical interfaces with the underlying programming language.
+The layout and bindings to underlying data will be written using Qt's provided API, and the required libraries will be packaged with the software as allowed by the license for distribution. 
+& 
+Removed \\
+\hline
+Mobile Interface Framework
+\newline
+\newline
+\noindent
+React Native: 
+A very popular cross-platform option for Android and iOS development. This framework is inclusive and uses JavaScript. This makes it very familiar, especially for our team who hasn't had experience with mobile app development. This may be the easiest option to learn of the three listed here.
+\newline
+\newline
+Apache Cordova / PhoneGap: 
+This framework seems to emphasize the ease of use with peripherals such as the phone's camera and other apps. While this is great, we likely won't need to make use of this. The benefit of this framework is that many versions of an application can be created using the same code base which makes developing for multiple platforms easier.
+\newline
+\newline
+%%%%%%%
+& 
+Removed\\
+\newline
+\newline
+An few examples of what this may look like include: 
+\newline
+\newline
+Assuming we use the Ionic framework for a mobile interface we would use the ate() function to grab a timestamp \autocite{ionicforum}.
+\newline
+\indent let date = new Date()\newline
+\indent console.log("Current Date ",date)
+\newline
+\newline
+Assuming we use JavaScript for a web interface we would use the getTime() function to grab a timestamp.
+\newline
+\indent Date.getTime()
+\newline
+\newline
+Assuming that we use Cordova framework for a mobile interface we would use the currentdate class to grab the current time data \autocite{cordova}.
+\newline
+\indent var currentdate = new Date(); \newline
+\indent var datetime = currentdate.getHours() + ":"\newline
+\indent \indent \indent + currentdate.getMinutes() + ":" \newline
+\indent \indent \indent + currentdate.getSeconds();\newline
+& 
+Removed \\
+\end{tabular}
 \end{document}
