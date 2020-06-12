@@ -1,22 +1,15 @@
-# enteral-feeding
-## Build Instructions
+# A Volume-based Enteral Feeding Calculator
+## Installation
 !!!Note: This app only works on Windows machines!!!
 
-In the GitHub repo go to the releases folder and download current.zip 
-
-Unzip/extract the contents of current.zip
-
-Run setup
-
-If the app is blocked go to: More Info > Run Anyway
-
-If you do not have .NET framework it will ask to install it. Click Accept.
-
-Allow any additional prompts.
-
-This may take a few minutes to complete.
-
-Click Install.
+1. In the GitHub repo go to the releases folder and download current.zip 
+1. Unzip/extract the contents of current.zip
+1. Run setup
+1. If the app is blocked go to: More Info > Run Anyway
+1. If you do not have .NET framework it will ask to install it. Click Accept.
+1. Allow any additional prompts.
+1. This may take a few minutes to complete.
+1. Click Install.
 
 Again, if the app is blocked go to: More Info > Run Anyway
 
@@ -24,15 +17,15 @@ Again, if the app is blocked go to: More Info > Run Anyway
 Run the 'enteral' program to launch the app.
 
 
-//=========================================//
+---
 
-Note:This version may still has a few bugs being sorted out! 
+_Note_: This version may still have some bugs. 
 
-Please help us out by letting us know about any bugs you find.
+Please help us out by letting us know about any bugs you find by submitting a github issue.
 
-//=========================================//
+---
 
-Additional Notes and Usage:
+## Additional Notes and Usage
 
 In order to get the correct feeding output please verify that the settings are all correct before adding breaks.
 
